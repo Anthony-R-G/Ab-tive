@@ -1,2 +1,2 @@
 # CapstoneApp
-Get rock hard, bro!
+Only for people looking to get hard

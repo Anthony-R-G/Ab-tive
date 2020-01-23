@@ -38,7 +38,7 @@ One evening on Brandys commute home she heard a group of people talking about an
 
 
 Brandy meets Dylan three times a week at the gym where they encourage, and hold each other accountable to meet their goals. They have very similar workouts because with the apps ModelTargetAreas they saw they had similar body types and had many of the same target areas to improve. They feel confident with these provided workout suggestions because with the apps AR feature they are able to preview the correct posture and position for each machine at the gym.  Outside of the gym Brandy counts her calories with the apps CaloriesTracker, and uses the MealPrepGuide for healthy meal suggestions.
-Brandy is now 32 lbs lighter and feeling fit and better than ever. She is excited to update her progress and load a pic for comparison to where she started. But this isn’t the end for Brandy, she may end up using the app from a personal trainer’s point of view next!
+Brandy is now 32 lbs lighter and feeling fit and better than ever. She is excited to update her progress and load a pic for comparison to where she started. But this isn’t the end for Brandy, she may end up using the app from a personal trainer’s point of view next! Wowza!!
 
 
 

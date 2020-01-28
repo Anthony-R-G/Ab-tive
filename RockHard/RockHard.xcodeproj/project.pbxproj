@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */; };
+		50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */; };
 		97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */; };
 		97452DA623DF4B26005636E0 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA523DF4B26005636E0 /* WorkoutViewController.swift */; };
 		97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA723DF4B34005636E0 /* ProfileViewController.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseInfoCell.swift; path = RockHard/Controllers/ExerciseInfoCell.swift; sourceTree = SOURCE_ROOT; };
+		50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellButtonProtocol.swift; path = RockHard/Controllers/CellButtonProtocol.swift; sourceTree = SOURCE_ROOT; };
 		97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		97452DA523DF4B26005636E0 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		97452DA723DF4B34005636E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 		97452DAA23DF4B58005636E0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */,
+				50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -245,6 +251,8 @@
 				97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */,
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
+				50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */,
+				50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */,
 				97BF746123DF49920058F2D7 /* AppDelegate.swift in Sources */,
 				97BF746323DF49920058F2D7 /* SceneDelegate.swift in Sources */,
 			);

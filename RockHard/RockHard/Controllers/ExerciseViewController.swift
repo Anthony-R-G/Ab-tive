@@ -9,9 +9,20 @@
 import UIKit
 
 class ExerciseViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
+    //MARK: - Lifecycle
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          view.backgroundColor = .white
     }
+    //MARK: - Variables
+    
+    //MARK: - UI Objects
+    
+    //MARK: - Objc Functions
+    
+    //MARK: - Regular Functions
+    
+    //MARK: - Constraints
+    
+    
 }

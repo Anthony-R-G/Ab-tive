@@ -17,12 +17,27 @@ class ExerciseViewController: UIViewController {
     //MARK: - Variables
     
     //MARK: - UI Objects
-    
+ lazy var exerciseTableView: UITableView = {
+      let layout = UITableView()
+      layout.register(ExerciseInfoCell.self, forCellReuseIdentifier: "exerciseCell")
+      layout.backgroundColor = .white
+      return layout
+  }()
     //MARK: - Objc Functions
     
     //MARK: - Regular Functions
     
     //MARK: - Constraints
+    
+}
+extension ExerciseInfoCell: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    }
     
     
 }

@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */; };
 		50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */; };
-		50D4D73A23E0C6C300DD7486 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50D4D73923E0C6C300DD7486 /* GoogleService-Info.plist */; };
+		50F29F4123E0E9AB0050C2CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */; };
+		50F29F4723E34AE60050C2CD /* MuscleTypeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */; };
 		7460BBB0F4D2B416B26D127E /* Pods_RockHard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D06A9E7BA800E8E8EC552FD /* Pods_RockHard.framework */; };
 		97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */; };
 		97452DA623DF4B26005636E0 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA523DF4B26005636E0 /* WorkoutViewController.swift */; };
@@ -42,7 +43,8 @@
 		2FC4BD54D34ACF72B34DC3C4 /* Pods-RockHardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHardTests.debug.xcconfig"; path = "Target Support Files/Pods-RockHardTests/Pods-RockHardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseInfoCell.swift; path = RockHard/Controllers/ExerciseInfoCell.swift; sourceTree = SOURCE_ROOT; };
 		50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellButtonProtocol.swift; path = RockHard/Controllers/CellButtonProtocol.swift; sourceTree = SOURCE_ROOT; };
-		50D4D73923E0C6C300DD7486 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MuscleTypeCVCell.swift; path = RockHard/Controllers/MuscleTypeCVCell.swift; sourceTree = SOURCE_ROOT; };
 		6F87CB3464EE1A2A3CB8E235 /* Pods-RockHard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHard.debug.xcconfig"; path = "Target Support Files/Pods-RockHard/Pods-RockHard.debug.xcconfig"; sourceTree = "<group>"; };
 		8E03C470E032ACDEF70E175B /* Pods-RockHard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHard.release.xcconfig"; path = "Target Support Files/Pods-RockHard/Pods-RockHard.release.xcconfig"; sourceTree = "<group>"; };
 		97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				DF4071B423E0A91500506B8A /* FeedVerticalCollViewCell.swift */,
 				50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */,
 				50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */,
+				50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,7 +152,7 @@
 				97BF748223DF49A60058F2D7 /* Controllers */,
 				97BF746923DF49960058F2D7 /* Assets.xcassets */,
 				97BF746B23DF49960058F2D7 /* LaunchScreen.storyboard */,
-				50D4D73923E0C6C300DD7486 /* GoogleService-Info.plist */,
+				50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */,
 				97BF746E23DF49960058F2D7 /* Info.plist */,
 			);
 			path = RockHard;
@@ -184,7 +187,6 @@
 				2FC4BD54D34ACF72B34DC3C4 /* Pods-RockHardTests.debug.xcconfig */,
 				E8416E47EC4CE529996B550C /* Pods-RockHardTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -272,7 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50D4D73A23E0C6C300DD7486 /* GoogleService-Info.plist in Resources */,
+				50F29F4123E0E9AB0050C2CD /* GoogleService-Info.plist in Resources */,
 				97BF746D23DF49960058F2D7 /* LaunchScreen.storyboard in Resources */,
 				97BF746A23DF49960058F2D7 /* Assets.xcassets in Resources */,
 			);
@@ -364,6 +366,7 @@
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
 				50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */,
 				50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */,
+				50F29F4723E34AE60050C2CD /* MuscleTypeCVCell.swift in Sources */,
 				97BF746123DF49920058F2D7 /* AppDelegate.swift in Sources */,
 				97BF746323DF49920058F2D7 /* SceneDelegate.swift in Sources */,
 				DF4071B523E0A91500506B8A /* FeedVerticalCollViewCell.swift in Sources */,

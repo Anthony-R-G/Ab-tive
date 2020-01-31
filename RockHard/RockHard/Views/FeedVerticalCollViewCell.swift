@@ -8,33 +8,38 @@ import UIKit
 
 class FeedVerticalCollViewCell: UICollectionViewCell {
     
-    let feedImage = UIImageView()
-    func setUpFeedImage() {
-        feedImage.image = #imageLiteral(resourceName: "gymBuddyHolder")
-        feedImage.contentMode = .scaleAspectFit
-        feedImage.layer.cornerRadius = 20
-        feedImage.clipsToBounds = true
-        feedImage.layer.allowsGroupOpacity = true
+    lazy var feedPostImage: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+//        iv.layer.allowsGroupOpacity = true
+        return iv
+    }()
+    
+    
+    
+    private func setConstraints(){
+        [feedPostImage].forEach{addSubview($0)}
+        [feedPostImage].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
         
-        feedImage.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(feedImage)
         NSLayoutConstraint.activate([
-            feedImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            feedImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            feedImage.heightAnchor.constraint(equalTo: heightAnchor),
-            feedImage.widthAnchor.constraint(equalTo: widthAnchor)])
+            feedPostImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+            feedPostImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            feedPostImage.heightAnchor.constraint(equalTo: heightAnchor),
+            feedPostImage.widthAnchor.constraint(equalTo: widthAnchor)])
+        
     }
     
-    let containerView = UIView()
-    func setUpContainerView() {
-        containerView.backgroundColor = .white
-        containerView.alpha = 0.70
-    }
+    //    let containerView = UIView()
+    //    func setUpContainerView() {
+    //        containerView.backgroundColor = .white
+    //        containerView.alpha = 0.70
+    //    }
     
-    
+
     override init(frame: CGRect) {
-        super.init(frame: CGRect(x: 100, y: 150, width: 300, height: 300))
-        setUpFeedImage()
+        super.init(frame: frame)
+        setConstraints()
+
         self.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
         backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)

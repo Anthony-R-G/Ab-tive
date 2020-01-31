@@ -10,8 +10,14 @@ class FeedViewController: UIViewController {
     
     var topics = ["Diets", "Style", "aflkafjal", "Weight Loss", "gymAccessories"]
     
-    var messages = ["Found Water Bottle", "Legs Workout 6:30PM", "Lost 20lbs in 3 weeks" ]
 
+    var testData = [FeedPost]() {
+        didSet {
+            feedPostCollectionView.reloadData()
+        }
+    }
+
+    var messages = ["Found Water Bottle", "Legs Workout 6:30PM", "Lost 20lbs in 3 weeks" ]
     
     lazy var feedOptionCollView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -19,65 +25,48 @@ class FeedViewController: UIViewController {
         horizontalCollView.translatesAutoresizingMaskIntoConstraints = false
         horizontalCollView.register(FeedHorizontalCollViewCell.self, forCellWithReuseIdentifier: "topicsCell")
         layout.scrollDirection = .horizontal
-        horizontalCollView.backgroundColor = #colorLiteral(red: 0.776026845, green: 0.7714150548, blue: 0.7795727849, alpha: 1)
+
+        horizontalCollView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
         horizontalCollView.dataSource = self
         horizontalCollView.delegate = self
         
         return horizontalCollView
     }()
-    //MARK: - Constraints
 
-    private func feedCollViewConstraints() {
-        view.addSubview(feedOptionCollView)
-        feedOptionCollView.translatesAutoresizingMaskIntoConstraints = false
+    
+    lazy var feedPostCollectionView: UICollectionView = {
         
-        NSLayoutConstraint.activate([
-            feedOptionCollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        feedOptionCollView.heightAnchor.constraint(equalToConstant: 140),
-        feedOptionCollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+        let verticalCollView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        verticalCollView.register(FeedVerticalCollViewCell.self, forCellWithReuseIdentifier: "feedPostCell")
+        verticalCollView.backgroundColor = .brown
+        verticalCollView.dataSource = self
+        verticalCollView.delegate = self
+        return verticalCollView
         
-        
-      ])
-    }
+    }()
+
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
 
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        feedCollViewConstraints()
+        testData = FeedPost.testFeedData
+        setConstraints()
         view.backgroundColor = .gray
         
-        
-    }
-
-}
-
-extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topics.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicsCell", for: indexPath) as? FeedHorizontalCollViewCell else { return UICollectionViewCell()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.feedPostCollectionView.reloadData()
+            print(self.testData)
         }
-        
-        let specificTopic = topics[indexPath.row]
-        print(specificTopic)
-        cell.label.text = specificTopic
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let specificTopic = topics[indexPath.row]
-        
-        
-        print("You clicked on \(specificTopic) on the \(indexPath.row) row")
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -85,6 +74,77 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
 }
+
+
+//MARK: --Constraints
+extension FeedViewController {
+    private func setConstraints(){
+        [feedOptionCollView, feedPostCollectionView].forEach{view.addSubview($0)}
+        [feedOptionCollView, feedPostCollectionView].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
+        
+        
+        setTopicCollViewConstraints()
+        setPostsCollViewConstraints()
+        
+    }
+    
+    private func setTopicCollViewConstraints() {
+        NSLayoutConstraint.activate([
+            feedOptionCollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            feedOptionCollView.heightAnchor.constraint(equalToConstant: 140),
+            feedOptionCollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+        ])
+    }
+    
+    private func setPostsCollViewConstraints(){
+        NSLayoutConstraint.activate([
+            feedPostCollectionView.topAnchor.constraint(equalTo: feedOptionCollView.bottomAnchor),
+            feedPostCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            feedPostCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+    }
+    
+}
+extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == self.feedPostCollectionView {
+            return 3
+            
+        } else {
+            return topics.count
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView  == self.feedPostCollectionView {
+            
+            guard let feedCell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedPostCell", for: indexPath) as? FeedVerticalCollViewCell else { return UICollectionViewCell()}
+            print("v")
+            let specificTestData = testData[indexPath.row]
+            feedCell.feedPostImage.image = UIImage(named: specificTestData.contentPicture)
+            feedCell.backgroundColor = .darkGray
+            return feedCell
+        } else {
+            guard let topicsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicsCell", for: indexPath) as? FeedHorizontalCollViewCell else { return UICollectionViewCell()}
+            print("h")
+            let specificTopic = topics[indexPath.row]
+            topicsCell.label.text = specificTopic
+            return topicsCell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == feedPostCollectionView {
+            return CGSize(width: 360, height: 470)
+        } else {
+            return CGSize(width: 130, height: 105)
+           
+            
+        }
+        
+    }
+}
+
 
 
 

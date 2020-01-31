@@ -10,11 +10,14 @@ class FeedViewController: UIViewController {
     
     var topics = ["Diets", "Style", "aflkafjal", "Weight Loss", "gymAccessories"]
     
+
     var testData = [FeedPost]() {
         didSet {
             feedPostCollectionView.reloadData()
         }
     }
+
+    var messages = ["Found Water Bottle", "Legs Workout 6:30PM", "Lost 20lbs in 3 weeks" ]
     
     lazy var feedOptionCollView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,12 +25,15 @@ class FeedViewController: UIViewController {
         horizontalCollView.translatesAutoresizingMaskIntoConstraints = false
         horizontalCollView.register(FeedHorizontalCollViewCell.self, forCellWithReuseIdentifier: "topicsCell")
         layout.scrollDirection = .horizontal
+
         horizontalCollView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
         horizontalCollView.dataSource = self
         horizontalCollView.delegate = self
         
         return horizontalCollView
     }()
+
     
     lazy var feedPostCollectionView: UICollectionView = {
         
@@ -39,10 +45,12 @@ class FeedViewController: UIViewController {
         return verticalCollView
         
     }()
+
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
+
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
@@ -58,8 +66,15 @@ class FeedViewController: UIViewController {
             self.feedPostCollectionView.reloadData()
             print(self.testData)
         }
+
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 130, height: 105)
+    }
+    
 }
+
 
 //MARK: --Constraints
 extension FeedViewController {
@@ -129,6 +144,7 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
     }
 }
+
 
 
 

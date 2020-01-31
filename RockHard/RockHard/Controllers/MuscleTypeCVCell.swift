@@ -22,7 +22,7 @@ class MuscleTypeCVCell: UICollectionViewCell {
     lazy var muscleNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.backgroundColor = .clear
         return label
     }()
@@ -33,12 +33,10 @@ class MuscleTypeCVCell: UICollectionViewCell {
         contentView.addSubview(muscleNameLabel)
         muscleNameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            muscleNameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 0),
-            muscleNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0),
+            muscleNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            muscleNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             muscleNameLabel.heightAnchor.constraint(equalToConstant: 50),
-            muscleNameLabel.widthAnchor.constraint(equalToConstant: 100),
-            muscleNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            muscleNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 15)
+            muscleNameLabel.centerYAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutYAxisAnchor>#>, constant: <#T##CGFloat#>)
         ])
     }
 }

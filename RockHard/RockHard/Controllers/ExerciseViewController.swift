@@ -16,7 +16,7 @@ class ExerciseViewController: UIViewController {
         setUpConstraints()
     }
     //MARK: - Variables
-    
+    var muscleType = ["Biceps", "Legs", "Triceps", "Shoulder", "Chest", "Back", "Cardio"]
     //MARK: - UI Objects
     lazy var exerciseTableView: UITableView = {
         let layout = UITableView()
@@ -34,8 +34,7 @@ class ExerciseViewController: UIViewController {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.register(MuscleTypeCVCell.self, forCellWithReuseIdentifier: "muscleCell")
-        cv.isScrollEnabled = false
-        cv.backgroundColor =  #colorLiteral(red: 0.2564295232, green: 0.4383472204, blue: 0.8055806756, alpha: 1)
+        cv.backgroundColor = .clear
         cv.delegate = self
         cv.dataSource = self
         return cv
@@ -74,7 +73,7 @@ class ExerciseViewController: UIViewController {
             muscleTypeCV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             muscleTypeCV.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             muscleTypeCV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            muscleTypeCV.heightAnchor.constraint(equalToConstant: 100)
+            muscleTypeCV.heightAnchor.constraint(equalToConstant: 50)
         
         ])
     }
@@ -91,6 +90,7 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.exerciseTitleLabel.text = "ahhdddfjsdlkjflsjdlkfjskljflkds"
         cell?.cellImage.image = UIImage(named: "muscle")
         cell?.delegate = self
+        
         cell?.exerciseIsPicked.tag = indexPath.row
         cell?.backgroundColor = .clear
         return cell!
@@ -109,12 +109,19 @@ extension ExerciseViewController: ButtonFunction{
 }
 extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return muscleType.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = muscleTypeCV.dequeueReusableCell(withReuseIdentifier: "muscleCell", for: indexPath) as? MuscleTypeCVCell
-        cell?.muscleNameLabel.text = "dfsf"
+        let data = muscleType[indexPath.row]
+        cell?.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+        cell?.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
+        cell?.layer.borderWidth = 2
+        cell?.layer.cornerRadius = 15
+        cell?.muscleNameLabel.adjustsFontSizeToFitWidth = true
+        cell?.layer.masksToBounds = true
+        cell?.muscleNameLabel.text = data
         return cell!
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

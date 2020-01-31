@@ -36,18 +36,22 @@ class ExerciseViewController: UIViewController {
         cv.register(MuscleTypeCVCell.self, forCellWithReuseIdentifier: "muscleCell")
         cv.backgroundColor = .clear
         cv.delegate = self
+        cv.showsHorizontalScrollIndicator = false
         cv.dataSource = self
         return cv
     }()
+//    private func setUpView(){
+//        view.backgroundColor = .white
+//        let backgroundImage = UIImage(named: "backMuscle")
+//        let backgroundImageView = UIImageView.init(frame: self.view.frame)
+//        backgroundImageView.image = backgroundImage
+//        backgroundImageView.contentMode = .scaleAspectFill
+//        backgroundImageView.alpha = 0.65
+//        self.view.insertSubview(backgroundImageView, at: 0)
+//
+//    }
     private func setUpView(){
-        view.backgroundColor = .white
-        let backgroundImage = UIImage(named: "backMuscle")
-        let backgroundImageView = UIImageView.init(frame: self.view.frame)
-        backgroundImageView.image = backgroundImage
-        backgroundImageView.contentMode = .scaleAspectFill
-        backgroundImageView.alpha = 0.5
-        self.view.insertSubview(backgroundImageView, at: 0)
-        
+        view.backgroundColor = #colorLiteral(red: 0.2929434776, green: 0.360488832, blue: 0.4110850692, alpha: 0.7299604024)
     }
     private func setUpConstraints(){
         constrainExerciseCV()
@@ -63,7 +67,7 @@ class ExerciseViewController: UIViewController {
             exerciseTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             exerciseTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             exerciseTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            exerciseTableView.topAnchor.constraint(equalTo: muscleTypeCV.bottomAnchor, constant: 0)
+            exerciseTableView.topAnchor.constraint(equalTo: muscleTypeCV.bottomAnchor, constant: 15)
         ])
     }
     private func constrainExerciseCV(){
@@ -79,6 +83,7 @@ class ExerciseViewController: UIViewController {
     }
 
 }
+//MARK: - UITableView
 extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,7 +97,7 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.delegate = self
         
         cell?.exerciseIsPicked.tag = indexPath.row
-        cell?.backgroundColor = .clear
+//        cell?.backgroundColor = .clear
         return cell!
     }
     
@@ -100,13 +105,8 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
         return CGFloat(100)
     }
 }
-extension ExerciseViewController: ButtonFunction{
-    func selectAction(tag: Int) {
-        let selectedIndex = IndexPath(row: tag, section: 0)
-        let selected = exerciseTableView.cellForRow(at: selectedIndex ) as! ExerciseInfoCell
-        selected.exerciseIsPicked.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-    }
-}
+
+//MARK: - UICollectionViewCell
 extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return muscleType.count
@@ -119,12 +119,22 @@ extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewData
         cell?.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
         cell?.layer.borderWidth = 2
         cell?.layer.cornerRadius = 15
-        cell?.muscleNameLabel.adjustsFontSizeToFitWidth = true
         cell?.layer.masksToBounds = true
         cell?.muscleNameLabel.text = data
         return cell!
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 65, height: 40)
+        let label = UILabel(frame: CGRect.zero)
+        label.text = muscleType[indexPath.item]
+        label.sizeToFit()
+        return CGSize(width: label.frame.width + 20, height: 40 )
+    }
+}
+//MARK: - Button Protocol
+extension ExerciseViewController: ButtonFunction{
+    func selectAction(tag: Int) {
+        let selectedIndex = IndexPath(row: tag, section: 0)
+        let selected = exerciseTableView.cellForRow(at: selectedIndex ) as! ExerciseInfoCell
+        selected.exerciseIsPicked.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
     }
 }

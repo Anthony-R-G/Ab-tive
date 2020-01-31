@@ -36,7 +36,7 @@ class MuscleTypeCVCell: UICollectionViewCell {
             muscleNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             muscleNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             muscleNameLabel.heightAnchor.constraint(equalToConstant: 50),
-            muscleNameLabel.centerYAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutYAxisAnchor>#>, constant: <#T##CGFloat#>)
+            muscleNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0)
         ])
     }
 }

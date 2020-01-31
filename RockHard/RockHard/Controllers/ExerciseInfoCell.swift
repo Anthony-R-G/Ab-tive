@@ -14,6 +14,7 @@ class ExerciseInfoCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpContentView()
+        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5672089041)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -25,13 +26,13 @@ class ExerciseInfoCell: UITableViewCell {
     lazy var cellImage: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleToFill
-        view.backgroundColor = .clear
         return view
     }()
     lazy var exerciseTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
         label.backgroundColor = .white
+        label.textColor = .white
         label.numberOfLines = 0
         label.backgroundColor = .clear
         return label
@@ -59,7 +60,7 @@ class ExerciseInfoCell: UITableViewCell {
         cellImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cellImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            cellImage.heightAnchor.constraint(equalToConstant: 150),
+            cellImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             cellImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
             cellImage.widthAnchor.constraint(equalToConstant: 150)
         ])
@@ -69,10 +70,10 @@ class ExerciseInfoCell: UITableViewCell {
         contentView.addSubview(exerciseTitleLabel)
         exerciseTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            exerciseTitleLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 5),
-             exerciseTitleLabel.heightAnchor.constraint(equalToConstant: 100),
+            exerciseTitleLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 10),
             exerciseTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            exerciseTitleLabel.trailingAnchor.constraint(equalTo: exerciseIsPicked.leadingAnchor, constant: -5)
+            exerciseTitleLabel.heightAnchor.constraint(equalToConstant: 50),
+            exerciseTitleLabel.trailingAnchor.constraint(equalTo: exerciseIsPicked.leadingAnchor, constant: -10)
             
         ])
     }

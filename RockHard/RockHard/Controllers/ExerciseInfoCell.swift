@@ -24,8 +24,8 @@ class ExerciseInfoCell: UITableViewCell {
     //MARK: - UI Objects
     lazy var cellImage: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .green
         view.contentMode = .scaleToFill
+        view.backgroundColor = .clear
         return view
     }()
     lazy var exerciseTitleLabel: UILabel = {
@@ -33,6 +33,7 @@ class ExerciseInfoCell: UITableViewCell {
         label.font = .boldSystemFont(ofSize: 16)
         label.backgroundColor = .white
         label.numberOfLines = 0
+        label.backgroundColor = .clear
         return label
     }()
     lazy var exerciseIsPicked: UIButton = {

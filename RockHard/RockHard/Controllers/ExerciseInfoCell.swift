@@ -14,6 +14,7 @@ class ExerciseInfoCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpContentView()
+        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5672089041)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -24,40 +25,44 @@ class ExerciseInfoCell: UITableViewCell {
     //MARK: - UI Objects
     lazy var cellImage: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleToFill
         return view
     }()
     lazy var exerciseTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 24)
+        label.font = .boldSystemFont(ofSize: 16)
         label.backgroundColor = .white
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.backgroundColor = .clear
         return label
     }()
     lazy var exerciseIsPicked: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(savedAction), for: .touchUpInside)
-        button.setBackgroundImage(UIImage.init(named: "checkmark.circle"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
         return button
     }()
     
     //MARK: - Objc Functions
     @objc func savedAction (){
-        delegate?.selectAction(sender: exerciseIsPicked.tag)
+        delegate?.selectAction(tag: exerciseIsPicked.tag)
       }
     //MARK: - Regular Functions
     func setUpContentView(){
         setUpCellImage()
-        setUpExerciseTitleLabel()
         setUpIsPicked()
+         setUpExerciseTitleLabel()
     }
     //MARK: - Constraints
     private func setUpCellImage(){
         contentView.addSubview(cellImage)
         cellImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cellImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            cellImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6),
-            cellImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 15),
-            cellImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 50)
+            cellImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            cellImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            cellImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            cellImage.widthAnchor.constraint(equalToConstant: 150)
         ])
     }
     
@@ -65,10 +70,10 @@ class ExerciseInfoCell: UITableViewCell {
         contentView.addSubview(exerciseTitleLabel)
         exerciseTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            exerciseTitleLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 15),
-            exerciseTitleLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.20),
-            exerciseTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            exerciseTitleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 50)
+            exerciseTitleLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 10),
+            exerciseTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            exerciseTitleLabel.heightAnchor.constraint(equalToConstant: 50),
+            exerciseTitleLabel.trailingAnchor.constraint(equalTo: exerciseIsPicked.leadingAnchor, constant: -10)
             
         ])
     }
@@ -76,11 +81,10 @@ class ExerciseInfoCell: UITableViewCell {
         contentView.addSubview(exerciseIsPicked)
         exerciseIsPicked.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            exerciseIsPicked.leadingAnchor.constraint(equalTo: exerciseTitleLabel.trailingAnchor, constant: 15),
-            exerciseIsPicked.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.20),
-            exerciseIsPicked.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            exerciseIsPicked.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: 50)
-            
+            exerciseIsPicked.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+             exerciseIsPicked.heightAnchor.constraint(equalToConstant: 50),
+             exerciseIsPicked.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0),
+             exerciseIsPicked.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
     

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ButtonFunction: AnyObject {
-    func selectAction(sender: Int)
+    func selectAction(tag: Int)
 }

@@ -17,6 +17,11 @@ class ExerciseViewController: UIViewController {
     }
     //MARK: - Variables
     var muscleType = ["Biceps", "Legs", "Triceps", "Shoulder", "Chest", "Back", "Cardio"]
+    var exercise = [Exercise](){
+        didSet{
+            exerciseTableView.reloadData()
+        }
+    }
     //MARK: - UI Objects
     lazy var exerciseTableView: UITableView = {
         let layout = UITableView()
@@ -40,16 +45,10 @@ class ExerciseViewController: UIViewController {
         cv.dataSource = self
         return cv
     }()
-//    private func setUpView(){
-//        view.backgroundColor = .white
-//        let backgroundImage = UIImage(named: "backMuscle")
-//        let backgroundImageView = UIImageView.init(frame: self.view.frame)
-//        backgroundImageView.image = backgroundImage
-//        backgroundImageView.contentMode = .scaleAspectFill
-//        backgroundImageView.alpha = 0.65
-//        self.view.insertSubview(backgroundImageView, at: 0)
-//
-//    }
+
+    private func loadExerciseData(){
+        
+    }
     private func setUpView(){
         view.backgroundColor = #colorLiteral(red: 0.2929434776, green: 0.360488832, blue: 0.4110850692, alpha: 0.7299604024)
     }

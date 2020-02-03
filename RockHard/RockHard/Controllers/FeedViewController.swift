@@ -36,10 +36,9 @@ class FeedViewController: UIViewController {
 
     
     lazy var feedPostCollectionView: UICollectionView = {
-        
         let verticalCollView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         verticalCollView.register(FeedVerticalCollViewCell.self, forCellWithReuseIdentifier: "feedPostCell")
-        verticalCollView.backgroundColor = .brown
+        verticalCollView.backgroundColor = .white
         verticalCollView.dataSource = self
         verticalCollView.delegate = self
         return verticalCollView
@@ -66,7 +65,6 @@ class FeedViewController: UIViewController {
             self.feedPostCollectionView.reloadData()
             print(self.testData)
         }
-
     }
 }
 
@@ -117,7 +115,9 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             print("v")
             let specificTestData = testData[indexPath.row]
             feedCell.feedPostImage.image = UIImage(named: specificTestData.contentPicture)
+            feedCell.feedPostLabel.text = specificTestData.contentText
             feedCell.backgroundColor = .darkGray
+            
             return feedCell
         } else {
             guard let topicsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicsCell", for: indexPath) as? FeedHorizontalCollViewCell else { return UICollectionViewCell()}

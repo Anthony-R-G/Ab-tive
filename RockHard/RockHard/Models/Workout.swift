@@ -9,5 +9,7 @@
 import Foundation
 
 struct Workout{
-    
+    let workOutDay: String
+    let workType: String
+    let exercises: [Exercise]
 }

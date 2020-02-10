@@ -143,7 +143,9 @@
 				50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */,
 				97452E4B23E4BB60005636E0 /* FeedPostCollectionViewCell.swift */,
 				50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */,
+
 				50524BDE23ECACF900703791 /* WorkoutDayCell.swift */,
+
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,8 +404,10 @@
 				97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */,
 				9704BB2023E8807300AF6830 /* FirestoreService.swift in Sources */,
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
+
 				508BC8A123E8870900A93734 /* Exercise.swift in Sources */,
 				50524BE123ECC40900703791 /* Workout.swift in Sources */,
+
 				9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
 				50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */,

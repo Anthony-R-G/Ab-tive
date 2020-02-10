@@ -28,8 +28,7 @@ class FirestoreService {
     
     
 
-    func createFavorite(apiSource: selectedAPI ,post: Favorite, id: String, completion: @escaping (Result<(), Error>) -> ()) {
-
+    func createFavorite(post: Favorite, id: String, completion: @escaping (Result<(), Error>) -> ()) {
         var fields = post.fieldsDict
         fields["dateCreated"] = Date()
         let userID = FirebaseAuthService.manager.currentUser?.uid

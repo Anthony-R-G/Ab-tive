@@ -27,12 +27,16 @@ class FirestoreService {
     }
     
     
+
     func createFavorite(apiSource: selectedAPI ,post: Favorite, id: String, completion: @escaping (Result<(), Error>) -> ()) {
+
         var fields = post.fieldsDict
         fields["dateCreated"] = Date()
         let userID = FirebaseAuthService.manager.currentUser?.uid
         let uniqueID = userID! + id
-        db.collection("\(apiSource.rawValue)Favorites").document(uniqueID).setData(fields) { (error) in
+
+        db.collection("Favorites").document(uniqueID).setData(fields) { (error) in
+
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -41,8 +45,10 @@ class FirestoreService {
         }
     }
     
-    func getUserFavorites(apiSource: selectedAPI,for UserID: String, completion: @escaping (Result<[Favorite],Error>) ->()) {
-        db.collection("\(apiSource.rawValue)Favorites").whereField("userID", isEqualTo: UserID).getDocuments { (snapshot, error) in
+
+    func getUserFavorites(UserID: String, completion: @escaping (Result<[Favorite],Error>) ->()) {
+        db.collection("Favorites").whereField("userID", isEqualTo: UserID).getDocuments { (snapshot, error) in
+
             if let error = error{
                 completion(.failure(error))
             }else {
@@ -56,8 +62,7 @@ class FirestoreService {
         }
     }
     
-  
-    
+
     func updateCurrentUser(accountType: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else { return }
         var updateFields = [String:Any]()
@@ -73,6 +78,21 @@ class FirestoreService {
             }
         }
     }
+
+    func getExercises( completion: @escaping (Result<[Exercise],Error>) ->()) {
+        db.collection("exercise").getDocuments { (snapshot, error) in
+               if let error = error{
+                   completion(.failure(error))
+               }else {
+                   let posts = snapshot?.documents.compactMap({ (snapshot) -> Exercise? in
+                       let post = Exercise(from: snapshot.data())
+                       return post
+                   })
+                   completion(.success(posts ?? []))
+               }
+           }
+       }
+
     
     func deleteAllUserFavorites(apiSourceRawValue: String, completion: @escaping (Result<(), Error>) -> ()){
         let userID = FirebaseAuthService.manager.currentUser?.uid

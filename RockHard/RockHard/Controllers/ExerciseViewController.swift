@@ -10,22 +10,40 @@ import UIKit
 
 class ExerciseViewController: UIViewController {
     //MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         setUpConstraints()
+           loadExerciseData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         loadExerciseData()
     }
     //MARK: - Variables
-    var counter = 0
+    enum currentState: String{
+        case add
+        case view
+    }
+    var state = currentState.view
+    var arrayOfbuttonStates = [Bool]()
+    var pickedExercises = [Exercise](){
+        didSet{
+            if self.pickedExercises.isEmpty {
+                createWorkoutButton.isHidden = true
+            }else {
+                createWorkoutButton.isHidden = false
+            }
+        }
+    }
     var muscleType = ["Biceps", "Legs", "Triceps", "Shoulder", "Chest", "Back", "Cardio"]
     var exercise = [Exercise](){
         didSet{
+            arrayOfbuttonStates = Array(repeating: true, count: self.exercise.count)
             exerciseTableView.reloadData()
         }
     }
-    var filteredExercise = [Exercise]()
     //MARK: - UI Objects
     lazy var exerciseTableView: UITableView = {
         let layout = UITableView()
@@ -64,7 +82,6 @@ class ExerciseViewController: UIViewController {
                 print(error)
             case .success(let exercise):
                 self.exercise = exercise
-//                filteredExercise = exercise
             }
         }
     }
@@ -119,13 +136,21 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = exerciseTableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as? ExerciseInfoCell
+        guard let cell = exerciseTableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as? ExerciseInfoCell else {return UITableViewCell()}
         let data = exercise[indexPath.row]
-        cell?.exerciseTitleLabel.text = data.name
-        cell?.cellImage.image = UIImage(named: "muscle")
-        cell?.delegate = self
-        cell?.exerciseIsPicked.tag = indexPath.row
-        return cell!
+        cell.exerciseTitleLabel.text = data.name
+        cell.cellImage.image = UIImage(named: "muscle")
+        cell.delegate = self
+        cell.exerciseIsPicked.tag = indexPath.row
+        if state.rawValue == "add"{
+            cell.exerciseIsPicked.isHidden = false
+        }
+        if arrayOfbuttonStates[indexPath.row] {
+            cell.isPicked = false
+        }else {
+            cell.isPicked = true
+        }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -142,7 +167,7 @@ extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = muscleTypeCV.dequeueReusableCell(withReuseIdentifier: "muscleCell", for: indexPath) as? MuscleTypeCVCell
         let data = muscleType[indexPath.row]
-       
+        
         cell?.muscleNameLabel.text = data
         return cell!
     }
@@ -152,17 +177,6 @@ extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewData
         label.sizeToFit()
         return CGSize(width: label.frame.width + 20, height: 40 )
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var filtered = muscleType[indexPath.row]
-        filteredExercise = exercise
-        var new = filteredExercise.map { (exercise) -> Exercise? in
-            if exercise.type == filtered{
-                return exercise
-            }
-            return nil
-        }
-  
-        }
     }
 
 //MARK: - Button Protocol
@@ -170,11 +184,20 @@ extension ExerciseViewController: ButtonFunction{
     func selectAction(tag: Int) {
         let selectedIndex = IndexPath(row: tag, section: 0)
         let selected = exerciseTableView.cellForRow(at: selectedIndex ) as! ExerciseInfoCell
-        selected.exerciseIsPicked.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-        counter += 1
-        if counter >= 1{
-            createWorkoutButton.isHidden = false
+        if selected.isPicked{
+            pickedExercises.removeAll { (Exercise) -> Bool in
+                return Exercise.name == exercise[tag].name
+            }
+            arrayOfbuttonStates[selectedIndex.row] = true
+            selected.isPicked = false
+         }else{
+            pickedExercises.append(exercise[tag])
+            arrayOfbuttonStates[selectedIndex.row] = false
+            selected.isPicked = true
         }
+        
+        print(pickedExercises.count)
     }
+    
     
 }

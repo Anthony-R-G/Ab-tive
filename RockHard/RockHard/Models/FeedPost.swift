@@ -19,8 +19,6 @@ struct FeedPost {
     let contentText: String
     let date: String
     
-    
-    
     static let testFeedData: [FeedPost] = [
         FeedPost(userName: "Hilbert", contentPicture: "hilbertPic", creatorID: "123ABC", contentText: "Wow! The gym is so cool! I just love, LOVE getting my gains!", date: "01/31/2020"),
         FeedPost(userName: "Mr. Buff Boi", contentPicture: "MrBuffManPic", creatorID: "456ABC", contentText: "I got super strong by doing 10 crunches and 5 push-ups a day! Who tryna step to the king??", date: "1/31/2020"),

@@ -55,14 +55,12 @@ class WorkoutViewController: UIViewController {
         let button = UIButton()
           button.layer.cornerRadius = 12
         button.setTitle("Create\nWorkout", for: .normal)
-
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(createWorkoutAction), for: .touchUpInside)
         button.backgroundColor = #colorLiteral(red: 0.7273315191, green: 0.7141847014, blue: 0.6132777929, alpha: 1)
         return button
     }()
-    
-
     lazy var workoutStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [pastWorkoutButton,currentWorkoutButton ,createWorkoutButton])
         stack.axis = .horizontal
@@ -79,7 +77,12 @@ class WorkoutViewController: UIViewController {
     }()
   
     //MARK: - Objc Functions
-    
+    @objc private func createWorkoutAction(){
+        let exerciseVC = ExerciseViewController()
+        exerciseVC.state = .add
+        self.navigationController?.pushViewController(exerciseVC, animated: true)
+
+    }
     //MARK: - Regular Functions
     private func setUpView(){
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -115,14 +118,7 @@ class WorkoutViewController: UIViewController {
     private func constrainStackBackgroundView(){
          view.addSubview(stackBackgroundView)
         view.insertSubview(workoutStackView, aboveSubview: stackBackgroundView)
-       
         stackBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//             stackBackgroundView.topAnchor.constraint(equalTo: stackBackgroundView.topAnchor, constant: 0),
-//                       stackBackgroundView.trailingAnchor.constraint(equalTo: stackBackgroundView.trailingAnchor),
-//                       stackBackgroundView.leadingAnchor.constraint(equalTo: stackBackgroundView.leadingAnchor),
-//                       stackBackgroundView.bottomAnchor.constraint(equalTo: stackBackgroundView.bottomAnchor)
-//        ])
         NSLayoutConstraint.activate([
             stackBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -141,7 +137,6 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = workoutDayTableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as? WorkoutDayCell else
         {return UITableViewCell()}
         return cell
-    }
-    
+}
     
 }

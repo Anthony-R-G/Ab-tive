@@ -63,6 +63,7 @@ class FirestoreService {
         if let account = accountType {
             updateFields["accountType"] = account
         }
+    
         db.collection("users").document(userId).updateData(updateFields) { (error) in
             if let error = error {
                 completion(.failure(error))

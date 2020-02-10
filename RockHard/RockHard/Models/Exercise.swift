@@ -30,9 +30,4 @@ struct Exercise {
             self.type = type
             self.comments = comments
         }
-    
-    
-    
-    
-
     }

@@ -11,11 +11,14 @@ import Foundation
 struct WorkoutPlan{
     let workoutName: String
     let workoutCards: [WorkoutCard]
-    
+    let creatorID: String
+    let workoutID: String
 init?(from dict: [String: Any], id: String) {
         guard let workoutName = dict["workoutName"] as? String,
+            let creatorID = dict["creatorID"] as? String,
             let workoutCards = (dict["workoutCards"] as? [WorkoutCard]) else { return nil }
-            
+        self.creatorID = creatorID
+        self.workoutID = id
         self.workoutName = workoutName
         self.workoutCards = workoutCards
     }

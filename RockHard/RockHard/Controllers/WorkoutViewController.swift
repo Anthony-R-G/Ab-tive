@@ -16,8 +16,8 @@ class WorkoutViewController: UIViewController {
         setUpConstraints()
     }
     //MARK: - Variables
-//    var workout: Workout?
-    
+    var workout: WorkoutPlan?
+
     
     //MARK: - UI Objects
     lazy var workoutDayTableView: UITableView = {
@@ -73,8 +73,8 @@ class WorkoutViewController: UIViewController {
     @objc private func createWorkoutAction(){
         let exerciseVC = ExerciseViewController()
         exerciseVC.state = .add
+        exerciseVC.workoutPlan = workout
         self.navigationController?.pushViewController(exerciseVC, animated: true)
-        
     }
     //MARK: - Regular Functions
     private func setUpView(){

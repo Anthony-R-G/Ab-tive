@@ -28,4 +28,9 @@ struct WorkoutCard{
                   "exercises": self.exercises
               ]
           }
+    init( workoutDay: String,workoutName: String,exercises: [Exercise]  ){
+        self.exercises = exercises
+        self.workoutName = workoutName
+        self.workoutDay = workoutDay
     }
+}

@@ -44,6 +44,10 @@ class ExerciseViewController: UIViewController {
         exerciseTableView.isHidden = true
         createWorkoutButton.backgroundColor = .gray
     }
+    @objc private func saveWorkout(){
+        let workout = WorkoutCard(workoutDay: "Monday", workoutName: workoutNameTextField.text!, exercises: pickedExercises)
+        let workoutPlan = WorkoutPlan(
+    }
     
     //MARK: - Regular Functions
     private func loadExerciseData(){
@@ -113,18 +117,18 @@ class ExerciseViewController: UIViewController {
     lazy var workoutNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter the name of this workout"
-        label.textAlignment = .center
         return label
     }()
     lazy var weekDayLabel: UILabel = {
         let label = UILabel()
-        label.text = "Enter the Week day of this workout"
-        label.textAlignment = .center
+        label.text = "Enter the day of this workout"
         return label
     }()
     lazy var workoutNameTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        textField.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     lazy var weekDayPicker: UIPickerView = {
@@ -136,6 +140,7 @@ class ExerciseViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Save Workout", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        button.addTarget(self, action: #selector(saveWorkout), for: .touchUpInside)
         return button
     }()
     
@@ -146,7 +151,7 @@ class ExerciseViewController: UIViewController {
         NSLayoutConstraint.activate([
             createWorkoutView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             createWorkoutView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
-            createWorkoutView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.60),
+            createWorkoutView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.40),
             createWorkoutView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.70),
         ])}
     
@@ -159,9 +164,9 @@ class ExerciseViewController: UIViewController {
         createWorkoutView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: createWorkoutView.topAnchor, constant: 0),
-            stackView.leadingAnchor.constraint(equalTo: createWorkoutView.leadingAnchor, constant: 0),
-            stackView.trailingAnchor.constraint(equalTo: createWorkoutView.trailingAnchor, constant: 0),
+            stackView.topAnchor.constraint(equalTo: createWorkoutView.topAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: createWorkoutView.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: createWorkoutView.trailingAnchor, constant: -10),
             stackView.heightAnchor.constraint(equalToConstant: 150)
         ])
     }
@@ -179,7 +184,7 @@ class ExerciseViewController: UIViewController {
         createWorkoutView.addSubview(saveWorkoutButton)
         saveWorkoutButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            saveWorkoutButton.topAnchor.constraint(equalTo: weekDayPicker.bottomAnchor, constant: 10),
+            saveWorkoutButton.topAnchor.constraint(equalTo: weekDayPicker.bottomAnchor, constant: 20),
             saveWorkoutButton.leadingAnchor.constraint(equalTo: createWorkoutView.leadingAnchor, constant: 0),
             saveWorkoutButton.trailingAnchor.constraint(equalTo: createWorkoutView.trailingAnchor, constant: 0),
             saveWorkoutButton.heightAnchor.constraint(equalToConstant: 50)
@@ -305,10 +310,9 @@ extension ExerciseViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         let day =  weekDays[row]
         return day
     }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        UserDefaults.standard.set(row, forKey: "selectedCategory")
-//        UserDefaults.standard.set(categoryArray[row].list_name_encoded, forKey: "selectedName")
-    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        workout?.workoutDay = weekDays[row]
+//    }
 }
 
 

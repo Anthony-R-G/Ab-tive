@@ -34,6 +34,7 @@
 		CAE1B2B50029641C98525381 /* Pods_RockHardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AAA7C24D83F24ACC05F874 /* Pods_RockHardTests.framework */; };
 		DF4071B523E0A91500506B8A /* FeedVerticalCollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4071B423E0A91500506B8A /* FeedVerticalCollViewCell.swift */; };
 		DF4C5CF423DF536400A8D537 /* FeedHorizontalCollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4C5CF323DF536400A8D537 /* FeedHorizontalCollViewCell.swift */; };
+		DFA2C48823F1C74100157519 /* ExerciseDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA2C48723F1C74100157519 /* ExerciseDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		97BF748323DF49E80058F2D7 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		DF4071B423E0A91500506B8A /* FeedVerticalCollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVerticalCollViewCell.swift; sourceTree = "<group>"; };
 		DF4C5CF323DF536400A8D537 /* FeedHorizontalCollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHorizontalCollViewCell.swift; sourceTree = "<group>"; };
+		DFA2C48723F1C74100157519 /* ExerciseDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailVC.swift; sourceTree = "<group>"; };
 		E8416E47EC4CE529996B550C /* Pods-RockHardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHardTests.release.xcconfig"; path = "Target Support Files/Pods-RockHardTests/Pods-RockHardTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,9 +145,7 @@
 				50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */,
 				97452E4B23E4BB60005636E0 /* FeedPostCollectionViewCell.swift */,
 				50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */,
-
 				50524BDE23ECACF900703791 /* WorkoutDayCell.swift */,
-
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				97BF748323DF49E80058F2D7 /* MainTabBarViewController.swift */,
+				DFA2C48723F1C74100157519 /* ExerciseDetailVC.swift */,
 				97BF746423DF49920058F2D7 /* FeedViewController.swift */,
 				97452DA523DF4B26005636E0 /* WorkoutViewController.swift */,
 				97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */,
@@ -404,10 +405,8 @@
 				97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */,
 				9704BB2023E8807300AF6830 /* FirestoreService.swift in Sources */,
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
-
 				508BC8A123E8870900A93734 /* Exercise.swift in Sources */,
 				50524BE123ECC40900703791 /* Workout.swift in Sources */,
-
 				9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
 				50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */,
@@ -418,6 +417,7 @@
 				97BF746123DF49920058F2D7 /* AppDelegate.swift in Sources */,
 				97BF746323DF49920058F2D7 /* SceneDelegate.swift in Sources */,
 				DF4071B523E0A91500506B8A /* FeedVerticalCollViewCell.swift in Sources */,
+				DFA2C48823F1C74100157519 /* ExerciseDetailVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

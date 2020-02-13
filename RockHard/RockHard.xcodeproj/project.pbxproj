@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5008085223F3416700FD307C /* WorkoutPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008085123F3416700FD307C /* WorkoutPlan.swift */; };
 		50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BDE23ECACF900703791 /* WorkoutDayCell.swift */; };
-		50524BE123ECC40900703791 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BE023ECC40900703791 /* Workout.swift */; };
+		50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BE023ECC40900703791 /* WorkoutCard.swift */; };
 		508BC8A123E8870900A93734 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508BC8A023E8870900A93734 /* Exercise.swift */; };
 		50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */; };
 		50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */; };
@@ -50,8 +51,9 @@
 		08AAA7C24D83F24ACC05F874 /* Pods_RockHardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RockHardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D06A9E7BA800E8E8EC552FD /* Pods_RockHard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RockHard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FC4BD54D34ACF72B34DC3C4 /* Pods-RockHardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHardTests.debug.xcconfig"; path = "Target Support Files/Pods-RockHardTests/Pods-RockHardTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5008085123F3416700FD307C /* WorkoutPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlan.swift; sourceTree = "<group>"; };
 		50524BDE23ECACF900703791 /* WorkoutDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDayCell.swift; sourceTree = "<group>"; };
-		50524BE023ECC40900703791 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		50524BE023ECC40900703791 /* WorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCard.swift; sourceTree = "<group>"; };
 		508BC8A023E8870900A93734 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseInfoCell.swift; path = RockHard/Controllers/ExerciseInfoCell.swift; sourceTree = SOURCE_ROOT; };
 		50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellButtonProtocol.swift; path = RockHard/Controllers/CellButtonProtocol.swift; sourceTree = SOURCE_ROOT; };
@@ -129,7 +131,8 @@
 			children = (
 				97452E4923E4B5CF005636E0 /* FeedPost.swift */,
 				508BC8A023E8870900A93734 /* Exercise.swift */,
-				50524BE023ECC40900703791 /* Workout.swift */,
+				50524BE023ECC40900703791 /* WorkoutCard.swift */,
+				5008085123F3416700FD307C /* WorkoutPlan.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -403,13 +406,14 @@
 				9704BB2023E8807300AF6830 /* FirestoreService.swift in Sources */,
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
 				508BC8A123E8870900A93734 /* Exercise.swift in Sources */,
-				50524BE123ECC40900703791 /* Workout.swift in Sources */,
+				50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */,
 				9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
 				50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */,
 				50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */,
 				9704BB1F23E8807300AF6830 /* FirebaseAuthService.swift in Sources */,
 				50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */,
+				5008085223F3416700FD307C /* WorkoutPlan.swift in Sources */,
 				50F29F4723E34AE60050C2CD /* MuscleTypeCVCell.swift in Sources */,
 				97BF746123DF49920058F2D7 /* AppDelegate.swift in Sources */,
 				97BF746323DF49920058F2D7 /* SceneDelegate.swift in Sources */,
@@ -567,7 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5CMXYD37HJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RockHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -586,7 +590,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5CMXYD37HJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RockHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

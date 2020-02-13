@@ -15,12 +15,9 @@ class ExerciseViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpConstraints()
-           loadExerciseData()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         loadExerciseData()
     }
+   
     //MARK: - Variables
     enum currentState: String{
         case add
@@ -60,9 +57,6 @@ class ExerciseViewController: UIViewController {
         button.isHidden = true
         return button
     }()
-    //MARK: - Objc Functions
-    
-    //MARK: - Regular Functions
     lazy var muscleTypeCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -74,6 +68,11 @@ class ExerciseViewController: UIViewController {
         cv.dataSource = self
         return cv
     }()
+
+    //MARK: - Objc Functions
+    
+    //MARK: - Regular Functions
+
 
     private func loadExerciseData(){
         FirestoreService.manager.getExercises { (Result) in
@@ -126,7 +125,6 @@ class ExerciseViewController: UIViewController {
             createWorkoutButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-
 }
 //MARK: - UITableView
 extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
@@ -195,8 +193,6 @@ extension ExerciseViewController: ButtonFunction{
             arrayOfbuttonStates[selectedIndex.row] = false
             selected.isPicked = true
         }
-        
-        print(pickedExercises.count)
     }
     
     

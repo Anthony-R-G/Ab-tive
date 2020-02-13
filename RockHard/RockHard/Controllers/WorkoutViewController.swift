@@ -16,9 +16,7 @@ class WorkoutViewController: UIViewController {
         setUpConstraints()
     }
     //MARK: - Variables
-    
-    
-    
+//    var workout: Workout?
     
     
     //MARK: - UI Objects
@@ -31,26 +29,16 @@ class WorkoutViewController: UIViewController {
         return layout
     }()
     
-    lazy var pastWorkoutButton: UIButton = {
+    lazy var savedWorkoutButton: UIButton = {
     let button = UIButton()
-        button.setTitle("Past\nWorkout", for: .normal)
+        button.setTitle("Saved\nWorkouts", for: .normal)
         button.layer.cornerRadius = 12
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
           button.backgroundColor = #colorLiteral(red: 0.7273315191, green: 0.7141847014, blue: 0.6132777929, alpha: 1)
         return button
     }()
-    lazy var currentWorkoutButton: UIButton = {
-        let button = UIButton()
-          button.layer.cornerRadius = 12
-        button.setTitle("Current\nWorkout", for: .normal)
-
-        button.titleLabel?.numberOfLines = 0
-        button.titleLabel?.textAlignment = .center
-        
-          button.backgroundColor = #colorLiteral(red: 0.7273315191, green: 0.7141847014, blue: 0.6132777929, alpha: 1)
-        return button
-    }()
+    
     lazy var createWorkoutButton: UIButton = {
         let button = UIButton()
           button.layer.cornerRadius = 12
@@ -62,7 +50,7 @@ class WorkoutViewController: UIViewController {
         return button
     }()
     lazy var workoutStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [pastWorkoutButton,currentWorkoutButton ,createWorkoutButton])
+        let stack = UIStackView(arrangedSubviews: [savedWorkoutButton ,createWorkoutButton])
         stack.axis = .horizontal
         stack.spacing = 20
         stack.distribution = .fillEqually
@@ -75,7 +63,12 @@ class WorkoutViewController: UIViewController {
         
         return view
     }()
-  
+    lazy var workoutTitleLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
+    
     //MARK: - Objc Functions
     @objc private func createWorkoutAction(){
         let exerciseVC = ExerciseViewController()
@@ -138,5 +131,4 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
         {return UITableViewCell()}
         return cell
 }
-    
 }

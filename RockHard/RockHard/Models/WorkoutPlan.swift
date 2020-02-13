@@ -9,23 +9,32 @@
 import Foundation
 
 struct WorkoutPlan{
-    let workoutName: String
+    let planName: String
     let workoutCards: [WorkoutCard]
     let creatorID: String
     let workoutID: String
 init?(from dict: [String: Any], id: String) {
-        guard let workoutName = dict["workoutName"] as? String,
+     print(dict["workoutCards"])
+        guard let planName = dict["planName"] as? String,
             let creatorID = dict["creatorID"] as? String,
-            let workoutCards = (dict["workoutCards"] as? [WorkoutCard]) else { return nil }
+            let workoutCards = (dict["workoutCards"] as? [[String:Any]]) else { return nil }
+    
         self.creatorID = creatorID
         self.workoutID = id
-        self.workoutName = workoutName
-        self.workoutCards = workoutCards
+        self.planName = planName
+    self.workoutCards = workoutCards.compactMap({WorkoutCard(from: $0) })
     }
 var fieldsDict: [String: Any] {
           return [
-              "workoutName": self.workoutName,
-              "workoutCards": self.workoutCards ,
+              "planName": self.planName,
+              "creatorID": self.creatorID,
+              "workoutCards": self.workoutCards.map({ $0.fieldsDict }) ,
     ]
       }
+    init( planName: String,creatorID: String,workoutCards: [WorkoutCard]  ){
+           self.creatorID = creatorID
+           self.planName = planName
+           self.workoutCards = workoutCards
+           self.workoutID = "workoutID"
+    }
 }

@@ -14,15 +14,19 @@ class WorkoutViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpConstraints()
+        getWorkout()
     }
     //MARK: - Variables
-    var workout: WorkoutPlan?
-
+    var workout: WorkoutPlan?{
+        didSet{
+            workoutDayTableView.reloadData()
+        }
+    }
     
     //MARK: - UI Objects
     lazy var workoutDayTableView: UITableView = {
         let layout = UITableView()
-        layout.register(ExerciseInfoCell.self, forCellReuseIdentifier: "workoutCell")
+        layout.register(WorkoutDayCell.self, forCellReuseIdentifier: "workoutCell")
         layout.backgroundColor = .lightGray
         layout.delegate = self
         layout.dataSource = self
@@ -73,12 +77,22 @@ class WorkoutViewController: UIViewController {
     @objc private func createWorkoutAction(){
         let exerciseVC = ExerciseViewController()
         exerciseVC.state = .add
-        exerciseVC.workoutPlan = workout
         self.navigationController?.pushViewController(exerciseVC, animated: true)
     }
     //MARK: - Regular Functions
     private func setUpView(){
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
+    private func getWorkout(){
+        FirestoreService.manager.getWorkoutPlan { (Result) in
+            switch Result{
+            case .failure(let error):
+                print(error)
+            case .success(let plan):
+                self.workout = plan.first
+                print(plan)
+            }
+        }
     }
     private func setUpConstraints(){
         constrainStackView()
@@ -102,7 +116,7 @@ class WorkoutViewController: UIViewController {
         view.addSubview(workoutDayTableView)
         workoutDayTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            workoutDayTableView.topAnchor.constraint(equalTo: workoutStackView.bottomAnchor, constant: 80),
+            workoutDayTableView.topAnchor.constraint(equalTo: workoutStackView.bottomAnchor, constant: 150),
             workoutDayTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             workoutDayTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             workoutDayTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -123,12 +137,20 @@ class WorkoutViewController: UIViewController {
 }
 extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = workoutDayTableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as? WorkoutDayCell else
         {return UITableViewCell()}
+        if let data = workout?.workoutCards[indexPath.row]{
+            cell.dayOfWeekLabel.text = data.workoutDay
+            cell.nameOfWorkoutLabel.text = data.workoutName
+            
+        }
         return cell
 }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
 }

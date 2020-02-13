@@ -111,9 +111,30 @@ class FirestoreService {
           }
         }
     }
-}
-
-
+   func createWorkoutPlan(plan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()) {
+    let fields  = plan.fieldsDict
+        db.collection("workoutPlan").addDocument(data: fields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    func getWorkoutPlan(completion: @escaping (Result<[WorkoutPlan],Error>) ->()) {
+     db.collection("workoutPlan").getDocuments { (snapshot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else {
+                let plans = snapshot?.documents.compactMap({ (snapshot) -> WorkoutPlan? in
+                    let plan = WorkoutPlan(from: snapshot.data(), id: snapshot.documentID)
+                    return plan
+                })
+                completion(.success(plans ?? []))
+            }
+        }
+    }
+}//By david
 
 
 

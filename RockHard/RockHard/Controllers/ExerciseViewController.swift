@@ -46,7 +46,15 @@ class ExerciseViewController: UIViewController {
     }
     @objc private func saveWorkout(){
         let workout = WorkoutCard(workoutDay: "Monday", workoutName: workoutNameTextField.text!, exercises: pickedExercises)
-        let workoutPlan = WorkoutPlan(
+        let workoutPlan = WorkoutPlan(planName: "kj", creatorID: "12231", workoutCards: [workout])
+        FirestoreService.manager.createWorkoutPlan(plan: workoutPlan) { (Resut) in
+            switch Resut{
+            case .failure(let error):
+                print(error)
+            case .success(()):
+                print("yes")
+            }
+        }
     }
     
     //MARK: - Regular Functions

@@ -27,12 +27,16 @@ class FirestoreService {
     }
     
     
-    func createFavorite(post: Favorite, id: String, completion: @escaping (Result<(), Error>) -> ()) {
+
+    func createFavorite(apiSource: selectedAPI ,post: Favorite, id: String, completion: @escaping (Result<(), Error>) -> ()) {
+
         var fields = post.fieldsDict
         fields["dateCreated"] = Date()
         let userID = FirebaseAuthService.manager.currentUser?.uid
         let uniqueID = userID! + id
+
         db.collection("Favorites").document(uniqueID).setData(fields) { (error) in
+
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -41,8 +45,10 @@ class FirestoreService {
         }
     }
     
+
     func getUserFavorites(UserID: String, completion: @escaping (Result<[Favorite],Error>) ->()) {
         db.collection("Favorites").whereField("userID", isEqualTo: UserID).getDocuments { (snapshot, error) in
+
             if let error = error{
                 completion(.failure(error))
             }else {
@@ -56,6 +62,7 @@ class FirestoreService {
         }
     }
     
+
     func updateCurrentUser(accountType: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else { return }
         var updateFields = [String:Any]()
@@ -72,6 +79,7 @@ class FirestoreService {
             }
         }
     }
+
     func getExercises( completion: @escaping (Result<[Exercise],Error>) ->()) {
         db.collection("exercise").getDocuments { (snapshot, error) in
                if let error = error{
@@ -85,6 +93,7 @@ class FirestoreService {
                }
            }
        }
+
     
     func deleteAllUserFavorites(apiSourceRawValue: String, completion: @escaping (Result<(), Error>) -> ()){
         let userID = FirebaseAuthService.manager.currentUser?.uid

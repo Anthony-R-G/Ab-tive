@@ -409,8 +409,12 @@
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
 
 				508BC8A123E8870900A93734 /* Exercise.swift in Sources */,
+<<<<<<< HEAD
+				50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */,
+=======
 				50524BE123ECC40900703791 /* Workout.swift in Sources */,
 
+>>>>>>> ecf8301f84c169227d71f6e03389a1988cea9ee1
 				9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
 				50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */,

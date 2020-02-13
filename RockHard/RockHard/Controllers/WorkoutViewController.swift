@@ -74,7 +74,7 @@ class WorkoutViewController: UIViewController {
         let exerciseVC = ExerciseViewController()
         exerciseVC.state = .add
         self.navigationController?.pushViewController(exerciseVC, animated: true)
-
+        
     }
     //MARK: - Regular Functions
     private func setUpView(){

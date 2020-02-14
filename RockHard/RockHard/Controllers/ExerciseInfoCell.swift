@@ -68,6 +68,7 @@ class ExerciseInfoCell: UITableViewCell {
         contentView.layer.cornerRadius = 15
         contentView.layer.masksToBounds = true
     }
+    
     //MARK: - Constraints
     private func setUpCellImage(){
         contentView.addSubview(cellImage)

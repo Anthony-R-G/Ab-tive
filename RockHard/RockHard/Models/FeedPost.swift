@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestore
 
 
 struct FeedPost {
@@ -22,5 +23,9 @@ struct FeedPost {
     static let testFeedData: [FeedPost] = [
         FeedPost(userName: "Hilbert", contentPicture: "hilbertPic", creatorID: "123ABC", contentText: "Wow! The gym is so cool! I just love, LOVE getting my gains!", date: "01/31/2020"),
         FeedPost(userName: "Mr. Buff Boi", contentPicture: "MrBuffManPic", creatorID: "456ABC", contentText: "I got super strong by doing 10 crunches and 5 push-ups a day! Who tryna step to the king??", date: "1/31/2020"),
-        FeedPost(userName: "Definitely Not A Spam Bot", contentPicture: "humanBeing", creatorID: "123456", contentText: "Hello, fellow human beings, because I am definitely a human as well. If you would like to increase your muscle mass and get big in just 10 days, follow this link...", date: "01/31/2020")]
+        FeedPost(userName: "GymDude123", contentPicture: "gin", creatorID: "12318209", contentText: "I am a funny individual who enjoys posting humorous pictures from the internet. Please, my fellow readers, laugh with me.", date: "2/3/2020")]
 }
+
+
+
+

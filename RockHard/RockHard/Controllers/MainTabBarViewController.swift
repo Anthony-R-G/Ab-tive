@@ -18,7 +18,8 @@ class MainTabBarController: UITabBarController {
     
     lazy var profileVC =  UINavigationController(rootViewController: ProfileViewController())
     
-    
+    lazy var detailVC = UINavigationController(rootViewController: ExerciseDetailVC())
+
     
     
     //MARK: -- ViewDidLoad
@@ -29,7 +30,8 @@ class MainTabBarController: UITabBarController {
         exerciseVC.tabBarItem = UITabBarItem(title: "Exercises", image: nil, tag: 1)
         workoutVC.tabBarItem = UITabBarItem(title: "Workouts", image: nil, tag: 2)
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 3)
+        detailVC.tabBarItem = UITabBarItem(title: "Detailed", image: nil, tag: 4)
         
-        self.viewControllers = [feedVC, exerciseVC, workoutVC, profileVC]
+        self.viewControllers = [feedVC, exerciseVC, workoutVC, profileVC, detailVC]
     }
 }

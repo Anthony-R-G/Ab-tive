@@ -10,7 +10,7 @@ target 'RockHard' do
 pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
-
+pod 'Kingfisher', '~> 5.13'
 
   target 'RockHardTests' do
     inherit! :search_paths

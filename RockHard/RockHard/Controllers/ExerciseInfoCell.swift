@@ -52,8 +52,9 @@ class ExerciseInfoCell: UITableViewCell {
     func setUpContentView(){
         setUpCellImage()
         setUpIsPicked()
-         setUpExerciseTitleLabel()
+        setUpExerciseTitleLabel()
     }
+    
     //MARK: - Constraints
     private func setUpCellImage(){
         contentView.addSubview(cellImage)

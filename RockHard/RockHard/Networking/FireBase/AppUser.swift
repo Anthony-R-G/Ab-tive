@@ -14,33 +14,37 @@ struct AppUser {
     let email: String?
     let uid: String
     let dateCreated: Date?
-    let accountType: String?
+    let userName: String
+   
     
-    init(from user: User, accountType: String) {
+    init(from user: User, userName: String) {
         self.email = user.email
         self.uid = user.uid
         self.dateCreated = user.metadata.creationDate
-        self.accountType = accountType
+        self.userName = userName
+        
        
     }
     
     init?(from dict: [String: Any], id: String) {
         guard let email = dict["email"] as? String,
-            let accountType = dict["accountType"] as? String,
-                   
+            let userName = dict["userName"] as? String,
+         
             let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue() else { return nil }
        
         
         self.email = email
         self.uid = id
         self.dateCreated = dateCreated
-        self.accountType = accountType
+        self.userName = userName
+ 
     }
     
     var fieldsDict: [String: Any] {
         return [
             "email": self.email ?? "",
-            "accountType": self.accountType ?? ""
+            "userName": self.userName ?? ""
+           
         ]
     }
 }

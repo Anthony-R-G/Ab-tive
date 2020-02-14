@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "stock-photo-handsome-man-outdoors-77234716.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "profile-picture.png",
       "scale" : "2x"
     },
     {

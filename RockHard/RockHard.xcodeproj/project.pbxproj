@@ -12,15 +12,20 @@
 		50F29F4123E0E9AB0050C2CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */; };
 		50F29F4723E34AE60050C2CD /* MuscleTypeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */; };
 		7460BBB0F4D2B416B26D127E /* Pods_RockHard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D06A9E7BA800E8E8EC552FD /* Pods_RockHard.framework */; };
-		9704BB1D23E8807300AF6830 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1923E8807200AF6830 /* Favorite.swift */; };
+		9704BB1D23E8807300AF6830 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1923E8807200AF6830 /* Post.swift */; };
 		9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1A23E8807300AF6830 /* AppUser.swift */; };
 		9704BB1F23E8807300AF6830 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1B23E8807300AF6830 /* FirebaseAuthService.swift */; };
 		9704BB2023E8807300AF6830 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1C23E8807300AF6830 /* FirestoreService.swift */; };
+		9704BB2223E88DDE00AF6830 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB2123E88DDE00AF6830 /* AddPostViewController.swift */; };
 		97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */; };
 		97452DA623DF4B26005636E0 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA523DF4B26005636E0 /* WorkoutViewController.swift */; };
 		97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA723DF4B34005636E0 /* ProfileViewController.swift */; };
 		97452E4A23E4B5CF005636E0 /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452E4923E4B5CF005636E0 /* FeedPost.swift */; };
-		97452E4C23E4BB60005636E0 /* FeedPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452E4B23E4BB60005636E0 /* FeedPostCollectionViewCell.swift */; };
+		97745CA123F64601002222FD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97745CA023F64601002222FD /* Protocols.swift */; };
+		979492F223F5D99200B636A4 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979492F123F5D99200B636A4 /* FirebaseStorageManager.swift */; };
+		979492F423F5DAFC00B636A4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979492F323F5DAFC00B636A4 /* LoginViewController.swift */; };
+		979492F623F5DB6100B636A4 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979492F523F5DB6100B636A4 /* Utilities.swift */; };
+		979492F823F5DC7000B636A4 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979492F723F5DC7000B636A4 /* SignupViewController.swift */; };
 		97BF746123DF49920058F2D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF746023DF49920058F2D7 /* AppDelegate.swift */; };
 		97BF746323DF49920058F2D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF746223DF49920058F2D7 /* SceneDelegate.swift */; };
 		97BF746523DF49920058F2D7 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF746423DF49920058F2D7 /* FeedViewController.swift */; };
@@ -53,15 +58,20 @@
 		50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MuscleTypeCVCell.swift; path = RockHard/Controllers/MuscleTypeCVCell.swift; sourceTree = SOURCE_ROOT; };
 		6F87CB3464EE1A2A3CB8E235 /* Pods-RockHard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHard.debug.xcconfig"; path = "Target Support Files/Pods-RockHard/Pods-RockHard.debug.xcconfig"; sourceTree = "<group>"; };
 		8E03C470E032ACDEF70E175B /* Pods-RockHard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHard.release.xcconfig"; path = "Target Support Files/Pods-RockHard/Pods-RockHard.release.xcconfig"; sourceTree = "<group>"; };
-		9704BB1923E8807200AF6830 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		9704BB1923E8807200AF6830 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9704BB1A23E8807300AF6830 /* AppUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		9704BB1B23E8807300AF6830 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		9704BB1C23E8807300AF6830 /* FirestoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		9704BB2123E88DDE00AF6830 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		97452DA523DF4B26005636E0 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		97452DA723DF4B34005636E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		97452E4923E4B5CF005636E0 /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
-		97452E4B23E4BB60005636E0 /* FeedPostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostCollectionViewCell.swift; sourceTree = "<group>"; };
+		97745CA023F64601002222FD /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		979492F123F5D99200B636A4 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
+		979492F323F5DAFC00B636A4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		979492F523F5DB6100B636A4 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		979492F723F5DC7000B636A4 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		97BF745D23DF49920058F2D7 /* RockHard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RockHard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BF746023DF49920058F2D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97BF746223DF49920058F2D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,9 +121,10 @@
 			isa = PBXGroup;
 			children = (
 				9704BB1A23E8807300AF6830 /* AppUser.swift */,
-				9704BB1923E8807200AF6830 /* Favorite.swift */,
+				9704BB1923E8807200AF6830 /* Post.swift */,
 				9704BB1B23E8807300AF6830 /* FirebaseAuthService.swift */,
 				9704BB1C23E8807300AF6830 /* FirestoreService.swift */,
+				979492F123F5D99200B636A4 /* FirebaseStorageManager.swift */,
 			);
 			path = FireBase;
 			sourceTree = "<group>";
@@ -133,7 +144,6 @@
 				DF4071B423E0A91500506B8A /* FeedVerticalCollViewCell.swift */,
 				50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */,
 				50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */,
-				97452E4B23E4BB60005636E0 /* FeedPostCollectionViewCell.swift */,
 				50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */,
 			);
 			path = Views;
@@ -173,13 +183,15 @@
 				97452DAB23DF4B5F005636E0 /* Networking */,
 				97452DAA23DF4B58005636E0 /* Views */,
 				97452DA923DF4B52005636E0 /* Models */,
-				97BF746023DF49920058F2D7 /* AppDelegate.swift */,
-				97BF746223DF49920058F2D7 /* SceneDelegate.swift */,
 				97BF748223DF49A60058F2D7 /* Controllers */,
 				97BF746923DF49960058F2D7 /* Assets.xcassets */,
+				97BF746023DF49920058F2D7 /* AppDelegate.swift */,
+				97BF746223DF49920058F2D7 /* SceneDelegate.swift */,
 				97BF746B23DF49960058F2D7 /* LaunchScreen.storyboard */,
 				50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */,
 				97BF746E23DF49960058F2D7 /* Info.plist */,
+				979492F523F5DB6100B636A4 /* Utilities.swift */,
+				97745CA023F64601002222FD /* Protocols.swift */,
 			);
 			path = RockHard;
 			sourceTree = "<group>";
@@ -201,6 +213,9 @@
 				97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */,
 				97452DA523DF4B26005636E0 /* WorkoutViewController.swift */,
 				97452DA723DF4B34005636E0 /* ProfileViewController.swift */,
+				9704BB2123E88DDE00AF6830 /* AddPostViewController.swift */,
+				979492F323F5DAFC00B636A4 /* LoginViewController.swift */,
+				979492F723F5DC7000B636A4 /* SignupViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -384,20 +399,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9704BB1D23E8807300AF6830 /* Favorite.swift in Sources */,
+				9704BB1D23E8807300AF6830 /* Post.swift in Sources */,
+				97745CA123F64601002222FD /* Protocols.swift in Sources */,
 				97452DA623DF4B26005636E0 /* WorkoutViewController.swift in Sources */,
+				979492F823F5DC7000B636A4 /* SignupViewController.swift in Sources */,
 				97BF746523DF49920058F2D7 /* FeedViewController.swift in Sources */,
+				9704BB2223E88DDE00AF6830 /* AddPostViewController.swift in Sources */,
 				DF4C5CF423DF536400A8D537 /* FeedHorizontalCollViewCell.swift in Sources */,
-				97452E4C23E4BB60005636E0 /* FeedPostCollectionViewCell.swift in Sources */,
 				97452E4A23E4B5CF005636E0 /* FeedPost.swift in Sources */,
 				97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */,
 				9704BB2023E8807300AF6830 /* FirestoreService.swift in Sources */,
+				979492F423F5DAFC00B636A4 /* LoginViewController.swift in Sources */,
+				979492F623F5DB6100B636A4 /* Utilities.swift in Sources */,
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
 				9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
 				50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */,
 				9704BB1F23E8807300AF6830 /* FirebaseAuthService.swift in Sources */,
 				50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */,
+				979492F223F5D99200B636A4 /* FirebaseStorageManager.swift in Sources */,
 				50F29F4723E34AE60050C2CD /* MuscleTypeCVCell.swift in Sources */,
 				97BF746123DF49920058F2D7 /* AppDelegate.swift in Sources */,
 				97BF746323DF49920058F2D7 /* SceneDelegate.swift in Sources */,

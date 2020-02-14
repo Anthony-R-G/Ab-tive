@@ -10,7 +10,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     //MARK: -- Lazy Property VCs
-    lazy var feedVC = UINavigationController(rootViewController: FeedViewController())
+    lazy var feedVC = FeedViewController()
     
     lazy var exerciseVC =  UINavigationController(rootViewController: ExerciseViewController())
     
@@ -24,6 +24,8 @@ class MainTabBarController: UITabBarController {
     //MARK: -- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBar.barStyle = .black
+        self.tabBar.tintColor = #colorLiteral(red: 0.8403362632, green: 0.4548202157, blue: 0.4165673852, alpha: 1)
         
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
         exerciseVC.tabBarItem = UITabBarItem(title: "Exercises", image: nil, tag: 1)

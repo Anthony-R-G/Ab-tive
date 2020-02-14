@@ -15,7 +15,7 @@ class FeedHorizontalCollViewCell: UICollectionViewCell {
     func setupLabel() {
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.init(name: "Rockwell", size: 20)
-        label.textColor = .black
+        label.textColor = .white
         label.backgroundColor = .clear
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
@@ -36,7 +36,7 @@ class FeedHorizontalCollViewCell: UICollectionViewCell {
         setupLabel()
         self.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
-        backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.8403362632, green: 0.4548202157, blue: 0.4165673852, alpha: 0.7042754709)
     }
     
     required init?(coder: NSCoder) {

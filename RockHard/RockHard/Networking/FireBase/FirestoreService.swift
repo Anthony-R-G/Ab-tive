@@ -113,7 +113,7 @@ class FirestoreService {
     }
    func createWorkoutPlan(plan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()) {
     let fields  = plan.fieldsDict
-        db.collection("workoutPlan").addDocument(data: fields) { (error) in
+    db.collection("workoutPlan").document("12231").setData(fields) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -131,6 +131,16 @@ class FirestoreService {
                     return plan
                 })
                 completion(.success(plans ?? []))
+            }
+        }
+    }
+    func updateWorkoutPlan( workoutPlan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()){
+        let fields  = workoutPlan.fieldsDict
+        db.collection("workoutPlan").document("12231").updateData(fields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
             }
         }
     }

@@ -10,11 +10,10 @@ import Foundation
 
 struct WorkoutPlan{
     let planName: String
-    let workoutCards: [WorkoutCard]
+    var workoutCards: [WorkoutCard]
     let creatorID: String
     let workoutID: String
 init?(from dict: [String: Any], id: String) {
-     print(dict["workoutCards"])
         guard let planName = dict["planName"] as? String,
             let creatorID = dict["creatorID"] as? String,
             let workoutCards = (dict["workoutCards"] as? [[String:Any]]) else { return nil }

@@ -10,13 +10,18 @@ class ExerciseViewController: UIViewController {
         setUpView()
         setUpConstraints()
         loadExerciseData()
+        if state.rawValue == "view"{
+            muscleTypeCV.isHidden = true
+        }
     }
     
     //MARK: - Variables
     enum currentState: String{
         case add
         case view
+        case exercise
     }
+    var weekDay = "Monday"
     var state = currentState.view
     var arrayOfbuttonStates = [Bool]()
     var pickedExercises = [Exercise](){
@@ -28,6 +33,8 @@ class ExerciseViewController: UIViewController {
             }
         }
     }
+    var workoutPlan: WorkoutPlan?
+    var workoutCard: WorkoutCard?
     var weekDays = ["Monday","Tuesday","Wednesday", "Thursday", "Friday","Saturday","Sunday"]
     var muscleType = ["Biceps", "Legs", "Triceps", "Shoulder", "Chest", "Back", "Cardio"]
     var exercise = [Exercise](){
@@ -45,7 +52,20 @@ class ExerciseViewController: UIViewController {
         createWorkoutButton.backgroundColor = .gray
     }
     @objc private func saveWorkout(){
-        let workout = WorkoutCard(workoutDay: "Monday", workoutName: workoutNameTextField.text!, exercises: pickedExercises)
+        if workoutPlan != nil{
+            let workout = WorkoutCard(workoutDay: weekDay, workoutName: workoutNameTextField.text!, exercises: pickedExercises)
+            workoutPlan?.workoutCards.append(workout)
+            FirestoreService.manager.updateWorkoutPlan(workoutPlan: workoutPlan!) { (result) in
+                switch result{
+                case .failure(let error):
+                    print(error)
+                case .success(()):
+                    print("")
+                }
+            }
+            
+        }else{
+        let workout = WorkoutCard(workoutDay: weekDay, workoutName: workoutNameTextField.text!, exercises: pickedExercises)
         let workoutPlan = WorkoutPlan(planName: "kj", creatorID: "12231", workoutCards: [workout])
         FirestoreService.manager.createWorkoutPlan(plan: workoutPlan) { (Resut) in
             switch Resut{
@@ -55,6 +75,8 @@ class ExerciseViewController: UIViewController {
                 print("yes")
             }
         }
+        }
+                      navigationController?.popViewController(animated: true)
     }
     
     //MARK: - Regular Functions
@@ -239,24 +261,34 @@ class ExerciseViewController: UIViewController {
 extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exercise.count
+        if state.rawValue == "view"{
+            return  (workoutCard?.exercises.count)!
+        }
+            return exercise.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = exerciseTableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as? ExerciseInfoCell else {return UITableViewCell()}
-        let data = exercise[indexPath.row]
-        cell.exerciseTitleLabel.text = data.name
+        var data: Exercise?
+        if state.rawValue == "view"{
+          data = (workoutCard?.exercises[indexPath.row])!
+        }else {
+         data = exercise[indexPath.row]
+            if arrayOfbuttonStates[indexPath.row] {
+                cell.isPicked = false
+            }else {
+                cell.isPicked = true
+            }
+        }
+       
+        cell.exerciseTitleLabel.text = data?.name
         cell.cellImage.image = UIImage(named: "muscle")
         cell.delegate = self
         cell.exerciseIsPicked.tag = indexPath.row
         if state.rawValue == "add"{
             cell.exerciseIsPicked.isHidden = false
         }
-        if arrayOfbuttonStates[indexPath.row] {
-            cell.isPicked = false
-        }else {
-            cell.isPicked = true
-        }
+        
         return cell
     }
     
@@ -312,15 +344,16 @@ extension ExerciseViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return weekDays.count
-        
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let day =  weekDays[row]
+        
         return day
     }
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        workout?.workoutDay = weekDays[row]
-//    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        weekDay = weekDays[row]
+    }
 }
 
 

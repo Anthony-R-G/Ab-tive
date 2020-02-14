@@ -16,6 +16,10 @@ class WorkoutViewController: UIViewController {
         setUpConstraints()
         getWorkout()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getWorkout()
+    }
     //MARK: - Variables
     var workout: WorkoutPlan?{
         didSet{
@@ -77,6 +81,7 @@ class WorkoutViewController: UIViewController {
     @objc private func createWorkoutAction(){
         let exerciseVC = ExerciseViewController()
         exerciseVC.state = .add
+        exerciseVC.workoutPlan = workout
         self.navigationController?.pushViewController(exerciseVC, animated: true)
     }
     //MARK: - Regular Functions
@@ -96,7 +101,6 @@ class WorkoutViewController: UIViewController {
     }
     private func setUpConstraints(){
         constrainStackView()
-
         constrainWorkoutTableView()
         constrainStackBackgroundView()
 
@@ -137,7 +141,7 @@ class WorkoutViewController: UIViewController {
 }
 extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return workout?.workoutCards.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -153,4 +157,12 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let workoutCard = workout?.workoutCards[indexPath.row]
+        let exerciseVC = ExerciseViewController()
+        exerciseVC.state = .view
+        exerciseVC.workoutCard = workoutCard
+        self.navigationController?.pushViewController(exerciseVC, animated: true)
+    }
+    }
+

@@ -27,25 +27,24 @@ class FirestoreService {
     }
     
     func getAllPost(completion: @escaping (Result<[Post], Error>) -> ()){
-          db.collection("feedPosts").getDocuments {(snapshot, error) in
-              if let error = error{
-                  completion(.failure(error))
-              }else {
-                  let posts = snapshot?.documents.compactMap({ (snapshot) -> Post? in
-                      let postID = snapshot.documentID
-                      let post = Post(from: snapshot.data(), id: postID)
-                      return post
-                  })
-                  completion(.success(posts ?? []))
-              }
-          }
-      }
+        db.collection("feedPosts").getDocuments {(snapshot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else {
+                let posts = snapshot?.documents.compactMap({ (snapshot) -> Post? in
+                    let postID = snapshot.documentID
+                    let post = Post(from: snapshot.data(), id: postID)
+                    return post
+                })
+                completion(.success(posts ?? []))
+            }
+        }
+    }
+    
     
     func createPost(post: Post, completion: @escaping (Result<(), Error>) -> ()) {
         var fields = post.fieldsDict
         fields["dateCreated"] = Date()
-      
-        
         db.collection("feedPosts").document().setData(fields) { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -62,7 +61,74 @@ class FirestoreService {
         if let account = accountType {
             updateFields["accountType"] = account
         }
+        
         db.collection("users").document(userId).updateData(updateFields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    
+    func getExercises( completion: @escaping (Result<[Exercise],Error>) ->()) {
+        db.collection("exercise").getDocuments { (snapshot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else {
+                let posts = snapshot?.documents.compactMap({ (snapshot) -> Exercise? in
+                    let post = Exercise(from: snapshot.data())
+                    return post
+                })
+                completion(.success(posts ?? []))
+            }
+        }
+    }
+    
+    
+    
+    func deleteAllUserFavorites(apiSourceRawValue: String, completion: @escaping (Result<(), Error>) -> ()){
+        let userID = FirebaseAuthService.manager.currentUser?.uid
+        
+        let db = Firestore.firestore()
+        db.collection("\(apiSourceRawValue)Favorites").whereField("userID", isEqualTo: userID!).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                completion(.failure(err))
+            } else {
+                for document in querySnapshot!.documents {
+                    document.reference.delete()
+                    completion(.success(()))
+                }
+            }
+        }
+    }
+    func createWorkoutPlan(plan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()) {
+        let fields  = plan.fieldsDict
+        db.collection("workoutPlan").document("12231").setData(fields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    func getWorkoutPlan(completion: @escaping (Result<[WorkoutPlan],Error>) ->()) {
+        db.collection("workoutPlan").getDocuments { (snapshot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else {
+                let plans = snapshot?.documents.compactMap({ (snapshot) -> WorkoutPlan? in
+                    let plan = WorkoutPlan(from: snapshot.data(), id: snapshot.documentID)
+                    return plan
+                })
+                completion(.success(plans ?? []))
+            }
+        }
+    }
+    func updateWorkoutPlan( workoutPlan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()){
+        let fields  = workoutPlan.fieldsDict
+        db.collection("workoutPlan").document("12231").updateData(fields) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -72,7 +138,9 @@ class FirestoreService {
     }
 }
 
-    
+
+
+
 //        db.collection(FireStoreCollections.favorites.rawValue).document(userID!).setData(fields) { (error) in
 //            if let error = error {
 //                completion(.failure(error))

@@ -14,57 +14,51 @@ class WorkoutViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpConstraints()
+        getWorkout()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getWorkout()
     }
     //MARK: - Variables
-    
-    
-    
-    
+    var workout: WorkoutPlan?{
+        didSet{
+            workoutDayTableView.reloadData()
+        }
+    }
     
     //MARK: - UI Objects
     lazy var workoutDayTableView: UITableView = {
         let layout = UITableView()
-        layout.register(ExerciseInfoCell.self, forCellReuseIdentifier: "workoutCell")
+        layout.register(WorkoutDayCell.self, forCellReuseIdentifier: "workoutCell")
         layout.backgroundColor = .lightGray
         layout.delegate = self
         layout.dataSource = self
         return layout
     }()
     
-    lazy var pastWorkoutButton: UIButton = {
+    lazy var savedWorkoutButton: UIButton = {
     let button = UIButton()
-        button.setTitle("Past\nWorkout", for: .normal)
+        button.setTitle("Saved\nWorkouts", for: .normal)
         button.layer.cornerRadius = 12
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
           button.backgroundColor = #colorLiteral(red: 0.7273315191, green: 0.7141847014, blue: 0.6132777929, alpha: 1)
         return button
     }()
-    lazy var currentWorkoutButton: UIButton = {
-        let button = UIButton()
-          button.layer.cornerRadius = 12
-        button.setTitle("Current\nWorkout", for: .normal)
-
-        button.titleLabel?.numberOfLines = 0
-        button.titleLabel?.textAlignment = .center
-        
-          button.backgroundColor = #colorLiteral(red: 0.7273315191, green: 0.7141847014, blue: 0.6132777929, alpha: 1)
-        return button
-    }()
+    
     lazy var createWorkoutButton: UIButton = {
         let button = UIButton()
           button.layer.cornerRadius = 12
         button.setTitle("Create\nWorkout", for: .normal)
-
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(createWorkoutAction), for: .touchUpInside)
         button.backgroundColor = #colorLiteral(red: 0.7273315191, green: 0.7141847014, blue: 0.6132777929, alpha: 1)
         return button
     }()
-    
-
     lazy var workoutStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [pastWorkoutButton,currentWorkoutButton ,createWorkoutButton])
+        let stack = UIStackView(arrangedSubviews: [savedWorkoutButton ,createWorkoutButton])
         stack.axis = .horizontal
         stack.spacing = 20
         stack.distribution = .fillEqually
@@ -77,16 +71,36 @@ class WorkoutViewController: UIViewController {
         
         return view
     }()
-  
-    //MARK: - Objc Functions
+    lazy var workoutTitleLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     
+    //MARK: - Objc Functions
+    @objc private func createWorkoutAction(){
+        let exerciseVC = ExerciseViewController()
+        exerciseVC.state = .add
+        exerciseVC.workoutPlan = workout
+        self.navigationController?.pushViewController(exerciseVC, animated: true)
+    }
     //MARK: - Regular Functions
     private func setUpView(){
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
+    private func getWorkout(){
+        FirestoreService.manager.getWorkoutPlan { (Result) in
+            switch Result{
+            case .failure(let error):
+                print(error)
+            case .success(let plan):
+                self.workout = plan.first
+                print(plan)
+            }
+        }
+    }
     private func setUpConstraints(){
         constrainStackView()
-
         constrainWorkoutTableView()
         constrainStackBackgroundView()
 
@@ -106,7 +120,7 @@ class WorkoutViewController: UIViewController {
         view.addSubview(workoutDayTableView)
         workoutDayTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            workoutDayTableView.topAnchor.constraint(equalTo: workoutStackView.bottomAnchor, constant: 80),
+            workoutDayTableView.topAnchor.constraint(equalTo: workoutStackView.bottomAnchor, constant: 150),
             workoutDayTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             workoutDayTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             workoutDayTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -115,14 +129,7 @@ class WorkoutViewController: UIViewController {
     private func constrainStackBackgroundView(){
          view.addSubview(stackBackgroundView)
         view.insertSubview(workoutStackView, aboveSubview: stackBackgroundView)
-       
         stackBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//             stackBackgroundView.topAnchor.constraint(equalTo: stackBackgroundView.topAnchor, constant: 0),
-//                       stackBackgroundView.trailingAnchor.constraint(equalTo: stackBackgroundView.trailingAnchor),
-//                       stackBackgroundView.leadingAnchor.constraint(equalTo: stackBackgroundView.leadingAnchor),
-//                       stackBackgroundView.bottomAnchor.constraint(equalTo: stackBackgroundView.bottomAnchor)
-//        ])
         NSLayoutConstraint.activate([
             stackBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -134,14 +141,28 @@ class WorkoutViewController: UIViewController {
 }
 extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return workout?.workoutCards.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = workoutDayTableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as? WorkoutDayCell else
         {return UITableViewCell()}
+        if let data = workout?.workoutCards[indexPath.row]{
+            cell.dayOfWeekLabel.text = data.workoutDay
+            cell.nameOfWorkoutLabel.text = data.workoutName
+            
+        }
         return cell
-    }
-    
-    
 }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let workoutCard = workout?.workoutCards[indexPath.row]
+        let exerciseVC = ExerciseViewController()
+        exerciseVC.state = .view
+        exerciseVC.workoutCard = workoutCard
+        self.navigationController?.pushViewController(exerciseVC, animated: true)
+    }
+    }
+

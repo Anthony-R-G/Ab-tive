@@ -29,6 +29,7 @@ class FirestoreService {
     
 
     func createFavorite(post: Favorite, id: String, completion: @escaping (Result<(), Error>) -> ()) {
+
         var fields = post.fieldsDict
         fields["dateCreated"] = Date()
         let userID = FirebaseAuthService.manager.currentUser?.uid
@@ -69,6 +70,7 @@ class FirestoreService {
         if let account = accountType {
             updateFields["accountType"] = account
         }
+    
         db.collection("users").document(userId).updateData(updateFields) { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -91,6 +93,7 @@ class FirestoreService {
                }
            }
        }
+    
 
     
     func deleteAllUserFavorites(apiSourceRawValue: String, completion: @escaping (Result<(), Error>) -> ()){
@@ -108,9 +111,40 @@ class FirestoreService {
           }
         }
     }
-}
-
-
+   func createWorkoutPlan(plan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()) {
+    let fields  = plan.fieldsDict
+    db.collection("workoutPlan").document("12231").setData(fields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    func getWorkoutPlan(completion: @escaping (Result<[WorkoutPlan],Error>) ->()) {
+     db.collection("workoutPlan").getDocuments { (snapshot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else {
+                let plans = snapshot?.documents.compactMap({ (snapshot) -> WorkoutPlan? in
+                    let plan = WorkoutPlan(from: snapshot.data(), id: snapshot.documentID)
+                    return plan
+                })
+                completion(.success(plans ?? []))
+            }
+        }
+    }
+    func updateWorkoutPlan( workoutPlan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()){
+        let fields  = workoutPlan.fieldsDict
+        db.collection("workoutPlan").document("12231").updateData(fields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+}//By david
 
 
 

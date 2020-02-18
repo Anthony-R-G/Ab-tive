@@ -22,6 +22,14 @@ class ExerciseInfoCell: UITableViewCell {
     }
     //MARK: - Variables
     weak var delegate: ButtonFunction?
+    var isPicked = true{
+        didSet{
+            if self.isPicked{
+                exerciseIsPicked.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+                 }else {
+             exerciseIsPicked.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        }
+        }}
     //MARK: - UI Objects
     lazy var cellImage: UIImageView = {
         let view = UIImageView()
@@ -41,6 +49,7 @@ class ExerciseInfoCell: UITableViewCell {
         let button = UIButton()
         button.addTarget(self, action: #selector(savedAction), for: .touchUpInside)
         button.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        button.isHidden = true
         return button
     }()
     
@@ -59,6 +68,7 @@ class ExerciseInfoCell: UITableViewCell {
         contentView.layer.cornerRadius = 15
         contentView.layer.masksToBounds = true
     }
+    
     //MARK: - Constraints
     private func setUpCellImage(){
         contentView.addSubview(cellImage)

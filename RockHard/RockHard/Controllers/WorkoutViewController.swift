@@ -80,7 +80,7 @@ class WorkoutViewController: UIViewController {
     //MARK: - Objc Functions
     @objc private func createWorkoutAction(){
         let exerciseVC = ExerciseViewController()
-        exerciseVC.state = .add
+        exerciseVC.state = .createWorkout
         exerciseVC.workoutPlan = workout
         self.navigationController?.pushViewController(exerciseVC, animated: true)
     }
@@ -159,7 +159,7 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let workoutCard = workout?.workoutCards[indexPath.row]
         let exerciseVC = ExerciseViewController()
-        exerciseVC.state = .view
+        exerciseVC.state = .viewWorkout
         exerciseVC.workoutCard = workoutCard
         self.navigationController?.pushViewController(exerciseVC, animated: true)
     }

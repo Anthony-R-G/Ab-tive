@@ -95,7 +95,6 @@ class WorkoutViewController: UIViewController {
                 print(error)
             case .success(let plan):
                 self.workout = plan.first
-                print(plan)
             }
         }
     }

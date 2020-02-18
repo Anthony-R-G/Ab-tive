@@ -11,7 +11,6 @@ class ExerciseViewController: UIViewController {
         setUpConstraints()
         loadExerciseData()
     }
-    
     //MARK: - Variables
     enum currentState {
         case createWorkout
@@ -19,10 +18,10 @@ class ExerciseViewController: UIViewController {
         case exerciseView
     }
     var weekDay = "Monday"
+    var currentUser = FirebaseAuthService.manager.currentUser
     var state = currentState.exerciseView
     var workoutPlan: WorkoutPlan?
     var workoutCard: WorkoutCard?
-//    var arrayOfbuttonStates = [Bool]()
     var pickedExerciseNames = [String]()
     var pickedExercises = [Exercise](){
         didSet{
@@ -39,19 +38,15 @@ class ExerciseViewController: UIViewController {
     var selectedTypes = [String]()
     var exercises = [Exercise](){
         didSet{
-//            arrayOfbuttonStates = Array(repeating: true, count: self.exercises.count)
             exerciseTableView.reloadData()
         }
     }
     var filteredExercise = [Exercise](){
         didSet{
-//            arrayOfbuttonStates = Array(repeating: true, count: self.exercises.count)
             exerciseTableView.reloadData()
         }
     }
     
-    
-  
     //MARK: - Objc Functions
     @objc private func presetnWorkoutView (){
         view.backgroundColor = #colorLiteral(red: 0.2632220984, green: 0.2616633773, blue: 0.2644240856, alpha: 0.8305329623)
@@ -71,10 +66,9 @@ class ExerciseViewController: UIViewController {
                     print("")
                 }
             }
-            
         }else{
         let workout = WorkoutCard(workoutDay: weekDay, workoutName: workoutNameTextField.text!, exercises: pickedExercises)
-        let workoutPlan = WorkoutPlan(planName: "kj", creatorID: "12231", workoutCards: [workout])
+            let workoutPlan = WorkoutPlan(planName: "", creatorID: currentUser?.uid ?? "", workoutCards: [workout])
         FirestoreService.manager.createWorkoutPlan(plan: workoutPlan) { (Resut) in
             switch Resut{
             case .failure(let error):
@@ -84,7 +78,7 @@ class ExerciseViewController: UIViewController {
             }
         }
         }
-                      navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     //MARK: - Regular Functions
@@ -345,13 +339,15 @@ extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewData
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selected = muscleTypeCV.cellForItem(at: indexPath) as! MuscleTypeCVCell
-        selected.contentView.backgroundColor = .blue
+        selected.contentView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        selected.muscleNameLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         if selectedTypes.contains(muscleType[indexPath.row]){
             selectedTypes = selectedTypes.filter { (type) -> Bool in
                 return type != muscleType[indexPath.row]
              
             }
                selected.contentView.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
+            selected.muscleNameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }else{
           selectedTypes.append(muscleType[indexPath.row])
         }
@@ -365,16 +361,19 @@ extension ExerciseViewController: ButtonFunction{
         let selectedIndex = IndexPath(row: tag, section: 0)
         let selected = exerciseTableView.cellForRow(at: selectedIndex ) as! ExerciseInfoCell
         if selected.isPicked{
-            pickedExercises.removeAll { (Exercise) -> Bool in
-                return Exercise.name == exercises[tag].name
+            pickedExerciseNames.removeAll { (Exercise) -> Bool in
+                return Exercise == filteredExercise[tag].name
             }
-            pickedExerciseNames.append(filteredExercise[tag].name)
+            pickedExercises.removeAll { (Exercise) -> Bool in
+                return Exercise.name == filteredExercise[tag].name
+            }
             selected.isPicked = false
         }else{
-            pickedExercises.append(exercises[tag])
+            pickedExercises.append(filteredExercise[tag])
             pickedExerciseNames.append(filteredExercise[tag].name)
             selected.isPicked = true
         }
+        print(pickedExerciseNames)
     }
 }
 

@@ -13,7 +13,7 @@ class ExerciseViewController: UIViewController {
     }
     
     //MARK: - Variables
-    enum currentState: String{
+    enum currentState {
         case createWorkout
         case viewWorkout
         case exerciseView
@@ -22,7 +22,8 @@ class ExerciseViewController: UIViewController {
     var state = currentState.exerciseView
     var workoutPlan: WorkoutPlan?
     var workoutCard: WorkoutCard?
-    var arrayOfbuttonStates = [Bool]()
+//    var arrayOfbuttonStates = [Bool]()
+    var pickedExerciseNames = [String]()
     var pickedExercises = [Exercise](){
         didSet{
             if self.pickedExercises.isEmpty {
@@ -38,13 +39,13 @@ class ExerciseViewController: UIViewController {
     var selectedTypes = [String]()
     var exercises = [Exercise](){
         didSet{
-            arrayOfbuttonStates = Array(repeating: true, count: self.exercises.count)
+//            arrayOfbuttonStates = Array(repeating: true, count: self.exercises.count)
             exerciseTableView.reloadData()
         }
     }
     var filteredExercise = [Exercise](){
         didSet{
-            arrayOfbuttonStates = Array(repeating: true, count: self.exercises.count)
+//            arrayOfbuttonStates = Array(repeating: true, count: self.exercises.count)
             exerciseTableView.reloadData()
         }
     }
@@ -113,7 +114,7 @@ class ExerciseViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.2929434776, green: 0.360488832, blue: 0.4110850692, alpha: 0.7299604024)
         weekDayPicker.delegate = self
         weekDayPicker.dataSource = self
-        if state.rawValue == "viewWorkout"{
+        if state == .viewWorkout{
         muscleTypeCV.isHidden = true}
         
     }
@@ -283,12 +284,12 @@ class ExerciseViewController: UIViewController {
 extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if state.rawValue == "viewWorkout"{
-            return  (workoutCard?.exercises.count)!
-        }
+        guard let exerciseCount = workoutCard?.exercises.count else {
             return filteredExercise.count
+        }
+        return exerciseCount
+
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = exerciseTableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as? ExerciseInfoCell else {return UITableViewCell()}
         var data: Exercise?
@@ -300,11 +301,11 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
         case .createWorkout:
             cell.exerciseIsPicked.isHidden = false
             data = filteredExercise[indexPath.row]
-            if arrayOfbuttonStates[indexPath.row] {
-                cell.isPicked = false
-            }else {
-                cell.isPicked = true
-            }
+        }
+        if pickedExerciseNames.contains(data!.name){
+            cell.isPicked = true
+        }else {
+              cell.isPicked = false
         }
         cell.exerciseTitleLabel.text = data?.name
         if let url =  URL(string: data?.cellImage ?? "") {
@@ -367,11 +368,11 @@ extension ExerciseViewController: ButtonFunction{
             pickedExercises.removeAll { (Exercise) -> Bool in
                 return Exercise.name == exercises[tag].name
             }
-            arrayOfbuttonStates[selectedIndex.row] = true
+            pickedExerciseNames.append(filteredExercise[tag].name)
             selected.isPicked = false
         }else{
             pickedExercises.append(exercises[tag])
-            arrayOfbuttonStates[selectedIndex.row] = false
+            pickedExerciseNames.append(filteredExercise[tag].name)
             selected.isPicked = true
         }
     }

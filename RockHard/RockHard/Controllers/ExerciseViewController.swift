@@ -1,7 +1,7 @@
 
 
 import UIKit
-
+import Kingfisher
 class ExerciseViewController: UIViewController {
     //MARK: - Lifecycle
     
@@ -10,9 +10,6 @@ class ExerciseViewController: UIViewController {
         setUpView()
         setUpConstraints()
         loadExerciseData()
-        if state.rawValue == "view"{
-            muscleTypeCV.isHidden = true
-        }
     }
     
     //MARK: - Variables
@@ -22,7 +19,7 @@ class ExerciseViewController: UIViewController {
         case exercise
     }
     var weekDay = "Monday"
-    var state = currentState.view
+    var state = currentState.exercise
     var arrayOfbuttonStates = [Bool]()
     var pickedExercises = [Exercise](){
         didSet{
@@ -37,9 +34,9 @@ class ExerciseViewController: UIViewController {
     var workoutCard: WorkoutCard?
     var weekDays = ["Monday","Tuesday","Wednesday", "Thursday", "Friday","Saturday","Sunday"]
     var muscleType = ["Biceps", "Legs", "Triceps", "Shoulder", "Chest", "Back", "Cardio"]
-    var exercise = [Exercise](){
+    var exercises = [Exercise](){
         didSet{
-            arrayOfbuttonStates = Array(repeating: true, count: self.exercise.count)
+            arrayOfbuttonStates = Array(repeating: true, count: self.exercises.count)
             exerciseTableView.reloadData()
         }
     }
@@ -86,7 +83,7 @@ class ExerciseViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let exercise):
-                self.exercise = exercise
+                self.exercises = exercise
             }
         }
     }
@@ -94,6 +91,8 @@ class ExerciseViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.2929434776, green: 0.360488832, blue: 0.4110850692, alpha: 0.7299604024)
         weekDayPicker.delegate = self
         weekDayPicker.dataSource = self
+        if state.rawValue == "view"{
+        muscleTypeCV.isHidden = true}
         
     }
     private func setUpConstraints(){
@@ -264,7 +263,7 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
         if state.rawValue == "view"{
             return  (workoutCard?.exercises.count)!
         }
-            return exercise.count
+            return exercises.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -273,27 +272,31 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
         if state.rawValue == "view"{
           data = (workoutCard?.exercises[indexPath.row])!
         }else {
-         data = exercise[indexPath.row]
+         data = exercises[indexPath.row]
             if arrayOfbuttonStates[indexPath.row] {
                 cell.isPicked = false
             }else {
                 cell.isPicked = true
             }
         }
-       
         cell.exerciseTitleLabel.text = data?.name
-        cell.cellImage.image = UIImage(named: "muscle")
+        if  let url =  URL(string: data?.cellImage ?? ""){
+        cell.cellImage.kf.setImage(with: url)}
         cell.delegate = self
         cell.exerciseIsPicked.tag = indexPath.row
         if state.rawValue == "add"{
             cell.exerciseIsPicked.isHidden = false
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(100)
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let exerciseDetail = ExerciseDetailVC()
+        exerciseDetail.exercise = exercises[indexPath.row]
+        self.navigationController?.pushViewController(exerciseDetail, animated: true)
     }
 }
 
@@ -325,12 +328,12 @@ extension ExerciseViewController: ButtonFunction{
         let selected = exerciseTableView.cellForRow(at: selectedIndex ) as! ExerciseInfoCell
         if selected.isPicked{
             pickedExercises.removeAll { (Exercise) -> Bool in
-                return Exercise.name == exercise[tag].name
+                return Exercise.name == exercises[tag].name
             }
             arrayOfbuttonStates[selectedIndex.row] = true
             selected.isPicked = false
         }else{
-            pickedExercises.append(exercise[tag])
+            pickedExercises.append(exercises[tag])
             arrayOfbuttonStates[selectedIndex.row] = false
             selected.isPicked = true
         }

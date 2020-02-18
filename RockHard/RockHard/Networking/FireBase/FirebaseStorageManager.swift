@@ -14,8 +14,9 @@ class FirebaseStorageService {
     enum imageType {
         case profile
         case uploaded
+        case exercise
     }
-    
+    static var exerciseManager = FirebaseStorageService(type: .exercise)
     static var profileManager = FirebaseStorageService(type: .profile)
     static var uploadManager = FirebaseStorageService(type: .uploaded)
     
@@ -31,6 +32,8 @@ class FirebaseStorageService {
             imagesFolderReference = storageReference.child("profileImages")
         case .uploaded:
             imagesFolderReference = storageReference.child("uploadedFeedImages")
+        case .exercise:
+            imagesFolderReference = storageReference.child("exercisePic")
         }
         
     }

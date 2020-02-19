@@ -22,7 +22,6 @@ class ExerciseViewController: UIViewController {
     var state = currentState.exerciseView
     var workoutPlan: WorkoutPlan?
     var workoutCard: WorkoutCard?
-    var pickedExerciseNames = [String]()
     var pickedExercises = [Exercise](){
         didSet{
             if self.pickedExercises.isEmpty {
@@ -36,11 +35,7 @@ class ExerciseViewController: UIViewController {
     var weekDays = ["Monday","Tuesday","Wednesday", "Thursday", "Friday","Saturday","Sunday"]
     var muscleType = ["Biceps", "Legs", "Triceps", "Shoulder", "Chest", "Back", "Cardio"]
     var selectedTypes = [String]()
-    var exercises = [Exercise](){
-        didSet{
-            exerciseTableView.reloadData()
-        }
-    }
+    var exercises = [Exercise]()
     var filteredExercise = [Exercise](){
         didSet{
             exerciseTableView.reloadData()
@@ -296,10 +291,12 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
             cell.exerciseIsPicked.isHidden = false
             data = filteredExercise[indexPath.row]
         }
-        if pickedExerciseNames.contains(data!.name){
-            cell.isPicked = true
-        }else {
-              cell.isPicked = false
+        if pickedExercises.contains(where: { (Exercise) -> Bool in
+            return Exercise.name == data?.name
+        }){
+        cell.isPicked = true
+                    }else {
+                          cell.isPicked = false
         }
         cell.exerciseTitleLabel.text = data?.name
         if let url =  URL(string: data?.cellImage ?? "") {
@@ -361,19 +358,15 @@ extension ExerciseViewController: ButtonFunction{
         let selectedIndex = IndexPath(row: tag, section: 0)
         let selected = exerciseTableView.cellForRow(at: selectedIndex ) as! ExerciseInfoCell
         if selected.isPicked{
-            pickedExerciseNames.removeAll { (Exercise) -> Bool in
-                return Exercise == filteredExercise[tag].name
-            }
             pickedExercises.removeAll { (Exercise) -> Bool in
                 return Exercise.name == filteredExercise[tag].name
             }
             selected.isPicked = false
         }else{
             pickedExercises.append(filteredExercise[tag])
-            pickedExerciseNames.append(filteredExercise[tag].name)
             selected.isPicked = true
         }
-        print(pickedExerciseNames)
+
     }
 }
 

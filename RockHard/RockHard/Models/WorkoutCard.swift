@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WorkoutCard{
+struct WorkoutCard: Codable {
     let workoutDay: String
     let workoutName: String
     let exercises: [Exercise]

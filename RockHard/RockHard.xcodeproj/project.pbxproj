@@ -11,6 +11,8 @@
 		50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BDE23ECACF900703791 /* WorkoutDayCell.swift */; };
 		50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BE023ECC40900703791 /* WorkoutCard.swift */; };
 		508BC8A123E8870900A93734 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508BC8A023E8870900A93734 /* Exercise.swift */; };
+		50C0D58C23FF30CE0039D4A4 /* PlanPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */; };
+		50C0D58D23FF30CE0039D4A4 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */; };
 		50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */; };
 		50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */; };
 		50F29F4123E0E9AB0050C2CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */; };
@@ -61,6 +63,8 @@
 		50524BDE23ECACF900703791 /* WorkoutDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDayCell.swift; sourceTree = "<group>"; };
 		50524BE023ECC40900703791 /* WorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCard.swift; sourceTree = "<group>"; };
 		508BC8A023E8870900A93734 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanPersistence.swift; sourceTree = "<group>"; };
+		50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseInfoCell.swift; path = RockHard/Controllers/ExerciseInfoCell.swift; sourceTree = SOURCE_ROOT; };
 		50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellButtonProtocol.swift; path = RockHard/Controllers/CellButtonProtocol.swift; sourceTree = SOURCE_ROOT; };
 		50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -125,6 +129,15 @@
 				08AAA7C24D83F24ACC05F874 /* Pods_RockHardTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50C0D58923FF30A00039D4A4 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */,
+				50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		9704BB1423E8800200AF6830 /* FireBase */ = {
@@ -194,6 +207,7 @@
 		97BF745F23DF49920058F2D7 /* RockHard */ = {
 			isa = PBXGroup;
 			children = (
+				50C0D58923FF30A00039D4A4 /* Persistence */,
 				97452DAB23DF4B5F005636E0 /* Networking */,
 				97452DAA23DF4B58005636E0 /* Views */,
 				97452DA923DF4B52005636E0 /* Models */,
@@ -427,12 +441,14 @@
 				979492F423F5DAFC00B636A4 /* LoginViewController.swift in Sources */,
 				979492F623F5DB6100B636A4 /* Utilities.swift in Sources */,
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
+				50C0D58D23FF30CE0039D4A4 /* PersistenceHelper.swift in Sources */,
 				508BC8A123E8870900A93734 /* Exercise.swift in Sources */,
 				50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */,
 				9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
 				50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */,
 				50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */,
+				50C0D58C23FF30CE0039D4A4 /* PlanPersistence.swift in Sources */,
 				9704BB1F23E8807300AF6830 /* FirebaseAuthService.swift in Sources */,
 				50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */,
 				979492F223F5D99200B636A4 /* FirebaseStorageManager.swift in Sources */,

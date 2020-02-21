@@ -1,15 +1,13 @@
-//
 //  ExerciseDetailVC.swift
 //  RockHard
-//
 //  Created by Eric Widjaja on 2/10/20.
 //  Copyright © 2020 Rockstars. All rights reserved.
-//
 
 import UIKit
 class ExerciseDetailVC: UIViewController {
     //MARK: - Properties
     lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
+    
     var exercise: Exercise?
     
     //MARK: - Views
@@ -35,7 +33,7 @@ class ExerciseDetailVC: UIViewController {
     
     lazy var exerciseNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 32)
+        label.font = UIFont.systemFont(ofSize: 34)
         //pass data from ExerciseVC
         label.text = "Hamstring Curl"
         label.textColor = .white
@@ -56,13 +54,13 @@ class ExerciseDetailVC: UIViewController {
     lazy var detailImage: UIImageView = {
         let imgView = UIImageView()
         //pass data from ExerciseVC
-//        imgView.image = UIImage(named: "LifeFitnessPro-LyingLegCurl")
         imgView.contentMode = .scaleToFill
         return imgView
     }()
     
     lazy var bodyImage: UIImageView = {
         let imgView = UIImageView()
+        imgView.backgroundColor = .black
         imgView.image = UIImage(named: "icon")
         imgView.contentMode = .scaleToFill
         imgView.isUserInteractionEnabled = true
@@ -80,6 +78,7 @@ class ExerciseDetailVC: UIViewController {
         button.layer.cornerRadius = 12
         button.setTitle("AR View", for: .normal)
         button.titleLabel?.font = UIFont(name: "Noteworthy-Bold", size: 18)
+        
         return button
     }()
     
@@ -89,10 +88,12 @@ class ExerciseDetailVC: UIViewController {
         tv.font = UIFont.systemFont(ofSize: 16)
         tv.isEditable = false
         tv.textColor = .white
-        tv.backgroundColor = .clear
+        tv.backgroundColor = .gray
+        tv.isScrollEnabled = false
         tv.textAlignment = .justified
-        tv.adjustsFontForContentSizeCategory = true
-        tv.text = "Lie on your stomach on the machine with your hands in front of you, slightly wider than your shoulders..."
+        tv.adjustsFontForContentSizeCategory = false
+        tv.textContainerInset = UIEdgeInsets(top: 20, left: 12, bottom: 25, right: 12)
+        
         return tv
     }()
     
@@ -121,10 +122,19 @@ class ExerciseDetailVC: UIViewController {
         setUpLabels()
         getExerciseImage()
     }
+    
+    func adjustTextViewHeight(arg: UITextView) {
+        arg.translatesAutoresizingMaskIntoConstraints = true
+        arg.sizeToFit()
+        arg.isScrollEnabled = false
+    }
+    
     private func setUpLabels(){
         muscleTypeLabel.text = "Muscle type: \(exercise?.type ?? "")"
         exerciseNameLabel.text = exercise?.name ?? ""
-        exerciseDescription.text = exercise?.comments.first ?? ""
+        
+        let descriptions = exercise?.comments
+        exerciseDescription.text = descriptions?.joined(separator: " \n\n" )
         
     }
     private func getExerciseImage(){
@@ -156,26 +166,26 @@ extension ExerciseDetailVC {
     private func setExerciseNameLabelConstraints() {
         NSLayoutConstraint.activate([
             exerciseNameLabel.topAnchor.constraint(equalTo:
-                detailContainerView.topAnchor, constant: 10),
+                detailContainerView.topAnchor, constant: 15),
             exerciseNameLabel.widthAnchor.constraint(equalToConstant: 400),
             exerciseNameLabel.centerXAnchor.constraint(equalTo: detailContainerView.safeAreaLayoutGuide.centerXAnchor),
-            exerciseNameLabel.heightAnchor.constraint(equalToConstant: 40)
+            exerciseNameLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
     private func setMuscleTypeLabelConstraints() {
         NSLayoutConstraint.activate([
-            muscleTypeLabel.topAnchor.constraint(equalTo: exerciseNameLabel.bottomAnchor),
+            muscleTypeLabel.topAnchor.constraint(equalTo: exerciseNameLabel.bottomAnchor, constant: 15),
             muscleTypeLabel.widthAnchor.constraint(equalToConstant: 200),
             muscleTypeLabel.leadingAnchor.constraint(equalTo: detailContainerView.leadingAnchor, constant: 30),
-            muscleTypeLabel.heightAnchor.constraint(equalToConstant: 100)])
+            muscleTypeLabel.heightAnchor.constraint(equalToConstant: 40)])
     }
     
     private func setDetailImageConstraints() {
         NSLayoutConstraint.activate([
-            detailImage.topAnchor.constraint(equalTo: muscleTypeLabel.bottomAnchor, constant: 1),
+            detailImage.topAnchor.constraint(equalTo: muscleTypeLabel.bottomAnchor, constant: 10),
             detailImage.centerXAnchor.constraint(equalTo: detailContainerView.safeAreaLayoutGuide.centerXAnchor),
-            detailImage.heightAnchor.constraint(equalToConstant: 350),
+            detailImage.heightAnchor.constraint(equalToConstant: 300),
             detailImage.widthAnchor.constraint(equalTo: detailContainerView.widthAnchor),
         ])
     }
@@ -194,14 +204,13 @@ extension ExerciseDetailVC {
         NSLayoutConstraint.activate([
             exerciseDescription.topAnchor.constraint(equalTo: arButton.bottomAnchor, constant: 25),
             exerciseDescription.widthAnchor.constraint(equalToConstant: 400),
-            exerciseDescription.centerXAnchor.constraint(equalTo: detailContainerView.safeAreaLayoutGuide.centerXAnchor),
-            exerciseDescription.heightAnchor.constraint(equalToConstant: 300)
+            exerciseDescription.centerXAnchor.constraint(equalTo: detailContainerView.safeAreaLayoutGuide.centerXAnchor)
         ])
     }
     private func setBodyImageConstraints(){
         NSLayoutConstraint.activate([
-            bodyImage.topAnchor.constraint(equalTo: exerciseDescription.bottomAnchor, constant: 0),
-            bodyImage.widthAnchor.constraint(equalTo: detailContainerView.safeAreaLayoutGuide.widthAnchor),
+            bodyImage.topAnchor.constraint(equalTo: exerciseDescription.bottomAnchor, constant: 15),
+            bodyImage.widthAnchor.constraint(equalToConstant: 280),
             bodyImage.heightAnchor.constraint(equalToConstant: 400),
             bodyImage.centerXAnchor.constraint(equalTo: detailContainerView.safeAreaLayoutGuide.centerXAnchor)
         ])

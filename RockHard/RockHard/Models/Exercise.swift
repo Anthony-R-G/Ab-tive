@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Exercise {
+struct Exercise: Codable {
     let cellImage: String?
     let comments: [String]
     let detailImage: String?

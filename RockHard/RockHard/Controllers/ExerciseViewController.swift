@@ -16,7 +16,7 @@ class ExerciseViewController: UIViewController {
         case createWorkout
         case viewWorkout
         case exerciseView
-    }
+    } 
     var weekDay = "Monday"
     var currentUser = FirebaseAuthService.manager.currentUser
     var state = currentState.exerciseView
@@ -31,17 +31,16 @@ class ExerciseViewController: UIViewController {
             }
         }
     }
-    
+    var exercises = [Exercise]()
+     var filteredExercise = [Exercise](){
+         didSet{
+             exerciseTableView.reloadData()
+         }
+     }
     var weekDays = ["Monday","Tuesday","Wednesday", "Thursday", "Friday","Saturday","Sunday"]
     var muscleType = ["Biceps", "Legs", "Triceps", "Shoulder", "Chest", "Back", "Cardio"]
-    var selectedTypes = [String]()
-    var exercises = [Exercise]()
-    var filteredExercise = [Exercise](){
-        didSet{
-            exerciseTableView.reloadData()
-        }
-    }
-    
+    var selectedMuscleTypes = [String]()
+ 
     //MARK: - Objc Functions
     @objc private func presetnWorkoutView (){
         view.backgroundColor = #colorLiteral(red: 0.2632220984, green: 0.2616633773, blue: 0.2644240856, alpha: 0.8305329623)
@@ -79,7 +78,7 @@ class ExerciseViewController: UIViewController {
     //MARK: - Regular Functions
     private func filterExercise () -> [Exercise]{
         var filtered = exercises.filter { (exercise) -> Bool in
-            selectedTypes.contains(exercise.type)
+            selectedMuscleTypes.contains(exercise.type)
           }
         if filtered.count == 0{
         filtered = exercises
@@ -103,9 +102,6 @@ class ExerciseViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.2929434776, green: 0.360488832, blue: 0.4110850692, alpha: 0.7299604024)
         weekDayPicker.delegate = self
         weekDayPicker.dataSource = self
-        if state == .viewWorkout{
-        muscleTypeCV.isHidden = true}
-        
     }
     private func setUpConstraints(){
         constrainExerciseCV()
@@ -338,15 +334,15 @@ extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewData
         let selected = muscleTypeCV.cellForItem(at: indexPath) as! MuscleTypeCVCell
         selected.contentView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         selected.muscleNameLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        if selectedTypes.contains(muscleType[indexPath.row]){
-            selectedTypes = selectedTypes.filter { (type) -> Bool in
+        if selectedMuscleTypes.contains(muscleType[indexPath.row]){
+            selectedMuscleTypes = selectedMuscleTypes.filter { (type) -> Bool in
                 return type != muscleType[indexPath.row]
              
             }
                selected.contentView.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
             selected.muscleNameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }else{
-          selectedTypes.append(muscleType[indexPath.row])
+          selectedMuscleTypes.append(muscleType[indexPath.row])
         }
         filteredExercise = filterExercise()
     }
@@ -380,7 +376,6 @@ extension ExerciseViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let day =  weekDays[row]
-        
         return day
     }
     

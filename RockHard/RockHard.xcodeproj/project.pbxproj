@@ -243,8 +243,8 @@
 				97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */,
 				97452DA723DF4B34005636E0 /* ProfileViewController.swift */,
 				9704BB2123E88DDE00AF6830 /* AddPostViewController.swift */,
-				979492F323F5DAFC00B636A4 /* LoginViewController.swift */,
 				979492F723F5DC7000B636A4 /* SignupViewController.swift */,
+				979492F323F5DAFC00B636A4 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

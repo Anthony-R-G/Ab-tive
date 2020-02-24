@@ -85,16 +85,17 @@ class FirestoreService {
             }
         }
     }
-    func getBuddyRequests( completion: @escaping (Result<[Exercise],Error>) ->()) {
-        db.collection("exercise").getDocuments { (snapshot, error) in
+    func getBuddyRequests( completion: @escaping (Result<[BuddyRequest],Error>) ->()) {
+        db.collection("buddyRequests").getDocuments { (snapshot, error) in
             if let error = error{
                 completion(.failure(error))
             }else {
-                let posts = snapshot?.documents.compactMap({ (snapshot) -> Exercise? in
-                    let post = Exercise(from: snapshot.data())
-                    return post
+                let requests = snapshot?.documents.compactMap({ (snapshot) -> BuddyRequest? in
+                    let requestID = snapshot.documentID
+                    let request = BuddyRequest(from: snapshot.data(), id: postID)
+                    return request
                 })
-                completion(.success(posts ?? []))
+                completion(.success(requests ?? []))
             }
         }
     }

@@ -16,6 +16,11 @@ class FindBuddyVC: UIViewController{
         
     }
     //MARK: - Variables
+    var buddyRequests = [BuddyRequest](){
+        didSet{
+            buddyRequestTableVC.reloadData()
+        }
+    }
     //MARK: - UI Objects
     var buddyRequestTableVC: UITableView = {
     let tableVC = UITableView()
@@ -40,7 +45,8 @@ extension FindBuddyVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = buddyRequestTableVC.dequeueReusableCell(withIdentifier: "buddyCell", for: indexPath) as?
+        guard let cell = buddyRequestTableVC.dequeueReusableCell(withIdentifier: "buddyCell", for: indexPath) as? BuddyRequestCell else {return UITableViewCell()}
+        
     }
     
     

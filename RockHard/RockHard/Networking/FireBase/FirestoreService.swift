@@ -85,6 +85,19 @@ class FirestoreService {
             }
         }
     }
+    func getBuddyRequests( completion: @escaping (Result<[Exercise],Error>) ->()) {
+        db.collection("exercise").getDocuments { (snapshot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else {
+                let posts = snapshot?.documents.compactMap({ (snapshot) -> Exercise? in
+                    let post = Exercise(from: snapshot.data())
+                    return post
+                })
+                completion(.success(posts ?? []))
+            }
+        }
+    }
     
     
     

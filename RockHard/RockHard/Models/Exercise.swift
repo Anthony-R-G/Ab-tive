@@ -32,9 +32,9 @@ struct Exercise: Codable {
         }
      var fieldsDict: [String: Any] {
                  return [
-                     "cellImage": self.cellImage,
-                     "detailImage": self.detailImage ,
-                     "exerciseInfo": self.exerciseInfo,
+                     "cellImage": self.cellImage ?? "",
+                     "detailImage": self.detailImage ?? "" ,
+                     "exerciseInfo": self.exerciseInfo ?? "",
                     "name": self.name,
                     "type": self.type,
                     "comments": self.comments

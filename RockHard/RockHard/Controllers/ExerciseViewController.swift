@@ -95,6 +95,7 @@ class ExerciseViewController: UIViewController {
             case .success(let exercise):
                 self.exercises = exercise
                 self.filteredExercise = exercise
+
             }
         }
     }

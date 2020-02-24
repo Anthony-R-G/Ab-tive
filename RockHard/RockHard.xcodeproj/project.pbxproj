@@ -10,6 +10,9 @@
 		5008085223F3416700FD307C /* WorkoutPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008085123F3416700FD307C /* WorkoutPlan.swift */; };
 		50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BDE23ECACF900703791 /* WorkoutDayCell.swift */; };
 		50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BE023ECC40900703791 /* WorkoutCard.swift */; };
+		506E387524043036001EEE6C /* FindBuddyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E387424043036001EEE6C /* FindBuddyVC.swift */; };
+		506E38772404335C001EEE6C /* BuddyRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E38762404335C001EEE6C /* BuddyRequestCell.swift */; };
+		506E387924043D75001EEE6C /* BuddyRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E387824043D75001EEE6C /* BuddyRequestModel.swift */; };
 		508BC8A123E8870900A93734 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508BC8A023E8870900A93734 /* Exercise.swift */; };
 		50C0D58C23FF30CE0039D4A4 /* PlanPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */; };
 		50C0D58D23FF30CE0039D4A4 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */; };
@@ -62,6 +65,9 @@
 		5008085123F3416700FD307C /* WorkoutPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlan.swift; sourceTree = "<group>"; };
 		50524BDE23ECACF900703791 /* WorkoutDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDayCell.swift; sourceTree = "<group>"; };
 		50524BE023ECC40900703791 /* WorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCard.swift; sourceTree = "<group>"; };
+		506E387424043036001EEE6C /* FindBuddyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindBuddyVC.swift; sourceTree = "<group>"; };
+		506E38762404335C001EEE6C /* BuddyRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRequestCell.swift; sourceTree = "<group>"; };
+		506E387824043D75001EEE6C /* BuddyRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRequestModel.swift; sourceTree = "<group>"; };
 		508BC8A023E8870900A93734 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanPersistence.swift; sourceTree = "<group>"; };
 		50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
@@ -159,6 +165,7 @@
 				508BC8A023E8870900A93734 /* Exercise.swift */,
 				50524BE023ECC40900703791 /* WorkoutCard.swift */,
 				5008085123F3416700FD307C /* WorkoutPlan.swift */,
+				506E387824043D75001EEE6C /* BuddyRequestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,6 +179,7 @@
 				50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */,
 				50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */,
 				50524BDE23ECACF900703791 /* WorkoutDayCell.swift */,
+				506E38762404335C001EEE6C /* BuddyRequestCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -245,6 +253,7 @@
 				9704BB2123E88DDE00AF6830 /* AddPostViewController.swift */,
 				979492F323F5DAFC00B636A4 /* LoginViewController.swift */,
 				979492F723F5DC7000B636A4 /* SignupViewController.swift */,
+				506E387424043036001EEE6C /* FindBuddyVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -441,11 +450,13 @@
 				979492F423F5DAFC00B636A4 /* LoginViewController.swift in Sources */,
 				979492F623F5DB6100B636A4 /* Utilities.swift in Sources */,
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
+				506E387924043D75001EEE6C /* BuddyRequestModel.swift in Sources */,
 				50C0D58D23FF30CE0039D4A4 /* PersistenceHelper.swift in Sources */,
 				508BC8A123E8870900A93734 /* Exercise.swift in Sources */,
 				50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */,
 				9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
+				506E38772404335C001EEE6C /* BuddyRequestCell.swift in Sources */,
 				50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */,
 				50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */,
 				50C0D58C23FF30CE0039D4A4 /* PlanPersistence.swift in Sources */,
@@ -458,6 +469,7 @@
 				97BF746323DF49920058F2D7 /* SceneDelegate.swift in Sources */,
 				DF4071B523E0A91500506B8A /* FeedVerticalCollViewCell.swift in Sources */,
 				DFA2C48823F1C74100157519 /* ExerciseDetailVC.swift in Sources */,
+				506E387524043036001EEE6C /* FindBuddyVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,7 @@ struct BuddyRequest{
     let requestInfo: String
     
     init?(from dict: [String: Any], id: String) {
-            guard let creatorId = dict["creatorId"] as? String,
+            guard let creatorId = dict["creatorID"] as? String,
                 let creatorGym = dict["creatorGym"] as? String,
                 let buddyId = dict["buddyId"] as? String,
                 let isAvailable = dict["isAvailable"] as? Bool,

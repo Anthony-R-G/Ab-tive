@@ -85,6 +85,7 @@ class FirestoreService {
             }
         }
     }
+    
     func getBuddyRequests( completion: @escaping (Result<[BuddyRequest],Error>) ->()) {
         db.collection("buddyRequests").getDocuments { (snapshot, error) in
             if let error = error{
@@ -92,7 +93,7 @@ class FirestoreService {
             }else {
                 let requests = snapshot?.documents.compactMap({ (snapshot) -> BuddyRequest? in
                     let requestID = snapshot.documentID
-                    let request = BuddyRequest(from: snapshot.data(), id: postID)
+                    let request = BuddyRequest(from: snapshot.data(), id: requestID)
                     return request
                 })
                 completion(.success(requests ?? []))
@@ -117,6 +118,7 @@ class FirestoreService {
             }
         }
     }
+    
     func createWorkoutPlan(plan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()) {
         let fields  = plan.fieldsDict
         db.collection("workoutPlan").document("12231").setData(fields) { (error) in
@@ -127,6 +129,7 @@ class FirestoreService {
             }
         }
     }
+    
     func getWorkoutPlan(completion: @escaping (Result<[WorkoutPlan],Error>) ->()) {
         db.collection("workoutPlan").getDocuments { (snapshot, error) in
             if let error = error{
@@ -140,6 +143,7 @@ class FirestoreService {
             }
         }
     }
+    
     func updateWorkoutPlan( workoutPlan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()){
         let fields  = workoutPlan.fieldsDict
         db.collection("workoutPlan").document("12231").updateData(fields) { (error) in

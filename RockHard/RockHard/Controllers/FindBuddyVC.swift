@@ -69,11 +69,14 @@ extension FindBuddyVC: UITableViewDelegate, UITableViewDataSource{
         guard let cell = buddyRequestTableVC.dequeueReusableCell(withIdentifier: "buddyCell", for: indexPath) as? BuddyRequestCell else {return UITableViewCell()}
         let requestData = buddyRequests[indexPath.row]
         cell.userNameLabel.text = requestData.creatorId
+        cell.requestDescriptionLabel.text = requestData.requestInfo
+        cell.requestDateCreatedLabel.text = requestData.createdDateFormat
+        cell.requestDateLabel.text = requestData.requestedDateFormat
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 120
     }
     
 }

@@ -28,18 +28,24 @@ class BuddyRequestCell: UITableViewCell {
     }()
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: 15)
+        
         return label
     }()
     lazy var requestDescriptionLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
+        label.backgroundColor = .green
         return label
     }()
     lazy var requestDateCreatedLabel: UILabel = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: 10)
         return label
     }()
     lazy var requestDateLabel: UILabel = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
         return label
     }()
     
@@ -48,6 +54,9 @@ class BuddyRequestCell: UITableViewCell {
     private func setUpConstraints(){
         constraiProfilePicture()
         constrainUserNameLabel()
+        constrainRequestDescriptionLabel()
+        constrainDateCreatedLabel()
+        constrainRequestDateLabel()
     }
     //MARK: - Constraints
     private func constraiProfilePicture(){
@@ -64,11 +73,40 @@ class BuddyRequestCell: UITableViewCell {
         contentView.addSubview(userNameLabel)
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            userNameLabel.leadingAnchor.constraint(equalTo: profilePicture.trailingAnchor, constant: 0),
-            userNameLabel.heightAnchor.constraint(equalToConstant: 50),
+            userNameLabel.leadingAnchor.constraint(equalTo: profilePicture.trailingAnchor, constant: 20),
+            userNameLabel.heightAnchor.constraint(equalToConstant: 30),
             userNameLabel.widthAnchor.constraint(equalToConstant: 80),
             userNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0)
         ])
     }
-    
+    private func constrainRequestDescriptionLabel(){
+        contentView.addSubview(requestDescriptionLabel)
+        requestDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            requestDescriptionLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 10),
+            requestDescriptionLabel.leadingAnchor.constraint(equalTo: userNameLabel.leadingAnchor, constant: 0),
+            requestDescriptionLabel.heightAnchor.constraint(equalToConstant: 50),
+            requestDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+        ])
+    }
+    private func constrainDateCreatedLabel(){
+        contentView.addSubview(requestDateCreatedLabel)
+        requestDateCreatedLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            requestDateCreatedLabel.topAnchor.constraint(equalTo: requestDescriptionLabel.bottomAnchor, constant: 0),
+            requestDateCreatedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            requestDateCreatedLabel.heightAnchor.constraint(equalToConstant: 20),
+            requestDateCreatedLabel.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    private func constrainRequestDateLabel(){
+        contentView.addSubview(requestDateLabel)
+        requestDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            requestDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            requestDateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            requestDateLabel.heightAnchor.constraint(equalToConstant: 20),
+            requestDateLabel.widthAnchor.constraint(equalToConstant: 200)
+        ])
+    }
 }

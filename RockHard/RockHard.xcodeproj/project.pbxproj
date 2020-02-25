@@ -176,9 +176,9 @@
 				DF4C5CF323DF536400A8D537 /* FeedHorizontalCollViewCell.swift */,
 				DF4071B423E0A91500506B8A /* FeedVerticalCollViewCell.swift */,
 				50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */,
+				50524BDE23ECACF900703791 /* WorkoutDayCell.swift */,
 				50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */,
 				50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */,
-				50524BDE23ECACF900703791 /* WorkoutDayCell.swift */,
 				506E38762404335C001EEE6C /* BuddyRequestCell.swift */,
 			);
 			path = Views;

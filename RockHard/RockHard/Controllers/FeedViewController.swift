@@ -20,8 +20,7 @@ class FeedViewController: UIViewController {
     }
     
     var topics = ["All", "Diets", "Weight Loss", "Gym Accessories"]
-    
-    
+
     var feedPosts = [Post](){
         didSet {
             feedPostCollectionView.reloadData()

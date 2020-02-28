@@ -4,7 +4,7 @@
 //
 //  Created by albert coelho oliveira on 1/28/20.
 //  Copyright © 2020 Rockstars. All rights reserved.
-//
+
 
 import UIKit
 
@@ -26,9 +26,9 @@ class ExerciseInfoCell: UITableViewCell {
         didSet{
             if self.isPicked{
                 exerciseIsPicked.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-                 }else {
-             exerciseIsPicked.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-        }
+            }else {
+                exerciseIsPicked.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            }
         }}
     //MARK: - UI Objects
     lazy var cellImage: UIImageView = {
@@ -36,6 +36,7 @@ class ExerciseInfoCell: UITableViewCell {
         view.contentMode = .scaleToFill
         return view
     }()
+    
     lazy var exerciseTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
@@ -43,6 +44,16 @@ class ExerciseInfoCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+    lazy var exerciseRepsLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15)
+        label.text = "3 Sets \n8 Reps"
+        label.isHidden = true
+        label.numberOfLines = 0
+        return label
+    }()
+    
     lazy var exerciseIsPicked: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(savedAction), for: .touchUpInside)
@@ -54,12 +65,13 @@ class ExerciseInfoCell: UITableViewCell {
     //MARK: - Objc Functions
     @objc func savedAction (){
         delegate?.selectAction(tag: exerciseIsPicked.tag)
-      }
+    }
     //MARK: - Regular Functions
     func setUpContentView(){
         setUpCellImage()
         setUpIsPicked()
-         setUpExerciseTitleLabel()
+        setUpExerciseTitleLabel()
+        setUpExerciseRepsLabel()
         contentView.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
         contentView.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
         contentView.layer.borderWidth = 2
@@ -90,14 +102,25 @@ class ExerciseInfoCell: UITableViewCell {
             
         ])
     }
+    private func setUpExerciseRepsLabel() {
+        contentView.addSubview(exerciseRepsLabel)
+        exerciseRepsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            exerciseRepsLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 18),
+            exerciseRepsLabel.topAnchor.constraint(equalTo: exerciseTitleLabel.bottomAnchor, constant: -5),
+            exerciseRepsLabel.heightAnchor.constraint(equalToConstant: 45),
+            exerciseRepsLabel.widthAnchor.constraint(equalToConstant: 300)
+        ])
+    }
+    
     private func setUpIsPicked(){
         contentView.addSubview(exerciseIsPicked)
         exerciseIsPicked.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             exerciseIsPicked.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-             exerciseIsPicked.heightAnchor.constraint(equalToConstant: 50),
-             exerciseIsPicked.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0),
-             exerciseIsPicked.widthAnchor.constraint(equalToConstant: 50)
+            exerciseIsPicked.heightAnchor.constraint(equalToConstant: 50),
+            exerciseIsPicked.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0),
+            exerciseIsPicked.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
 

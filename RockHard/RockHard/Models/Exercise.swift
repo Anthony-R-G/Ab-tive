@@ -13,18 +13,22 @@ struct Exercise: Codable {
     let cellImage: String?
     let comments: [String]
     let detailImage: String?
+    let backImage: String?
     let exerciseInfo: String?
     let name: String
     let type: String
+
         init?(from dict: [String: Any]) {
             guard let cellImage = dict["cellImage"] as? String,
                 let detailImage = dict["detailImage"] as? String,
+                let backImage = dict["backImage"] as? String,
                 let exerciseInfo = dict["exerciseInfo"] as? String,
                 let comments = dict["comments"] as? [String],
                 let name = dict["name"] as? String,
                 let type = dict["type"] as? String else { return nil }
             self.cellImage = cellImage
             self.detailImage = detailImage
+            self.backImage = backImage
             self.exerciseInfo = exerciseInfo
             self.name = name
             self.type = type
@@ -32,9 +36,11 @@ struct Exercise: Codable {
         }
      var fieldsDict: [String: Any] {
                  return [
+
                      "cellImage": self.cellImage ?? "",
                      "detailImage": self.detailImage ?? "" ,
                      "exerciseInfo": self.exerciseInfo ?? "",
+
                     "name": self.name,
                     "type": self.type,
                     "comments": self.comments

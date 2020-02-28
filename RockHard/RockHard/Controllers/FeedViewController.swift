@@ -172,13 +172,13 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.feedPostCollectionView {
             return feedPosts.count
-            
         } else {
             return topics.count
         }
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if collectionView  == self.feedPostCollectionView {
             
             guard let feedCell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedPostCell", for: indexPath) as? FeedVerticalCollViewCell else { return UICollectionViewCell()}
@@ -187,7 +187,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             feedCell.feedPostLabel.text = specificPost.postText
             feedCell.userNameLabel.text = specificPost.userName
             feedCell.backgroundColor = .darkGray
-            
             return feedCell
         } else {
             guard let topicsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicsCell", for: indexPath) as? FeedHorizontalCollViewCell else { return UICollectionViewCell()}
@@ -209,10 +208,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension FeedViewController: loadFeedPostsDelegate {
     func loadAllPosts() {
-       
             self.loadAllFeedPosts()
         }
-    
 }
 
 

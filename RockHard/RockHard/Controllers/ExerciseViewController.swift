@@ -121,6 +121,7 @@ class ExerciseViewController: UIViewController {
         layout.dataSource = self
         return layout
     }()
+    
     lazy var createWorkoutButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .green
@@ -129,6 +130,7 @@ class ExerciseViewController: UIViewController {
         button.addTarget(self, action: #selector(presetnWorkoutView), for: .touchUpInside)
         return button
     }()
+    
     lazy var muscleTypeCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -140,6 +142,7 @@ class ExerciseViewController: UIViewController {
         cv.dataSource = self
         return cv
     }()
+    
     lazy var createWorkoutView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -281,6 +284,7 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
         switch state{
         case .viewWorkout:
                 data = (workoutCard?.exercises[indexPath.row])!
+                cell.exerciseRepsLabel.isHidden = false
         case .exerciseView:
              data = filteredExercise[indexPath.row]
         case .createWorkout:

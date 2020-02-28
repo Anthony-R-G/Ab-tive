@@ -99,11 +99,11 @@ class WorkoutViewController: UIViewController {
             }
         }
     }
+    
     private func setUpConstraints(){
         constrainStackView()
         constrainWorkoutTableView()
         constrainStackBackgroundView()
-
     }
     //MARK: - Constraints
     private func constrainStackView(){

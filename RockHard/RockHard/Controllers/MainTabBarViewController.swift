@@ -17,6 +17,8 @@ class MainTabBarController: UITabBarController {
     lazy var workoutVC =  UINavigationController(rootViewController: WorkoutViewController())
     lazy var buddyVC = UINavigationController(rootViewController: FindBuddyVC())
     
+    lazy var profileVC = UINavigationController(rootViewController: ProfileViewController())
+    
     
 //    lazy var profileVC =  UINavigationController(rootViewController: ProfileViewController())
 //

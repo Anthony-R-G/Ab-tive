@@ -124,11 +124,11 @@ class WorkoutViewController: UIViewController {
             }
         }
     }
+    
     private func setUpConstraints(){
         constrainStackView()
         constrainWorkoutTableView()
         constrainStackBackgroundView()
-
     }
     //MARK: - Constraints
     private func constrainStackView(){
@@ -180,7 +180,7 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
 }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 100
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let workoutCard = workout?.workoutCards[indexPath.row]

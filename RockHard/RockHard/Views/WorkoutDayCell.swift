@@ -9,24 +9,18 @@
 import UIKit
 
 class WorkoutDayCell: UITableViewCell {
-
+    //MARK: - Lifecycle
    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
          super.init(style: style, reuseIdentifier: reuseIdentifier)
     setUpConstraints()
-    contentView.backgroundColor = .black
-    contentView.layer.borderColor = #colorLiteral(red: 0.4109278509, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-           contentView.backgroundColor = #colorLiteral(red: 0.7996713519, green: 0.6718267202, blue: 0.3871548772, alpha: 1)
-           contentView.layer.borderWidth = 2
-           contentView.layer.cornerRadius = 15
-           contentView.layer.masksToBounds = true
+    setUpView()
      }
      
      required init(coder aDecoder: NSCoder) {
          fatalError("init(coder:) has not been implemented")
      }
-    
-    //MARK: - Lifecycle
     //MARK: - Variables
+    
     //MARK: - UI Objects
     lazy var dayOfWeekLabel: UILabel = {
         let label = UILabel()
@@ -46,6 +40,14 @@ class WorkoutDayCell: UITableViewCell {
     private func setUpConstraints(){
         nameOfWorkoutLabelConstraint()
         dayOfWeekLabelConstraint()
+    }
+    private func setUpView(){
+        contentView.backgroundColor = .black
+         contentView.layer.borderColor = #colorLiteral(red: 0.4109278509, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+                contentView.backgroundColor = #colorLiteral(red: 0.7996713519, green: 0.6718267202, blue: 0.3871548772, alpha: 1)
+                contentView.layer.borderWidth = 2
+                contentView.layer.cornerRadius = 15
+                contentView.layer.masksToBounds = true
     }
     //MARK: - Constraints
     

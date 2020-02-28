@@ -42,7 +42,6 @@ class ExerciseInfoCell: UITableViewCell {
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .white
         label.numberOfLines = 0
-        label.backgroundColor = .clear
         return label
     }()
     
@@ -99,7 +98,7 @@ class ExerciseInfoCell: UITableViewCell {
             exerciseTitleLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 10),
             exerciseTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             exerciseTitleLabel.heightAnchor.constraint(equalToConstant: 50),
-            exerciseTitleLabel.trailingAnchor.constraint(equalTo: exerciseIsPicked.leadingAnchor, constant: -10)
+            exerciseTitleLabel.trailingAnchor.constraint(equalTo: exerciseIsPicked.trailingAnchor, constant: -10)
             
         ])
     }
@@ -124,5 +123,5 @@ class ExerciseInfoCell: UITableViewCell {
             exerciseIsPicked.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
+
 }

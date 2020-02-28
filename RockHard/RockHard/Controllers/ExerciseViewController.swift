@@ -95,6 +95,7 @@ class ExerciseViewController: UIViewController {
             case .success(let exercise):
                 self.exercises = exercise
                 self.filteredExercise = exercise
+
             }
         }
     }
@@ -307,7 +308,7 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(100)
+        return CGFloat(140)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let exerciseDetail = ExerciseDetailVC()

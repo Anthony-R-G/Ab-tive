@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "stock-vector-human-body-anatomy-male-man-back.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "invertedRow.png",
       "scale" : "2x"
     },
     {

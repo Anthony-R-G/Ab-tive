@@ -10,7 +10,13 @@
 		5008085223F3416700FD307C /* WorkoutPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008085123F3416700FD307C /* WorkoutPlan.swift */; };
 		50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BDE23ECACF900703791 /* WorkoutDayCell.swift */; };
 		50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50524BE023ECC40900703791 /* WorkoutCard.swift */; };
+		506E387524043036001EEE6C /* FindBuddyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E387424043036001EEE6C /* FindBuddyVC.swift */; };
+		506E38772404335C001EEE6C /* BuddyRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E38762404335C001EEE6C /* BuddyRequestCell.swift */; };
+		506E387924043D75001EEE6C /* BuddyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E387824043D75001EEE6C /* BuddyRequest.swift */; };
+		508391FC2405D09100F24E7E /* CreateBuddyRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508391FB2405D09100F24E7E /* CreateBuddyRequestVC.swift */; };
 		508BC8A123E8870900A93734 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508BC8A023E8870900A93734 /* Exercise.swift */; };
+		50C0D58C23FF30CE0039D4A4 /* PlanPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */; };
+		50C0D58D23FF30CE0039D4A4 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */; };
 		50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */; };
 		50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */; };
 		50F29F4123E0E9AB0050C2CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */; };
@@ -25,6 +31,10 @@
 		97452DA623DF4B26005636E0 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA523DF4B26005636E0 /* WorkoutViewController.swift */; };
 		97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA723DF4B34005636E0 /* ProfileViewController.swift */; };
 		97452E4A23E4B5CF005636E0 /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452E4923E4B5CF005636E0 /* FeedPost.swift */; };
+		974BAEDA24097F1500451290 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 974BAED924097F1500451290 /* MBProgressHUD.m */; };
+		974BAEDC24097F4400451290 /* ARModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BAEDB24097F4400451290 /* ARModelViewController.swift */; };
+		974BAEDE24097FA500451290 /* testModel.scn in Resources */ = {isa = PBXBuildFile; fileRef = 974BAEDD24097FA500451290 /* testModel.scn */; };
+		974BAEE024097FAF00451290 /* testModelMaterial.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 974BAEDF24097FAE00451290 /* testModelMaterial.jpg */; };
 		97745CA123F64601002222FD /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97745CA023F64601002222FD /* Protocols.swift */; };
 		979492F223F5D99200B636A4 /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979492F123F5D99200B636A4 /* FirebaseStorageManager.swift */; };
 		979492F423F5DAFC00B636A4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979492F323F5DAFC00B636A4 /* LoginViewController.swift */; };
@@ -60,7 +70,13 @@
 		5008085123F3416700FD307C /* WorkoutPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlan.swift; sourceTree = "<group>"; };
 		50524BDE23ECACF900703791 /* WorkoutDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDayCell.swift; sourceTree = "<group>"; };
 		50524BE023ECC40900703791 /* WorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCard.swift; sourceTree = "<group>"; };
+		506E387424043036001EEE6C /* FindBuddyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindBuddyVC.swift; sourceTree = "<group>"; };
+		506E38762404335C001EEE6C /* BuddyRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRequestCell.swift; sourceTree = "<group>"; };
+		506E387824043D75001EEE6C /* BuddyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRequest.swift; sourceTree = "<group>"; };
+		508391FB2405D09100F24E7E /* CreateBuddyRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBuddyRequestVC.swift; sourceTree = "<group>"; };
 		508BC8A023E8870900A93734 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanPersistence.swift; sourceTree = "<group>"; };
+		50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseInfoCell.swift; path = RockHard/Controllers/ExerciseInfoCell.swift; sourceTree = SOURCE_ROOT; };
 		50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellButtonProtocol.swift; path = RockHard/Controllers/CellButtonProtocol.swift; sourceTree = SOURCE_ROOT; };
 		50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -76,6 +92,12 @@
 		97452DA523DF4B26005636E0 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		97452DA723DF4B34005636E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		97452E4923E4B5CF005636E0 /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
+		974BAED724097F1200451290 /* RockHard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RockHard-Bridging-Header.h"; sourceTree = "<group>"; };
+		974BAED824097F1400451290 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		974BAED924097F1500451290 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		974BAEDB24097F4400451290 /* ARModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModelViewController.swift; sourceTree = "<group>"; };
+		974BAEDD24097FA500451290 /* testModel.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = testModel.scn; sourceTree = "<group>"; };
+		974BAEDF24097FAE00451290 /* testModelMaterial.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testModelMaterial.jpg; sourceTree = "<group>"; };
 		97745CA023F64601002222FD /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		979492F123F5D99200B636A4 /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		979492F323F5DAFC00B636A4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +149,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		50C0D58923FF30A00039D4A4 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */,
+				50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		9704BB1423E8800200AF6830 /* FireBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +177,7 @@
 				508BC8A023E8870900A93734 /* Exercise.swift */,
 				50524BE023ECC40900703791 /* WorkoutCard.swift */,
 				5008085123F3416700FD307C /* WorkoutPlan.swift */,
+				506E387824043D75001EEE6C /* BuddyRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -156,9 +188,10 @@
 				DF4C5CF323DF536400A8D537 /* FeedHorizontalCollViewCell.swift */,
 				DF4071B423E0A91500506B8A /* FeedVerticalCollViewCell.swift */,
 				50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */,
+				50524BDE23ECACF900703791 /* WorkoutDayCell.swift */,
 				50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */,
 				50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */,
-				50524BDE23ECACF900703791 /* WorkoutDayCell.swift */,
+				506E38762404335C001EEE6C /* BuddyRequestCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,6 +227,7 @@
 		97BF745F23DF49920058F2D7 /* RockHard */ = {
 			isa = PBXGroup;
 			children = (
+				50C0D58923FF30A00039D4A4 /* Persistence */,
 				97452DAB23DF4B5F005636E0 /* Networking */,
 				97452DAA23DF4B58005636E0 /* Views */,
 				97452DA923DF4B52005636E0 /* Models */,
@@ -203,9 +237,14 @@
 				97BF746223DF49920058F2D7 /* SceneDelegate.swift */,
 				97BF746B23DF49960058F2D7 /* LaunchScreen.storyboard */,
 				50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */,
+				974BAEDD24097FA500451290 /* testModel.scn */,
+				974BAEDF24097FAE00451290 /* testModelMaterial.jpg */,
 				97BF746E23DF49960058F2D7 /* Info.plist */,
+				974BAED824097F1400451290 /* MBProgressHUD.h */,
+				974BAED924097F1500451290 /* MBProgressHUD.m */,
 				979492F523F5DB6100B636A4 /* Utilities.swift */,
 				97745CA023F64601002222FD /* Protocols.swift */,
+				974BAED724097F1200451290 /* RockHard-Bridging-Header.h */,
 			);
 			path = RockHard;
 			sourceTree = "<group>";
@@ -229,8 +268,13 @@
 				97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */,
 				97452DA723DF4B34005636E0 /* ProfileViewController.swift */,
 				9704BB2123E88DDE00AF6830 /* AddPostViewController.swift */,
-				979492F323F5DAFC00B636A4 /* LoginViewController.swift */,
 				979492F723F5DC7000B636A4 /* SignupViewController.swift */,
+
+				506E387424043036001EEE6C /* FindBuddyVC.swift */,
+				508391FB2405D09100F24E7E /* CreateBuddyRequestVC.swift */,
+				979492F323F5DAFC00B636A4 /* LoginViewController.swift */,
+
+				974BAEDB24097F4400451290 /* ARModelViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -299,6 +343,7 @@
 				TargetAttributes = {
 					97BF745C23DF49920058F2D7 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					97BF747223DF49960058F2D7 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -330,7 +375,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				974BAEDE24097FA500451290 /* testModel.scn in Resources */,
 				50F29F4123E0E9AB0050C2CD /* GoogleService-Info.plist in Resources */,
+				974BAEE024097FAF00451290 /* testModelMaterial.jpg in Resources */,
 				97BF746D23DF49960058F2D7 /* LaunchScreen.storyboard in Resources */,
 				97BF746A23DF49960058F2D7 /* Assets.xcassets in Resources */,
 			);
@@ -417,34 +464,39 @@
 				9704BB1D23E8807300AF6830 /* Post.swift in Sources */,
 				97745CA123F64601002222FD /* Protocols.swift in Sources */,
 				97452DA623DF4B26005636E0 /* WorkoutViewController.swift in Sources */,
+				508391FC2405D09100F24E7E /* CreateBuddyRequestVC.swift in Sources */,
 				979492F823F5DC7000B636A4 /* SignupViewController.swift in Sources */,
 				97BF746523DF49920058F2D7 /* FeedViewController.swift in Sources */,
 				9704BB2223E88DDE00AF6830 /* AddPostViewController.swift in Sources */,
 				DF4C5CF423DF536400A8D537 /* FeedHorizontalCollViewCell.swift in Sources */,
 				97452E4A23E4B5CF005636E0 /* FeedPost.swift in Sources */,
+				974BAEDA24097F1500451290 /* MBProgressHUD.m in Sources */,
 				97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */,
 				9704BB2023E8807300AF6830 /* FirestoreService.swift in Sources */,
+				974BAEDC24097F4400451290 /* ARModelViewController.swift in Sources */,
 				979492F423F5DAFC00B636A4 /* LoginViewController.swift in Sources */,
 				979492F623F5DB6100B636A4 /* Utilities.swift in Sources */,
 				97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */,
+				506E387924043D75001EEE6C /* BuddyRequest.swift in Sources */,
+				50C0D58D23FF30CE0039D4A4 /* PersistenceHelper.swift in Sources */,
 				508BC8A123E8870900A93734 /* Exercise.swift in Sources */,
-				50524BE123ECC40900703791 /* Workout.swift in Sources */,
+				50524BE123ECC40900703791 /* WorkoutCard.swift in Sources */,
 				9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */,
 				97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */,
+				506E38772404335C001EEE6C /* BuddyRequestCell.swift in Sources */,
 				50524BDF23ECACF900703791 /* WorkoutDayCell.swift in Sources */,
 				50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */,
+				50C0D58C23FF30CE0039D4A4 /* PlanPersistence.swift in Sources */,
 				9704BB1F23E8807300AF6830 /* FirebaseAuthService.swift in Sources */,
 				50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */,
-
 				979492F223F5D99200B636A4 /* FirebaseStorageManager.swift in Sources */,
-
 				5008085223F3416700FD307C /* WorkoutPlan.swift in Sources */,
-
 				50F29F4723E34AE60050C2CD /* MuscleTypeCVCell.swift in Sources */,
 				97BF746123DF49920058F2D7 /* AppDelegate.swift in Sources */,
 				97BF746323DF49920058F2D7 /* SceneDelegate.swift in Sources */,
 				DF4071B523E0A91500506B8A /* FeedVerticalCollViewCell.swift in Sources */,
 				DFA2C48823F1C74100157519 /* ExerciseDetailVC.swift in Sources */,
+				506E387524043036001EEE6C /* FindBuddyVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,8 +649,9 @@
 			baseConfigurationReference = 6F87CB3464EE1A2A3CB8E235 /* Pods-RockHard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5CMXYD37HJ;
 				INFOPLIST_FILE = RockHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -606,6 +659,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Antnee.RockHard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RockHard/RockHard-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -616,8 +671,9 @@
 			baseConfigurationReference = 8E03C470E032ACDEF70E175B /* Pods-RockHard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 5CMXYD37HJ;
 				INFOPLIST_FILE = RockHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -625,6 +681,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Antnee.RockHard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RockHard/RockHard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

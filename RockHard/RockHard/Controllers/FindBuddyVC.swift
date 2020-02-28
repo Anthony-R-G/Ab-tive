@@ -15,7 +15,8 @@ class FindBuddyVC: UIViewController{
         super.viewDidLoad()
         setUpView()
         getBuddyRequest()
-        constrainBuddyRequestTableVC()
+        setUpConstraints()
+      
     }
     //MARK: - Variables
     var buddyRequests = [BuddyRequest](){
@@ -23,7 +24,16 @@ class FindBuddyVC: UIViewController{
             buddyRequestTableVC.reloadData()
         }
     }
+    
     //MARK: - UI Objects
+    lazy var createRequestButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.imageView?.sizeToFit()
+        button.backgroundColor = .green
+        button.layer.cornerRadius = 25
+        return button
+    }()
     lazy var buddyRequestTableVC: UITableView = {
     let tableVC = UITableView()
     tableVC.register(BuddyRequestCell.self, forCellReuseIdentifier: "buddyCell")
@@ -31,6 +41,11 @@ class FindBuddyVC: UIViewController{
     tableVC.delegate = self
     tableVC.dataSource = self
     return tableVC
+    }()
+    lazy var typeOfRequestSegmented: UISegmentedControl = {
+    let segment = UISegmentedControl(items: ["My Request", "New Requests"])
+        segment.selectedSegmentIndex = 0
+    return segment
     }()
     //MARK: - Objc Functions
     //MARK: - Regular Functions
@@ -47,16 +62,43 @@ class FindBuddyVC: UIViewController{
             }
         }
     }
+    private func setUpConstraints(){
+        constraintTypeOfRequestSegmented()
+          constrainBuddyRequestTableVC()
+            constrainCreateRequestButton()
+        
+    }
+    
     
     //MARK: - Constraints
     private func constrainBuddyRequestTableVC(){
         view.addSubview(buddyRequestTableVC)
         buddyRequestTableVC.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            buddyRequestTableVC.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            buddyRequestTableVC.topAnchor.constraint(equalTo: typeOfRequestSegmented.bottomAnchor, constant: 0),
             buddyRequestTableVC.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             buddyRequestTableVC.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             buddyRequestTableVC.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        ])
+    }
+    private func constrainCreateRequestButton(){
+        view.addSubview(createRequestButton)
+        createRequestButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createRequestButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
+            createRequestButton.heightAnchor.constraint(equalToConstant: 50),
+            createRequestButton.widthAnchor.constraint(equalToConstant: 50),
+            createRequestButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0)
+        ])
+    }
+    private func constraintTypeOfRequestSegmented(){
+        view.addSubview(typeOfRequestSegmented)
+        typeOfRequestSegmented.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            typeOfRequestSegmented.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            typeOfRequestSegmented.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            typeOfRequestSegmented.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            typeOfRequestSegmented.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }

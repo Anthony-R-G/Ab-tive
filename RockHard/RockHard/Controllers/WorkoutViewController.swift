@@ -15,6 +15,7 @@ class WorkoutViewController: UIViewController {
         setUpView()
         setUpConstraints()
         getWorkout()
+        loadPlans()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -26,6 +27,7 @@ class WorkoutViewController: UIViewController {
             workoutDayTableView.reloadData()
         }
     }
+    var plans = [WorkoutPlan]()
     
     //MARK: - UI Objects
     lazy var workoutDayTableView: UITableView = {
@@ -68,25 +70,49 @@ class WorkoutViewController: UIViewController {
     lazy var stackBackgroundView:  UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
-        
         return view
     }()
     lazy var workoutTitleLabel: UILabel = {
         let label = UILabel()
         return label
     }()
+    lazy var saveButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Save", style: UIBarButtonItem.Style.done, target: self, action: #selector(saveWorkout))
+        return button
+    }()
 
     
     //MARK: - Objc Functions
     @objc private func createWorkoutAction(){
         let exerciseVC = ExerciseViewController()
-        exerciseVC.state = .add
+        exerciseVC.state = .createWorkout
         exerciseVC.workoutPlan = workout
         self.navigationController?.pushViewController(exerciseVC, animated: true)
     }
+    @objc private func saveWorkout(){
+        let saveMenu = UIAlertController.init(title: "Save", message: "Pick an Option", preferredStyle: .alert)
+        saveMenu.addTextField { (UITextField) in
+            self.workout?.planName = UITextField.text!
+        }
+        let saveAlert = UIAlertAction(title: "Save", style: UIAlertAction.Style.default) { (alert) in
+            try? PlanPersistence.manager.saveImage(info: self.workout!)
+        }
+        saveMenu.addAction(saveAlert)
+        present(saveMenu, animated: true)
+      
+    }
     //MARK: - Regular Functions
+    private func loadPlans(){
+        do {
+            plans = try PlanPersistence.manager.getPlans()
+        }catch{
+            print(error)
+        }
+        print(plans.count)
+    }
     private func setUpView(){
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        self.navigationItem.rightBarButtonItem = saveButton
     }
     private func getWorkout(){
         FirestoreService.manager.getWorkoutPlan { (Result) in
@@ -95,7 +121,6 @@ class WorkoutViewController: UIViewController {
                 print(error)
             case .success(let plan):
                 self.workout = plan.first
-                print(plan)
             }
         }
     }
@@ -141,7 +166,7 @@ class WorkoutViewController: UIViewController {
 }
 extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workout?.workoutCards.count ?? 0
+    return workout?.workoutCards.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -155,13 +180,14 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
 }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 100
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let workoutCard = workout?.workoutCards[indexPath.row]
         let exerciseVC = ExerciseViewController()
-        exerciseVC.state = .view
+        exerciseVC.state = .viewWorkout
         exerciseVC.workoutCard = workoutCard
+        exerciseVC.muscleTypeCV.isHidden = true
         self.navigationController?.pushViewController(exerciseVC, animated: true)
     }
     }

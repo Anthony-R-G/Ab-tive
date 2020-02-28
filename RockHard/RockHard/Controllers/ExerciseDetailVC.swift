@@ -10,7 +10,7 @@ import UIKit
 class ExerciseDetailVC: UIViewController {
     //MARK: - Properties
     lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
-    
+    var exercise: Exercise?
     
     //MARK: - Views
     lazy var detailScrollView: UIScrollView = {
@@ -56,7 +56,7 @@ class ExerciseDetailVC: UIViewController {
     lazy var detailImage: UIImageView = {
         let imgView = UIImageView()
         //pass data from ExerciseVC
-        imgView.image = UIImage(named: "LifeFitnessPro-LyingLegCurl")
+//        imgView.image = UIImage(named: "LifeFitnessPro-LyingLegCurl")
         imgView.contentMode = .scaleToFill
         return imgView
     }()
@@ -118,8 +118,27 @@ class ExerciseDetailVC: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.9130935073, green: 0.7633427978, blue: 0, alpha: 0.5682791096)
         view.addSubview(detailScrollView)
         detailScrollView.addSubview(detailContainerView)
+        setUpLabels()
+        getExerciseImage()
+    }
+    private func setUpLabels(){
+        muscleTypeLabel.text = "Muscle type: \(exercise?.type ?? "")"
+        exerciseNameLabel.text = exercise?.name ?? ""
+        exerciseDescription.text = exercise?.comments.first ?? ""
+        
+    }
+    private func getExerciseImage(){
+        FirebaseStorageService.exerciseManager.getImage(url: exercise?.detailImage ?? "") { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let image):
+                self.detailImage.image = image
+            }
+        }
     }
 }
+
 
 extension ExerciseDetailVC {
     private func setDVCConstraints() {

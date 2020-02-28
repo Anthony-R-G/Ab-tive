@@ -13,13 +13,11 @@ import FirebaseFirestore
 struct Post {
     let userID: String
     let userName: String
-   
     let postPicture: String
     let postText: String
     
     init(userID: String,userName: String, postPicture: String? = nil, postText: String? = nil){
         self.userName = userName
-      
         self.userID = userID
         self.postPicture = postPicture!
         self.postText = postText!

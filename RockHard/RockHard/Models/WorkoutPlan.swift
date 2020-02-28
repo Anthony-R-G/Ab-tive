@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct WorkoutPlan{
-    let planName: String
+struct WorkoutPlan: Codable{
+    var planName: String
     var workoutCards: [WorkoutCard]
     let creatorID: String
     let workoutID: String

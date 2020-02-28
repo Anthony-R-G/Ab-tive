@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Exercise {
+struct Exercise: Codable {
     let cellImage: String?
     let comments: [String]
     let detailImage: String?
@@ -32,9 +32,9 @@ struct Exercise {
         }
      var fieldsDict: [String: Any] {
                  return [
-                     "cellImage": self.cellImage,
-                     "detailImage": self.detailImage ,
-                     "exerciseInfo": self.exerciseInfo,
+                     "cellImage": self.cellImage ?? "",
+                     "detailImage": self.detailImage ?? "" ,
+                     "exerciseInfo": self.exerciseInfo ?? "",
                     "name": self.name,
                     "type": self.type,
                     "comments": self.comments

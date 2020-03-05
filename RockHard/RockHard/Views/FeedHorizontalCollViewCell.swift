@@ -36,7 +36,9 @@ class FeedHorizontalCollViewCell: UICollectionViewCell {
         setupLabel()
         self.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
-        backgroundColor = #colorLiteral(red: 0.8403362632, green: 0.4548202157, blue: 0.4165673852, alpha: 0.7042754709)
+      
+        
+        
     }
     
     required init?(coder: NSCoder) {

@@ -74,9 +74,9 @@ class ProfileViewController: UIViewController {
         backgroundImageView.anchors(top: view.topAnchor, bottom: contentView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 120, paddingBottom: 70, paddingLeft: 20, paddingRight: 20)
     }
     
-    private func constraintUserNameLabel(){
-        userNamelabel.anchors (top: contentView.topAnchor, bottom: <#T##NSLayoutYAxisAnchor?#>, left: contentView.leftAnchor, right: <#T##NSLayoutXAxisAnchor?#>, paddingTop: <#T##CGFloat?#>, paddingBottom: <#T##CGFloat?#>, paddingLeft: <#T##CGFloat?#>, paddingRight: <#T##CGFloat?#>, width: <#T##CGFloat?#>, height: <#T##CGFloat?#>)
-    }
+//    private func constraintUserNameLabel(){
+//        userNamelabel.anchors (top: contentView.topAnchor, bottom: <#T##NSLayoutYAxisAnchor?#>, left: contentView.leftAnchor, right: <#T##NSLayoutXAxisAnchor?#>, paddingTop: <#T##CGFloat?#>, paddingBottom: <#T##CGFloat?#>, paddingLeft: <#T##CGFloat?#>, paddingRight: <#T##CGFloat?#>, width: <#T##CGFloat?#>, height: <#T##CGFloat?#>)
+//    }
     }
 
 

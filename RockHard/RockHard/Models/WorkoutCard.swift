@@ -17,7 +17,6 @@ struct WorkoutCard: Codable {
             guard let workoutDay = dict["workoutDay"] as? String,
                 let workoutName = dict["workoutName"] as? String,
                 let exercises = (dict["exercises"] as? [[String: Any]]) else { return nil }
-                
             self.workoutDay = workoutDay
             self.workoutName = workoutName
             self.exercises = exercises.compactMap({Exercise(from: $0) })
@@ -26,7 +25,7 @@ struct WorkoutCard: Codable {
               return [
                   "workoutDay": self.workoutDay,
                   "workoutName": self.workoutName ,
-                  "exercises": self.exercises.map({$0.fieldsDict})              ]
+                  "exercises": self.exercises.map({$0.fieldsDict})]
           }
     init( workoutDay: String,workoutName: String,exercises: [Exercise]  ){
         self.exercises = exercises

@@ -43,11 +43,11 @@ class WorkoutDayCell: UITableViewCell {
     }
     private func setUpView(){
         contentView.backgroundColor = .black
-         contentView.layer.borderColor = #colorLiteral(red: 0.4109278509, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-                contentView.backgroundColor = #colorLiteral(red: 0.7996713519, green: 0.6718267202, blue: 0.3871548772, alpha: 1)
-                contentView.layer.borderWidth = 2
-                contentView.layer.cornerRadius = 15
-                contentView.layer.masksToBounds = true
+       contentView.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+         contentView.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
+         contentView.layer.borderWidth = 2
+         contentView.layer.cornerRadius = 15
+         contentView.layer.masksToBounds = true
     }
     //MARK: - Constraints
     

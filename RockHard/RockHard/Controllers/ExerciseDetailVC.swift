@@ -95,6 +95,7 @@ class ExerciseDetailVC: UIViewController {
         button.setTitle("AR View", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(segueTo3DView), for: .touchUpInside)
         
         return button
     }()
@@ -114,6 +115,11 @@ class ExerciseDetailVC: UIViewController {
     //MARK: - ObjC Func - SwipeGesture
     var isShowingFront = true
     var isShowingBack = true
+    
+    @objc private func segueTo3DView(){
+        let arVC = ARModelViewController()
+        self.navigationController?.pushViewController(arVC, animated: true)
+    }
     
 //    @objc func handleSwipe(sender: UISwipeGestureRecognizer){
 //        switch isShowingFront {

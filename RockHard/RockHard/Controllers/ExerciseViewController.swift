@@ -273,7 +273,7 @@ class ExerciseViewController: UIViewController {
 extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let exerciseCount = workoutCard?.exercises.count else {
+     guard let exerciseCount = workoutCard?.exercises.count else {
             return filteredExercise.count
         }
         return exerciseCount

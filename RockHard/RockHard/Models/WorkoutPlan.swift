@@ -17,7 +17,6 @@ init?(from dict: [String: Any], id: String) {
         guard let planName = dict["planName"] as? String,
             let creatorID = dict["creatorID"] as? String,
             let workoutCards = (dict["workoutCards"] as? [[String:Any]]) else { return nil }
-    
         self.creatorID = creatorID
         self.workoutID = id
         self.planName = planName

@@ -45,7 +45,8 @@ class WorkoutViewController: UIViewController {
         button.layer.cornerRadius = 12
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
-          button.backgroundColor = #colorLiteral(red: 0.7273315191, green: 0.7141847014, blue: 0.6132777929, alpha: 1)
+          button.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
+          button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         return button
     }()
     
@@ -56,7 +57,8 @@ class WorkoutViewController: UIViewController {
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(createWorkoutAction), for: .touchUpInside)
-        button.backgroundColor = #colorLiteral(red: 0.7273315191, green: 0.7141847014, blue: 0.6132777929, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
+        button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         return button
     }()
     lazy var workoutStackView: UIStackView = {
@@ -69,7 +71,8 @@ class WorkoutViewController: UIViewController {
     }()
     lazy var stackBackgroundView:  UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        view.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
         return view
     }()
     lazy var workoutTitleLabel: UILabel = {
@@ -121,6 +124,7 @@ class WorkoutViewController: UIViewController {
                 print(error)
             case .success(let plan):
                 self.workout = plan.first
+                print(self.workout?.workoutCards.count)
             }
         }
     }

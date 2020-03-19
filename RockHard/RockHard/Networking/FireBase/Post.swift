@@ -15,12 +15,14 @@ struct Post {
     let userName: String
     let postPicture: String
     let postText: String
+    let topicTag: String
     
-    init(userID: String,userName: String, postPicture: String? = nil, postText: String? = nil){
+    init(userID: String, userName: String, postPicture: String? = nil, postText: String? = nil, topicTag: String){
         self.userName = userName
         self.userID = userID
         self.postPicture = postPicture!
         self.postText = postText!
+        self.topicTag = topicTag
     }
     
     
@@ -28,9 +30,11 @@ struct Post {
         guard let userName = dict["userName"] as? String,
             let userID = dict["userID"] as? String,
             let postText = dict["postText"] as? String?,
+        let topicTag = dict["topicTag"] as? String?,
             let postPicture = dict["postPicture"] as? String? else { return nil }
         self.userID = userID
         self.userName = userName
+        self.topicTag = topicTag!
         
         self.postText = postText!
         self.postPicture = postPicture!
@@ -40,7 +44,7 @@ struct Post {
     var fieldsDict: [String: Any] {
         return [
             "userName": self.userName,
-            
+            "topicTag": self.topicTag,
             "postText": self.postText ,
             "postPicture": self.postPicture ,
             "userID": self.userID,

@@ -269,11 +269,9 @@
 				97452DA723DF4B34005636E0 /* ProfileViewController.swift */,
 				9704BB2123E88DDE00AF6830 /* AddPostViewController.swift */,
 				979492F723F5DC7000B636A4 /* SignupViewController.swift */,
-
 				506E387424043036001EEE6C /* FindBuddyVC.swift */,
 				508391FB2405D09100F24E7E /* CreateBuddyRequestVC.swift */,
 				979492F323F5DAFC00B636A4 /* LoginViewController.swift */,
-
 				974BAEDB24097F4400451290 /* ARModelViewController.swift */,
 			);
 			path = Controllers;
@@ -657,7 +655,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Antnee.RockHard;
+				PRODUCT_BUNDLE_IDENTIFIER = antee.RockHard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RockHard/RockHard-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -679,7 +677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Antnee.RockHard;
+				PRODUCT_BUNDLE_IDENTIFIER = antee.RockHard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RockHard/RockHard-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

@@ -34,7 +34,7 @@ class MainTabBarController: UITabBarController {
         exerciseVC.tabBarItem = UITabBarItem(title: "Exercises", image: nil, tag: 1)
         workoutVC.tabBarItem = UITabBarItem(title: "Workouts", image: nil, tag: 2)
         buddyVC.tabBarItem = UITabBarItem(title: "Buddy", image: nil, tag: 3)
-//        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 3)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 3)
         
         self.viewControllers = [feedVC, exerciseVC, workoutVC, buddyVC]
     }

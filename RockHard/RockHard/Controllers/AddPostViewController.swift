@@ -50,6 +50,34 @@ class AddPostViewController: UIViewController {
         return button
     }()
     
+    lazy var tagsLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.backgroundColor = .clear
+        label.text = "Tag"
+        return label
+    }()
+    
+    lazy var selectedTagLabel: UILabel = {
+       let label = UILabel()
+        label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7007705479)
+        label.layer.cornerRadius = 15
+        label.clipsToBounds = true
+        label.text = "Diet"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var addButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.tintColor = .lightGray
+        button.backgroundColor = .clear
+        return button
+    }()
+    
     var delegate: loadFeedPostsDelegate!
     
     var userName = String()
@@ -66,7 +94,7 @@ class AddPostViewController: UIViewController {
         guard let user = FirebaseAuthService.manager.currentUser else {return}
         guard let photoUrl = imageURL else {return}
         guard let postText = feedPostTextField.text else { return }
-        FirestoreService.manager.createPost(post: Post(userID: user.uid.description, userName: userName, postPicture: photoUrl, postText: postText)) { (result) in
+        FirestoreService.manager.createPost(post: Post(userID: user.uid.description, userName: userName, postPicture: photoUrl, postText: postText, topicTag: tagsLabel.text ?? "null")) { (result) in
             switch result {
             case .failure(let error):
                 Utilities.showAlert(vc: self, message: "\(error.localizedDescription)")
@@ -116,14 +144,36 @@ extension AddPostViewController {
     
     private func setConstraints() {
         
-        [feedPostImage, addPostLabel, feedPostTextField, submitButton].forEach{view.addSubview($0)}
-        [feedPostImage, feedPostTextField, addPostLabel, submitButton ].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
+        [feedPostImage, addPostLabel, feedPostTextField, submitButton, tagsLabel, selectedTagLabel, addButton].forEach{view.addSubview($0)}
+        [feedPostImage, feedPostTextField, addPostLabel, submitButton , tagsLabel, selectedTagLabel, addButton].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
         
         setFeedPostImageConstraints()
         setFeedPostTextFieldConstraints()
         setTitleLabelConstraints()
         setSubmitButtonConstraints()
+        setTagsLabelConstraints()
+        setPlusButtonConstraints()
+        setSelectedTagLabelConstraints()
         
+    }
+    
+    private func setSelectedTagLabelConstraints() {
+        NSLayoutConstraint.activate([
+            selectedTagLabel.centerYAnchor.constraint(equalTo: tagsLabel.centerYAnchor),
+            selectedTagLabel.heightAnchor.constraint(equalToConstant: 30),
+            selectedTagLabel.widthAnchor.constraint(equalToConstant: 100),
+            selectedTagLabel.leadingAnchor.constraint(equalTo: tagsLabel.trailingAnchor, constant: 0)
+        
+        ])
+    }
+    
+    private func setTagsLabelConstraints(){
+        NSLayoutConstraint.activate([
+            tagsLabel.leadingAnchor.constraint(equalTo: addPostLabel.leadingAnchor),
+            tagsLabel.topAnchor.constraint(equalTo: addPostLabel.bottomAnchor, constant: 10),
+            tagsLabel.heightAnchor.constraint(equalToConstant: 30),
+            tagsLabel.widthAnchor.constraint(equalToConstant: 60)
+        ])
     }
     
     private func setTitleLabelConstraints() {
@@ -148,9 +198,19 @@ extension AddPostViewController {
     private func setFeedPostTextFieldConstraints() {
         NSLayoutConstraint.activate([
             feedPostTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            feedPostTextField.topAnchor.constraint(equalTo: addPostLabel.bottomAnchor, constant: 30 ),
+            feedPostTextField.topAnchor.constraint(equalTo: addPostLabel.bottomAnchor, constant: 50 ),
             feedPostTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
             feedPostTextField.heightAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
+    private func setPlusButtonConstraints() {
+        NSLayoutConstraint.activate([
+            addButton.trailingAnchor.constraint(equalTo: submitButton.trailingAnchor),
+            addButton.heightAnchor.constraint(equalTo: tagsLabel.heightAnchor),
+            addButton.widthAnchor.constraint(equalToConstant: 30),
+            addButton.centerYAnchor.constraint(equalTo: tagsLabel.centerYAnchor)
+        
         ])
     }
     

@@ -36,10 +36,8 @@ class FeedHorizontalCollViewCell: UICollectionViewCell {
         setupLabel()
         self.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
-      
-        
-        
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

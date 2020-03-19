@@ -19,12 +19,29 @@ class FeedViewController: UIViewController {
         }
     }
     
-    var topics = ["All", "Diets", "Weight Loss", "Gym Accessories"]
-
+    var topics = ["All", "Diet", "Weight Loss", "Gym Accessories"]
+    
+    
     var feedPosts = [Post](){
         didSet {
             feedPostCollectionView.reloadData()
         }
+    }
+    var filteredPosts = [Post](){
+        didSet {
+            feedPostCollectionView.reloadData()
+        }
+    }
+    
+    private func filterTopics() -> [Post] {
+        var filteredTopics = feedPosts.filter{(topicTag) -> Bool in
+            topics.contains(topicTag.topicTag)
+        }
+        if filteredTopics.count == 0 {
+            filteredTopics = feedPosts
+            return filteredTopics
+        }
+        return filteredTopics
     }
     
     
@@ -204,12 +221,13 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return CGSize(width: 130, height: 85)
         }
     }
+    
 }
 
 extension FeedViewController: loadFeedPostsDelegate {
     func loadAllPosts() {
-            self.loadAllFeedPosts()
-        }
+        self.loadAllFeedPosts()
+    }
 }
 
 

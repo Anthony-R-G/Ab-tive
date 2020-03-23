@@ -269,11 +269,9 @@
 				97452DA723DF4B34005636E0 /* ProfileViewController.swift */,
 				9704BB2123E88DDE00AF6830 /* AddPostViewController.swift */,
 				979492F723F5DC7000B636A4 /* SignupViewController.swift */,
-
 				506E387424043036001EEE6C /* FindBuddyVC.swift */,
 				508391FB2405D09100F24E7E /* CreateBuddyRequestVC.swift */,
 				979492F323F5DAFC00B636A4 /* LoginViewController.swift */,
-
 				974BAEDB24097F4400451290 /* ARModelViewController.swift */,
 			);
 			path = Controllers;
@@ -651,7 +649,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5CMXYD37HJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RockHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -673,7 +671,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5CMXYD37HJ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RockHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

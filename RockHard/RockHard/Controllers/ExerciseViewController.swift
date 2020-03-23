@@ -11,6 +11,12 @@ class ExerciseViewController: UIViewController {
         setUpConstraints()
         loadExerciseData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
     //MARK: - Variables
     enum currentState {
         case createWorkout
@@ -100,10 +106,13 @@ class ExerciseViewController: UIViewController {
         }
     }
     private func setUpView(){
-        view.backgroundColor = #colorLiteral(red: 0.2929434776, green: 0.360488832, blue: 0.4110850692, alpha: 0.7299604024)
+        view.backgroundColor = #colorLiteral(red: 0.2964071631, green: 0.2576555014, blue: 0.2364076376, alpha: 1)
         weekDayPicker.delegate = self
         weekDayPicker.dataSource = self
     }
+    
+ 
+    
     private func setUpConstraints(){
         constrainExerciseCV()
         constrainExerciseTableView()
@@ -308,7 +317,7 @@ extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(140)
+        return CGFloat(155)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let exerciseDetail = ExerciseDetailVC()

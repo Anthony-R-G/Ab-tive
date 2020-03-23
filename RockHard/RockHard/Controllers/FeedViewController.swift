@@ -118,6 +118,10 @@ class FeedViewController: UIViewController {
         getUserNameString()
         loadAllFeedPosts()
         
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.frame
+        self.view.insertSubview(blurEffectView, at: 0)
         
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = #imageLiteral(resourceName: "feedvcdark")

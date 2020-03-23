@@ -8,18 +8,18 @@
 
 import UIKit
 
-class ExerciseInfoCell: UITableViewCell {
+class ExerciseInfoCell: UICollectionViewCell {
     
     //MARK: - Lifecycle
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUpContentView()
-        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5672089041)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     //MARK: - Variables
     weak var delegate: ButtonFunction?
     var isPicked = true{
@@ -39,7 +39,7 @@ class ExerciseInfoCell: UITableViewCell {
     
     lazy var exerciseTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -74,12 +74,8 @@ class ExerciseInfoCell: UITableViewCell {
         setUpExerciseTitleLabel()
         setUpExerciseRepsLabel()
         setUpIsPicked()
-
-        contentView.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
-        contentView.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
-        contentView.layer.borderWidth = 2
-        contentView.layer.cornerRadius = 15
         contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 10
     }
     
     //MARK: - Constraints
@@ -103,7 +99,7 @@ class ExerciseInfoCell: UITableViewCell {
             exerciseTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
             exerciseTitleLabel.heightAnchor.constraint(equalToConstant: 60),
             exerciseTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
-
+            
         ])
     }
     private func setUpExerciseRepsLabel() {
@@ -128,5 +124,5 @@ class ExerciseInfoCell: UITableViewCell {
             exerciseIsPicked.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
-
+    
 }

@@ -106,10 +106,10 @@ class FeedViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+          return .lightContent
+      }
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,7 +194,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return feedCell
         } else {
             guard let topicsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicsCell", for: indexPath) as? FeedHorizontalCollViewCell else { return UICollectionViewCell()}
-            
             let specificTopic = topics[indexPath.row]
             topicsCell.label.text = specificTopic
             return topicsCell

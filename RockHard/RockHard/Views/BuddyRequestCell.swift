@@ -35,7 +35,6 @@ class BuddyRequestCell: UITableViewCell {
     lazy var requestDescriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.backgroundColor = .green
         return label
     }()
     lazy var requestDateCreatedLabel: UILabel = {

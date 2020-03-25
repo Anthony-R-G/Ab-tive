@@ -186,6 +186,7 @@ class ProfileViewController: UIViewController {
         backgroundImageView.anchors(top: view.topAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 70, paddingBottom: 70, paddingLeft: 10, paddingRight: 10)
     }
     
+
     private func constraintUserNameLabel() {
         userNameLabel.anchors (top: contentView.topAnchor, left: contentView.leftAnchor, paddingTop: 65, paddingLeft: 24
             , width: 150, height: 35)
@@ -229,7 +230,6 @@ class ProfileViewController: UIViewController {
     private func constraintGoalPicker() {
         goalPicker.anchors(top: contentView.topAnchor, left: contentView.leftAnchor, paddingTop: 340, paddingLeft: 40, width: 300, height: 100)
     }
-
     }
 
 

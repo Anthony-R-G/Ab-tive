@@ -39,8 +39,9 @@ class FeedHorizontalCollViewCell: UICollectionViewCell {
         backgroundColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 0.6690924658)
       
         
-        
+
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

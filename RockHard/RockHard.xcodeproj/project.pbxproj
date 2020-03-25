@@ -30,7 +30,6 @@
 		97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */; };
 		97452DA623DF4B26005636E0 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA523DF4B26005636E0 /* WorkoutViewController.swift */; };
 		97452DA823DF4B34005636E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452DA723DF4B34005636E0 /* ProfileViewController.swift */; };
-		97452E4A23E4B5CF005636E0 /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97452E4923E4B5CF005636E0 /* FeedPost.swift */; };
 		974BAEDA24097F1500451290 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 974BAED924097F1500451290 /* MBProgressHUD.m */; };
 		974BAEDC24097F4400451290 /* ARModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BAEDB24097F4400451290 /* ARModelViewController.swift */; };
 		974BAEDE24097FA500451290 /* testModel.scn in Resources */ = {isa = PBXBuildFile; fileRef = 974BAEDD24097FA500451290 /* testModel.scn */; };
@@ -91,7 +90,6 @@
 		97452DA323DF4B1C005636E0 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
 		97452DA523DF4B26005636E0 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		97452DA723DF4B34005636E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		97452E4923E4B5CF005636E0 /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
 		974BAED724097F1200451290 /* RockHard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RockHard-Bridging-Header.h"; sourceTree = "<group>"; };
 		974BAED824097F1400451290 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		974BAED924097F1500451290 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 		97452DA923DF4B52005636E0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				97452E4923E4B5CF005636E0 /* FeedPost.swift */,
 				508BC8A023E8870900A93734 /* Exercise.swift */,
 				50524BE023ECC40900703791 /* WorkoutCard.swift */,
 				5008085123F3416700FD307C /* WorkoutPlan.swift */,
@@ -467,7 +464,6 @@
 				97BF746523DF49920058F2D7 /* FeedViewController.swift in Sources */,
 				9704BB2223E88DDE00AF6830 /* AddPostViewController.swift in Sources */,
 				DF4C5CF423DF536400A8D537 /* FeedHorizontalCollViewCell.swift in Sources */,
-				97452E4A23E4B5CF005636E0 /* FeedPost.swift in Sources */,
 				974BAEDA24097F1500451290 /* MBProgressHUD.m in Sources */,
 				97452DA423DF4B1C005636E0 /* ExerciseViewController.swift in Sources */,
 				9704BB2023E8807300AF6830 /* FirestoreService.swift in Sources */,

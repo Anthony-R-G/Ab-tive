@@ -14,11 +14,8 @@ class MainTabBarController: UITabBarController {
     lazy var exerciseVC =  UINavigationController(rootViewController: ExerciseViewController())
     lazy var workoutVC =  UINavigationController(rootViewController: WorkoutViewController())
     lazy var buddyVC = UINavigationController(rootViewController: FindBuddyVC())
-    
-    
-    lazy var profileVC =  UINavigationController(rootViewController: ProfileViewController())
+    lazy var profileVC = UINavigationController(rootViewController: ProfileViewController())
 
-   
     //MARK: -- ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +24,14 @@ class MainTabBarController: UITabBarController {
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
         exerciseVC.tabBarItem = UITabBarItem(title: "Exercises", image: nil, tag: 1)
         workoutVC.tabBarItem = UITabBarItem(title: "Workouts", image: nil, tag: 2)
+        buddyVC.tabBarItem = UITabBarItem(title: "Buddy", image: nil, tag: 3)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 3)
+        
+        self.viewControllers = [feedVC, exerciseVC, workoutVC, buddyVC]
+
 //        buddyVC.tabBarItem = UITabBarItem(title: "Buddy", image: nil, tag: 3)
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 3)
         self.viewControllers = [feedVC, exerciseVC, workoutVC, profileVC]
+
     }
 }

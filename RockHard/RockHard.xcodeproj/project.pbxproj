@@ -13,13 +13,13 @@
 		506E387524043036001EEE6C /* FindBuddyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E387424043036001EEE6C /* FindBuddyVC.swift */; };
 		506E38772404335C001EEE6C /* BuddyRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E38762404335C001EEE6C /* BuddyRequestCell.swift */; };
 		506E387924043D75001EEE6C /* BuddyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E387824043D75001EEE6C /* BuddyRequest.swift */; };
+		507DE884242BDF2A00A598F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507DE883242BDF2A00A598F6 /* GoogleService-Info.plist */; };
 		508391FC2405D09100F24E7E /* CreateBuddyRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508391FB2405D09100F24E7E /* CreateBuddyRequestVC.swift */; };
 		508BC8A123E8870900A93734 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508BC8A023E8870900A93734 /* Exercise.swift */; };
 		50C0D58C23FF30CE0039D4A4 /* PlanPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */; };
 		50C0D58D23FF30CE0039D4A4 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */; };
 		50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */; };
 		50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */; };
-		50F29F4123E0E9AB0050C2CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */; };
 		50F29F4723E34AE60050C2CD /* MuscleTypeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */; };
 		7460BBB0F4D2B416B26D127E /* Pods_RockHard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D06A9E7BA800E8E8EC552FD /* Pods_RockHard.framework */; };
 		9704BB1D23E8807300AF6830 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1923E8807200AF6830 /* Post.swift */; };
@@ -73,13 +73,13 @@
 		506E387424043036001EEE6C /* FindBuddyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindBuddyVC.swift; sourceTree = "<group>"; };
 		506E38762404335C001EEE6C /* BuddyRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRequestCell.swift; sourceTree = "<group>"; };
 		506E387824043D75001EEE6C /* BuddyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRequest.swift; sourceTree = "<group>"; };
+		507DE883242BDF2A00A598F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		508391FB2405D09100F24E7E /* CreateBuddyRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBuddyRequestVC.swift; sourceTree = "<group>"; };
 		508BC8A023E8870900A93734 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		50C0D58A23FF30CE0039D4A4 /* PlanPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanPersistence.swift; sourceTree = "<group>"; };
 		50C0D58B23FF30CE0039D4A4 /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseInfoCell.swift; path = RockHard/Controllers/ExerciseInfoCell.swift; sourceTree = SOURCE_ROOT; };
 		50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellButtonProtocol.swift; path = RockHard/Controllers/CellButtonProtocol.swift; sourceTree = SOURCE_ROOT; };
-		50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MuscleTypeCVCell.swift; path = RockHard/Controllers/MuscleTypeCVCell.swift; sourceTree = SOURCE_ROOT; };
 		6F87CB3464EE1A2A3CB8E235 /* Pods-RockHard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHard.debug.xcconfig"; path = "Target Support Files/Pods-RockHard/Pods-RockHard.debug.xcconfig"; sourceTree = "<group>"; };
 		8E03C470E032ACDEF70E175B /* Pods-RockHard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHard.release.xcconfig"; path = "Target Support Files/Pods-RockHard/Pods-RockHard.release.xcconfig"; sourceTree = "<group>"; };
@@ -236,8 +236,8 @@
 				97BF746023DF49920058F2D7 /* AppDelegate.swift */,
 				97BF746223DF49920058F2D7 /* SceneDelegate.swift */,
 				97BF746B23DF49960058F2D7 /* LaunchScreen.storyboard */,
-				50F29F4023E0E9AB0050C2CD /* GoogleService-Info.plist */,
 				974BAEDD24097FA500451290 /* testModel.scn */,
+				507DE883242BDF2A00A598F6 /* GoogleService-Info.plist */,
 				974BAEDF24097FAE00451290 /* testModelMaterial.jpg */,
 				97BF746E23DF49960058F2D7 /* Info.plist */,
 				974BAED824097F1400451290 /* MBProgressHUD.h */,
@@ -374,9 +374,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				974BAEDE24097FA500451290 /* testModel.scn in Resources */,
-				50F29F4123E0E9AB0050C2CD /* GoogleService-Info.plist in Resources */,
 				974BAEE024097FAF00451290 /* testModelMaterial.jpg in Resources */,
 				97BF746D23DF49960058F2D7 /* LaunchScreen.storyboard in Resources */,
+				507DE884242BDF2A00A598F6 /* GoogleService-Info.plist in Resources */,
 				97BF746A23DF49960058F2D7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,7 +649,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-
 				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = RockHard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -20,7 +20,7 @@ class FeedViewController: UIViewController {
     }
     
     var topics = ["All", "Diets", "Weight Loss", "Gym Accessories"]
-
+    
     var feedPosts = [Post](){
         didSet {
             feedPostCollectionView.reloadData()
@@ -106,10 +106,10 @@ class FeedViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +118,10 @@ class FeedViewController: UIViewController {
         getUserNameString()
         loadAllFeedPosts()
         
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.frame
+        self.view.insertSubview(blurEffectView, at: 0)
         
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = #imageLiteral(resourceName: "feedvcdark")
@@ -190,7 +194,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return feedCell
         } else {
             guard let topicsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicsCell", for: indexPath) as? FeedHorizontalCollViewCell else { return UICollectionViewCell()}
-            
             let specificTopic = topics[indexPath.row]
             topicsCell.label.text = specificTopic
             return topicsCell
@@ -224,8 +227,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension FeedViewController: loadFeedPostsDelegate {
     func loadAllPosts() {
-            self.loadAllFeedPosts()
-        }
+        self.loadAllFeedPosts()
+    }
 }
 
 

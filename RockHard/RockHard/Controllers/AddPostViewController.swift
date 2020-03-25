@@ -5,12 +5,13 @@
 //  Created by Anthony Gonzalez on 2/3/20.
 //  Copyright © 2020 Rockstars. All rights reserved.
 //
-
 import UIKit
 
 class AddPostViewController: UIViewController {
     
     //MARK: -- Properties
+    var feedVC = FeedViewController ()
+    
     lazy var addPostLabel: UILabel = {
         let label = UILabel()
         label.text = "Add Post"
@@ -59,15 +60,37 @@ class AddPostViewController: UIViewController {
     }()
     
     lazy var selectedTagLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7007705479)
         label.layer.cornerRadius = 15
         label.clipsToBounds = true
-        label.text = "Diet"
+        label.text = "Add Tag"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .black
         return label
+    }()
+    
+    //Eric's add line 72-88
+    lazy var createTopicView: UIView = {
+        let topicView = UIView()
+        topicView.alpha = 0.0
+        topicView.backgroundColor = #colorLiteral(red: 0.2632220984, green: 0.2616633773, blue: 0.2644240856, alpha: 0.8305329623)
+        topicView.layer.cornerRadius = 20
+        topicView.clipsToBounds = true
+        return topicView
+    }()
+    
+    //MARK: - createTopicView UI Objects
+    lazy var topicTableView: UITableView = {
+        let topicTV = UITableView()
+        topicTV.register(UITableViewCell.self, forCellReuseIdentifier: "topicCell")
+    
+        topicTV.backgroundColor = .systemYellow
+        topicTV.tintColor = .systemGreen
+        topicTV.delegate = self
+        topicTV.dataSource = self
+        return topicTV
     }()
     
     lazy var addButton: UIButton = {
@@ -75,6 +98,9 @@ class AddPostViewController: UIViewController {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .lightGray
         button.backgroundColor = .clear
+        
+        //Eric's add line 96 - 100
+        button.addTarget(self, action: #selector(presentTopicSelection), for: .touchUpInside)
         return button
     }()
     
@@ -85,6 +111,16 @@ class AddPostViewController: UIViewController {
     var imageURL: String? = nil
     
     //MARK: -- Objective C Functions
+    
+    //Eric's additions line109-line112
+    @objc private func presentTopicSelection() {
+        view.backgroundColor = #colorLiteral(red: 0.2632220984, green: 0.2616633773, blue: 0.2644240856, alpha: 0.8305329623)
+        UIView.animate(withDuration: 1.0) {
+            self.createTopicView.alpha = 1.0
+        }
+        feedPostImage.isHidden = true
+    }
+    
     @objc private func imagePressed(){
         presentImagePicker()
     }
@@ -126,6 +162,29 @@ class AddPostViewController: UIViewController {
         feedPostTextField.text = "Enter Message..."
     }
     
+    //MARK: - createTopicViewConstraints - Eric's addition
+    private func setCreateTopicViewConstraints(){
+        view.addSubview(createTopicView)
+        createTopicView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createTopicView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            createTopicView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            createTopicView.heightAnchor.constraint(equalToConstant: 250),
+            createTopicView.widthAnchor.constraint(equalToConstant: 250)
+        ])
+    }
+    
+    private func setTopicTableViewConstraints(){
+        createTopicView.addSubview(topicTableView)
+        topicTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topicTableView.leadingAnchor.constraint(equalTo: createTopicView.leadingAnchor),
+            topicTableView.trailingAnchor.constraint(equalTo: createTopicView.trailingAnchor),
+            topicTableView.bottomAnchor.constraint(equalTo: createTopicView.bottomAnchor),
+            topicTableView.topAnchor.constraint(equalTo: createTopicView.topAnchor)
+        ])
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
@@ -154,7 +213,9 @@ extension AddPostViewController {
         setTagsLabelConstraints()
         setPlusButtonConstraints()
         setSelectedTagLabelConstraints()
-        
+        //Eric's addition
+        setCreateTopicViewConstraints()
+        setTopicTableViewConstraints()
     }
     
     private func setSelectedTagLabelConstraints() {
@@ -163,7 +224,7 @@ extension AddPostViewController {
             selectedTagLabel.heightAnchor.constraint(equalToConstant: 30),
             selectedTagLabel.widthAnchor.constraint(equalToConstant: 100),
             selectedTagLabel.leadingAnchor.constraint(equalTo: tagsLabel.trailingAnchor, constant: 0)
-        
+            
         ])
     }
     
@@ -210,7 +271,7 @@ extension AddPostViewController {
             addButton.heightAnchor.constraint(equalTo: tagsLabel.heightAnchor),
             addButton.widthAnchor.constraint(equalToConstant: 30),
             addButton.centerYAnchor.constraint(equalTo: tagsLabel.centerYAnchor)
-        
+            
         ])
     }
     
@@ -272,4 +333,23 @@ extension AddPostViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
-
+extension AddPostViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return feedVC.topics.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = topicTableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath)
+        cell.textLabel?.text = feedVC.topics[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedTagLabel.text = feedVC.topics[indexPath.row]
+        
+        UIView.animate(withDuration: 1) {
+            self.createTopicView.alpha = 0
+        }
+    }
+}

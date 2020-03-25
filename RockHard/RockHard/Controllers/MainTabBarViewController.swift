@@ -18,11 +18,7 @@ class MainTabBarController: UITabBarController {
     lazy var buddyVC = UINavigationController(rootViewController: FindBuddyVC())
     
     lazy var profileVC = UINavigationController(rootViewController: ProfileViewController())
-    
-    
-//    lazy var profileVC =  UINavigationController(rootViewController: ProfileViewController())
-//
-//    
+
     
     //MARK: -- ViewDidLoad
     override func viewDidLoad() {

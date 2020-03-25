@@ -20,7 +20,7 @@ struct Post {
     init(userID: String, userName: String, postPicture: String? = nil, postText: String? = nil, topicTag: String){
         self.userName = userName
         self.userID = userID
-        self.postPicture = postPicture!
+        self.postPicture = postPicture ?? "nil"
         self.postText = postText!
         self.topicTag = topicTag
     }

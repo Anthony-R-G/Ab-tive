@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                    } else {
                        window?.rootViewController = MainTabBarController()
                    }
+//        window?.rootViewController = ARModelViewController()
 
 
               window?.makeKeyAndVisible()

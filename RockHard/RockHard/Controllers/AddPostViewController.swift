@@ -20,6 +20,14 @@ class AddPostViewController: UIViewController {
         return label
     }()
     
+    lazy var cameraButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(imagePressed), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "camera"), for: .normal)
+        button.tintColor = .lightGray
+        return button
+    }()
+    
     lazy var feedPostImage: UIImageView = {
         let myImage = UIImageView()
         myImage.isUserInteractionEnabled = true
@@ -27,6 +35,7 @@ class AddPostViewController: UIViewController {
         myImage.backgroundColor = .clear
         myImage.layer.cornerRadius = 10
         myImage.clipsToBounds = true
+        myImage.isHidden = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imagePressed))
         myImage.addGestureRecognizer(tapGesture)
         return myImage
@@ -38,6 +47,7 @@ class AddPostViewController: UIViewController {
         tv.layer.cornerRadius = 10
         tv.isUserInteractionEnabled = true
         tv.font = UIFont.systemFont(ofSize: 23)
+        tv.keyboardAppearance = .dark
         tv.delegate = self
         return tv
     }()
@@ -118,34 +128,42 @@ class AddPostViewController: UIViewController {
         UIView.animate(withDuration: 1.0) {
             self.createTopicView.alpha = 1.0
         }
-        feedPostImage.isHidden = true
     }
     
     @objc private func imagePressed(){
         presentImagePicker()
     }
     
+ 
     @objc private func submitButtonPressed(){
         
-        guard let user = FirebaseAuthService.manager.currentUser else {return}
-        guard let photoUrl = imageURL else {return}
-        guard let postText = feedPostTextField.text else { return }
-        FirestoreService.manager.createPost(post: Post(userID: user.uid.description, userName: userName, postPicture: photoUrl, postText: postText, topicTag: tagsLabel.text ?? "null")) { (result) in
-            switch result {
-            case .failure(let error):
-                Utilities.showAlert(vc: self, message: "\(error.localizedDescription)")
-            case .success:
-                Utilities.showAlert(vc: self, message: "Message posted")
-                self.delegate?.loadAllPosts()
+        if selectedTagLabel.text == "Add Tag" {
+            Utilities.showAlert(vc: self, message: "You did not select a required tag")
+        }
+        else {
+            guard let user = FirebaseAuthService.manager.currentUser else {return}
+            let photoURL = imageURL != nil ? imageURL : "nil"
+            guard let postText = feedPostTextField.text else {return}
+            
+            FirestoreService.manager.createPost(post: Post(userID: user.uid.description, userName: userName, postPicture: photoURL, postText: postText, topicTag: selectedTagLabel.text ?? "null")) { (result) in
+                switch result {
+                case .failure(let error):
+                    Utilities.showAlert(vc: self, message: "\(error.localizedDescription)")
+                case .success:
+                    Utilities.showAlert(vc: self, message: "Message posted")
+                    self.delegate?.loadAllPosts()
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: {
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                })
             }
         }
-        
-        DispatchQueue.main.async {
-            self.dismiss(animated: true, completion: {
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
-            })
-        }
+
     }
+    
     
     //MARK: -- Methods
     private func presentImagePicker(){
@@ -203,8 +221,8 @@ extension AddPostViewController {
     
     private func setConstraints() {
         
-        [feedPostImage, addPostLabel, feedPostTextField, submitButton, tagsLabel, selectedTagLabel, addButton].forEach{view.addSubview($0)}
-        [feedPostImage, feedPostTextField, addPostLabel, submitButton , tagsLabel, selectedTagLabel, addButton].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
+        [feedPostImage, addPostLabel, feedPostTextField, submitButton, tagsLabel, selectedTagLabel, addButton, cameraButton].forEach{view.addSubview($0)}
+        [feedPostImage, feedPostTextField, addPostLabel, submitButton , tagsLabel, selectedTagLabel, addButton, cameraButton].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
         
         setFeedPostImageConstraints()
         setFeedPostTextFieldConstraints()
@@ -213,6 +231,7 @@ extension AddPostViewController {
         setTagsLabelConstraints()
         setPlusButtonConstraints()
         setSelectedTagLabelConstraints()
+        setCameraButtonConstraints()
         //Eric's addition
         setCreateTopicViewConstraints()
         setTopicTableViewConstraints()
@@ -224,7 +243,6 @@ extension AddPostViewController {
             selectedTagLabel.heightAnchor.constraint(equalToConstant: 30),
             selectedTagLabel.widthAnchor.constraint(equalToConstant: 100),
             selectedTagLabel.leadingAnchor.constraint(equalTo: tagsLabel.trailingAnchor, constant: 0)
-            
         ])
     }
     
@@ -249,8 +267,8 @@ extension AddPostViewController {
     
     private func setFeedPostImageConstraints() {
         NSLayoutConstraint.activate([
-            feedPostImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            feedPostImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150),
+            feedPostImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            feedPostImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -30),
             feedPostImage.heightAnchor.constraint(equalToConstant: 150),
             feedPostImage.widthAnchor.constraint(equalToConstant: 170)
         ])
@@ -264,10 +282,19 @@ extension AddPostViewController {
             feedPostTextField.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
+    private func setCameraButtonConstraints(){
+        NSLayoutConstraint.activate([
+        cameraButton.trailingAnchor.constraint(equalTo: submitButton.trailingAnchor),
+        cameraButton.heightAnchor.constraint(equalTo: tagsLabel.heightAnchor),
+        cameraButton.widthAnchor.constraint(equalToConstant: 30),
+        cameraButton.centerYAnchor.constraint(equalTo: tagsLabel.centerYAnchor)
+        ])
+    }
+    
     
     private func setPlusButtonConstraints() {
         NSLayoutConstraint.activate([
-            addButton.trailingAnchor.constraint(equalTo: submitButton.trailingAnchor),
+            addButton.trailingAnchor.constraint(equalTo: cameraButton.leadingAnchor, constant: -10),
             addButton.heightAnchor.constraint(equalTo: tagsLabel.heightAnchor),
             addButton.widthAnchor.constraint(equalToConstant: 30),
             addButton.centerYAnchor.constraint(equalTo: tagsLabel.centerYAnchor)
@@ -316,6 +343,7 @@ extension AddPostViewController: UITextViewDelegate {
 extension AddPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
+        self.feedPostImage.isHidden = false
         self.feedPostImage.image = image
         dismiss(animated: true, completion: nil)
         

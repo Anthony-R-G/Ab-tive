@@ -25,6 +25,7 @@ class WorkoutDayCell: UITableViewCell {
     lazy var dayOfWeekLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
         label.font = .boldSystemFont(ofSize: 25)
         return label
     }()
@@ -32,6 +33,8 @@ class WorkoutDayCell: UITableViewCell {
     lazy var nameOfWorkoutLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .white
+
         label.font = .systemFont(ofSize: 25)
         return label
     }()
@@ -43,11 +46,11 @@ class WorkoutDayCell: UITableViewCell {
     }
     private func setUpView(){
         contentView.backgroundColor = .black
-         contentView.layer.borderColor = #colorLiteral(red: 0.4109278509, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-                contentView.backgroundColor = #colorLiteral(red: 0.7996713519, green: 0.6718267202, blue: 0.3871548772, alpha: 1)
-                contentView.layer.borderWidth = 2
-                contentView.layer.cornerRadius = 15
-                contentView.layer.masksToBounds = true
+       contentView.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+         contentView.backgroundColor = #colorLiteral(red: 0.3098464012, green: 0.01799101382, blue: 0.1289751828, alpha: 1)
+         contentView.layer.borderWidth = 2
+         contentView.layer.cornerRadius = 15
+         contentView.layer.masksToBounds = true
     }
     //MARK: - Constraints
     

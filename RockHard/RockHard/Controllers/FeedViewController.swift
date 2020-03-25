@@ -18,10 +18,11 @@ class FeedViewController: UIViewController {
         }
     }
     
+
     var topics = ["Diet", "Weight Loss", "Gym Accessories"]
     
     
-    var feedPosts = [Post]() {
+    var feedPosts = [Post](){
         didSet {
             feedPostCollectionView.reloadData()
         }
@@ -78,6 +79,7 @@ class FeedViewController: UIViewController {
         return button
     }()
     
+    
     private func getUserNameString() {
         let db = Firestore.firestore()
         let docRef = db.collection("users").document(userID!)
@@ -98,7 +100,7 @@ class FeedViewController: UIViewController {
             FirestoreService.manager.getAllPost { (result) in
                 switch result {
                 case .success(let feedPostsFromFirebase):
-                    self.feedPosts = feedPostsFromFirebase.reversed()
+                    self.feedPosts = feedPostsFromFirebase
                     
                 case .failure(let error):
                     Utilities.showAlert(vc: self, message: error.localizedDescription)
@@ -123,10 +125,10 @@ class FeedViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,6 +137,10 @@ class FeedViewController: UIViewController {
         getUserNameString()
         loadAllFeedPosts()
         
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.frame
+        self.view.insertSubview(blurEffectView, at: 0)
         
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = #imageLiteral(resourceName: "feedvcdark")
@@ -245,7 +251,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         } else {
             guard let topicsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicsCell", for: indexPath) as? FeedHorizontalCollViewCell else { return UICollectionViewCell()}
-            
             let specificTopic = topics[indexPath.row]
             topicsCell.label.text = specificTopic
             return topicsCell
@@ -257,10 +262,10 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let specificPost = feedPosts[indexPath.row]
             
             if specificPost.postPicture == "nil" {
-                return CGSize(width: 360, height: 270)
+                return CGSize(width: 360, height: 170)
             } else {
                 
-                return CGSize(width: 360, height: 470)
+                return CGSize(width: 360, height: 450)
             }
             
         } else {
@@ -268,6 +273,24 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
+
+
+    //MARK: - Eric's Addt
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let selectedPost = feedPostCollectionView.cellForItem(at: indexPath) as! FeedVerticalCollViewCell
+//        selectedPost.contentView.backgroundColor = .systemYellow
+//        selectedPost.feedPostLabel.textColor = .white
+//        if selectedTopics.contains(topics[indexPath.row]) {
+//            selectedTopics.filter {(topicTag) -> Bool in return topicTag != topics[indexPath.row]
+//            }
+//            selectedPost.contentView.backgroundColor = .brown
+//            selectedPost.feedPostLabel.textColor = .gray
+//        } else {
+//            selectedTopics.append(topics[indexPath.row])
+//        }
+//        feedPost = filterTopics()
+//    }
+
 }
 
 extension FeedViewController: loadFeedPostsDelegate {

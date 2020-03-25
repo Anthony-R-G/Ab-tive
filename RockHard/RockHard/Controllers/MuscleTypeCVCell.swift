@@ -21,16 +21,16 @@ class MuscleTypeCVCell: UICollectionViewCell {
    
     lazy var muscleNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
         label.backgroundColor = .clear
         return label
     }()
     private func setUpConstraints(){
        constrainMuscleLabel()
-        contentView.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
-        contentView.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
-        contentView.layer.borderWidth = 2
+//        contentView.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+        contentView.backgroundColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 0.6690924658)
+        contentView.layer.borderWidth = 1.2
         contentView.layer.cornerRadius = 15
         contentView.layer.masksToBounds = true
     }

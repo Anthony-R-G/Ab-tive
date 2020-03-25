@@ -20,6 +20,11 @@ class WorkoutViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         getWorkout()
+        self.navigationController?.navigationBar.isHidden = true
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
     }
     //MARK: - Variables
     var workout: WorkoutPlan?{
@@ -33,7 +38,7 @@ class WorkoutViewController: UIViewController {
     lazy var workoutDayTableView: UITableView = {
         let layout = UITableView()
         layout.register(WorkoutDayCell.self, forCellReuseIdentifier: "workoutCell")
-        layout.backgroundColor = .lightGray
+        layout.backgroundColor = .clear
         layout.delegate = self
         layout.dataSource = self
         return layout
@@ -45,8 +50,8 @@ class WorkoutViewController: UIViewController {
         button.layer.cornerRadius = 12
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
-          button.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
-          button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+          button.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
+          button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
         return button
     }()
     
@@ -57,8 +62,9 @@ class WorkoutViewController: UIViewController {
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(createWorkoutAction), for: .touchUpInside)
-        button.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
-        button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
+        button.tintColor = .white
+        button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
         return button
     }()
     lazy var workoutStackView: UIStackView = {
@@ -71,8 +77,8 @@ class WorkoutViewController: UIViewController {
     }()
     lazy var stackBackgroundView:  UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-        view.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.2446492016, green: 0.2107246518, blue: 0.193783313, alpha: 1)
+        view.layer.borderColor = #colorLiteral(red: 0.1921568662, green: 0.007843137719, blue: 0.09019608051, alpha: 1)
         return view
     }()
     lazy var workoutTitleLabel: UILabel = {
@@ -81,6 +87,7 @@ class WorkoutViewController: UIViewController {
     }()
     lazy var saveButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Save", style: UIBarButtonItem.Style.done, target: self, action: #selector(saveWorkout))
+        button.isEnabled = false
         return button
     }()
 
@@ -114,7 +121,7 @@ class WorkoutViewController: UIViewController {
         print(plans.count)
     }
     private func setUpView(){
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.2964071631, green: 0.2576555014, blue: 0.2364076376, alpha: 1)
         self.navigationItem.rightBarButtonItem = saveButton
     }
     private func getWorkout(){
@@ -124,7 +131,6 @@ class WorkoutViewController: UIViewController {
                 print(error)
             case .success(let plan):
                 self.workout = plan.first
-                print(self.workout?.workoutCards.count)
             }
         }
     }
@@ -149,7 +155,7 @@ class WorkoutViewController: UIViewController {
         view.addSubview(workoutDayTableView)
         workoutDayTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            workoutDayTableView.topAnchor.constraint(equalTo: workoutStackView.bottomAnchor, constant: 150),
+            workoutDayTableView.topAnchor.constraint(equalTo: workoutStackView.bottomAnchor, constant: 50),
             workoutDayTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             workoutDayTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             workoutDayTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -163,7 +169,7 @@ class WorkoutViewController: UIViewController {
             stackBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackBackgroundView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            stackBackgroundView.heightAnchor.constraint(equalToConstant: 200)
+            stackBackgroundView.heightAnchor.constraint(equalToConstant: 100)
         
         ])
     }
@@ -195,4 +201,3 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
         self.navigationController?.pushViewController(exerciseVC, animated: true)
     }
     }
-

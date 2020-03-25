@@ -8,18 +8,18 @@
 
 import UIKit
 
-class ExerciseInfoCell: UITableViewCell {
+class ExerciseInfoCell: UICollectionViewCell {
     
     //MARK: - Lifecycle
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUpContentView()
-        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5672089041)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     //MARK: - Variables
     weak var delegate: ButtonFunction?
     var isPicked = true{
@@ -39,9 +39,11 @@ class ExerciseInfoCell: UITableViewCell {
     
     lazy var exerciseTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .white
+        label.textAlignment = .center
         label.numberOfLines = 0
+        label.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6019103168)
         return label
     }()
     
@@ -69,14 +71,11 @@ class ExerciseInfoCell: UITableViewCell {
     //MARK: - Regular Functions
     func setUpContentView(){
         setUpCellImage()
-        setUpIsPicked()
         setUpExerciseTitleLabel()
         setUpExerciseRepsLabel()
-        contentView.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
-        contentView.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
-        contentView.layer.borderWidth = 2
-        contentView.layer.cornerRadius = 15
+        setUpIsPicked()
         contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 10
     }
     
     //MARK: - Constraints
@@ -87,18 +86,19 @@ class ExerciseInfoCell: UITableViewCell {
             cellImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             cellImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             cellImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            cellImage.widthAnchor.constraint(equalToConstant: 150)
+            cellImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
         ])
     }
     
     private func setUpExerciseTitleLabel(){
         contentView.addSubview(exerciseTitleLabel)
+        contentView.bringSubviewToFront(exerciseTitleLabel)
         exerciseTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            exerciseTitleLabel.leadingAnchor.constraint(equalTo: cellImage.trailingAnchor, constant: 10),
-            exerciseTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            exerciseTitleLabel.heightAnchor.constraint(equalToConstant: 50),
-            exerciseTitleLabel.trailingAnchor.constraint(equalTo: exerciseIsPicked.trailingAnchor, constant: -10)
+            exerciseTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            exerciseTitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
+            exerciseTitleLabel.heightAnchor.constraint(equalToConstant: 60),
+            exerciseTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0)
             
         ])
     }
@@ -115,13 +115,14 @@ class ExerciseInfoCell: UITableViewCell {
     
     private func setUpIsPicked(){
         contentView.addSubview(exerciseIsPicked)
+        contentView.bringSubviewToFront(exerciseIsPicked)
         exerciseIsPicked.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             exerciseIsPicked.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             exerciseIsPicked.heightAnchor.constraint(equalToConstant: 50),
-            exerciseIsPicked.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0),
+            exerciseIsPicked.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
             exerciseIsPicked.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
-
+    
 }

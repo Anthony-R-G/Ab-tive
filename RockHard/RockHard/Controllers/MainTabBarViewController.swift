@@ -11,15 +11,10 @@ import UIKit
 class MainTabBarController: UITabBarController {
     //MARK: -- Lazy Property VCs
     lazy var feedVC = FeedViewController()
-    
     lazy var exerciseVC =  UINavigationController(rootViewController: ExerciseViewController())
-    
     lazy var workoutVC =  UINavigationController(rootViewController: WorkoutViewController())
     lazy var buddyVC = UINavigationController(rootViewController: FindBuddyVC())
-    
-    
-    lazy var profileVC =  UINavigationController(rootViewController: ProfileViewController())
-
+    lazy var profileVC = ProfileViewController()
 
     //MARK: -- ViewDidLoad
     override func viewDidLoad() {
@@ -33,6 +28,11 @@ class MainTabBarController: UITabBarController {
         buddyVC.tabBarItem = UITabBarItem(title: "Buddy", image: nil, tag: 3)
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 3)
         
-        self.viewControllers = [feedVC, exerciseVC, workoutVC, buddyVC, profileVC]
+        self.viewControllers = [feedVC, exerciseVC, workoutVC, buddyVC]
+
+//        buddyVC.tabBarItem = UITabBarItem(title: "Buddy", image: nil, tag: 3)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 3)
+        self.viewControllers = [feedVC, exerciseVC, workoutVC, profileVC]
+
     }
 }

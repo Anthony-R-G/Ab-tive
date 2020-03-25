@@ -2,6 +2,7 @@
 
 import UIKit
 import Kingfisher
+
 class ExerciseViewController: UIViewController {
     //MARK: - Lifecycle
     
@@ -10,7 +11,23 @@ class ExerciseViewController: UIViewController {
         setUpView()
         setUpConstraints()
         loadExerciseData()
+        
     }
+    override func viewWillAppear(_ animated: Bool) {
+        switch state {
+        case .viewWorkout, .createWorkout:
+            print("hey")
+        default:
+            self.navigationController?.navigationBar.isHidden = true
+
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    
+    
     //MARK: - Variables
     enum currentState {
         case createWorkout
@@ -32,20 +49,20 @@ class ExerciseViewController: UIViewController {
         }
     }
     var exercises = [Exercise]()
-     var filteredExercise = [Exercise](){
-         didSet{
-             exerciseTableView.reloadData()
-         }
-     }
+    var filteredExercise = [Exercise](){
+        didSet{
+            exerciseCV.reloadData()
+        }
+    }
     var weekDays = ["Monday","Tuesday","Wednesday", "Thursday", "Friday","Saturday","Sunday"]
     var muscleType = ["Biceps", "Legs", "Triceps", "Shoulder", "Chest", "Back", "Cardio"]
     var selectedMuscleTypes = [String]()
- 
+    
     //MARK: - Objc Functions
     @objc private func presetnWorkoutView (){
         view.backgroundColor = #colorLiteral(red: 0.2632220984, green: 0.2616633773, blue: 0.2644240856, alpha: 0.8305329623)
         createWorkoutView.isHidden = false
-        exerciseTableView.isHidden = true
+        exerciseCV.isHidden = true
         createWorkoutButton.backgroundColor = .gray
     }
     @objc private func saveWorkout(){
@@ -61,16 +78,16 @@ class ExerciseViewController: UIViewController {
                 }
             }
         }else{
-        let workout = WorkoutCard(workoutDay: weekDay, workoutName: workoutNameTextField.text!, exercises: pickedExercises)
+            let workout = WorkoutCard(workoutDay: weekDay, workoutName: workoutNameTextField.text!, exercises: pickedExercises)
             let workoutPlan = WorkoutPlan(planName: "", creatorID: currentUser?.uid ?? "", workoutCards: [workout])
-        FirestoreService.manager.createWorkoutPlan(plan: workoutPlan) { (Resut) in
-            switch Resut{
-            case .failure(let error):
-                print(error)
-            case .success(()):
-                print("yes")
+            FirestoreService.manager.createWorkoutPlan(plan: workoutPlan) { (Resut) in
+                switch Resut{
+                case .failure(let error):
+                    print(error)
+                case .success(()):
+                    print("yes")
+                }
             }
-        }
         }
         navigationController?.popViewController(animated: true)
     }
@@ -79,9 +96,9 @@ class ExerciseViewController: UIViewController {
     private func filterExercise () -> [Exercise]{
         var filtered = exercises.filter { (exercise) -> Bool in
             selectedMuscleTypes.contains(exercise.type)
-          }
+        }
         if filtered.count == 0{
-        filtered = exercises
+            filtered = exercises
             return filtered
         }
         return filtered
@@ -95,16 +112,19 @@ class ExerciseViewController: UIViewController {
             case .success(let exercise):
                 self.exercises = exercise
                 self.filteredExercise = exercise
-
+                
             }
         }
     }
     private func setUpView(){
-        view.backgroundColor = #colorLiteral(red: 0.2929434776, green: 0.360488832, blue: 0.4110850692, alpha: 0.7299604024)
+        view.backgroundColor = #colorLiteral(red: 0.2964071631, green: 0.2576555014, blue: 0.2364076376, alpha: 1)
         weekDayPicker.delegate = self
         weekDayPicker.dataSource = self
     }
+    
+    
     private func setUpConstraints(){
+        constrainExercisesTitleLabel()
         constrainExerciseCV()
         constrainExerciseTableView()
         constrainWorkoutButton()
@@ -114,13 +134,17 @@ class ExerciseViewController: UIViewController {
         constrainsaveWorkoutButton()
     }
     //MARK: - ExerciseView UI Objects
-    lazy var exerciseTableView: UITableView = {
-        let layout = UITableView()
-        layout.register(ExerciseInfoCell.self, forCellReuseIdentifier: "exerciseCell")
-        layout.backgroundColor = .clear
-        layout.delegate = self
-        layout.dataSource = self
-        return layout
+    lazy var exerciseCV: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.register(ExerciseInfoCell.self, forCellWithReuseIdentifier: "exerciseCell")
+        cv.backgroundColor = .clear
+        cv.backgroundColor = .clear
+        cv.delegate = self
+        cv.dataSource = self
+        cv.showsHorizontalScrollIndicator = false
+        return cv
     }()
     
     lazy var createWorkoutButton: UIButton = {
@@ -137,11 +161,19 @@ class ExerciseViewController: UIViewController {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.register(MuscleTypeCVCell.self, forCellWithReuseIdentifier: "muscleCell")
-        cv.backgroundColor = .clear
+        cv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1788848459)
         cv.delegate = self
         cv.showsHorizontalScrollIndicator = false
         cv.dataSource = self
         return cv
+    }()
+    lazy var exerciseTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Exercises"
+        label.font = .boldSystemFont(ofSize: 40)
+        label.textColor = .white
+        
+        return label
     }()
     
     lazy var createWorkoutView: UIView = {
@@ -199,7 +231,7 @@ class ExerciseViewController: UIViewController {
     private func constrainworkoutNameLabel(){
         let stackView = UIStackView(arrangedSubviews: [workoutNameLabel, workoutNameTextField,weekDayLabel])
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 5
         stackView.distribution = .fillEqually
         
         createWorkoutView.addSubview(stackView)
@@ -220,7 +252,7 @@ class ExerciseViewController: UIViewController {
             weekDayPicker.trailingAnchor.constraint(equalTo: createWorkoutView.trailingAnchor, constant: 0),
             weekDayPicker.heightAnchor.constraint(equalToConstant: 100)
         ])
-       
+        
     }
     private func constrainsaveWorkoutButton(){
         createWorkoutView.addSubview(saveWorkoutButton)
@@ -230,27 +262,37 @@ class ExerciseViewController: UIViewController {
             saveWorkoutButton.leadingAnchor.constraint(equalTo: createWorkoutView.leadingAnchor, constant: 0),
             saveWorkoutButton.trailingAnchor.constraint(equalTo: createWorkoutView.trailingAnchor, constant: 0),
             saveWorkoutButton.heightAnchor.constraint(equalToConstant: 50)
-        
+            
         ])
     }
     
     //MARK: - ExerciseView Constraints
-    
-    private func constrainExerciseTableView(){
-        view.addSubview(exerciseTableView)
-        exerciseTableView.translatesAutoresizingMaskIntoConstraints = false
+    private func constrainExercisesTitleLabel(){
+        view.addSubview(exerciseTitleLabel)
+        exerciseTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            exerciseTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            exerciseTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            exerciseTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            exerciseTableView.topAnchor.constraint(equalTo: muscleTypeCV.bottomAnchor, constant: 15)
+            exerciseTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            exerciseTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            exerciseTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            exerciseTitleLabel.heightAnchor.constraint(equalToConstant: 60)
+            
+        ])
+    }
+    private func constrainExerciseTableView(){
+        view.addSubview(exerciseCV)
+        exerciseCV.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            exerciseCV.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            exerciseCV.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            exerciseCV.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            exerciseCV.topAnchor.constraint(equalTo: muscleTypeCV.bottomAnchor, constant: 10)
         ])
     }
     private func constrainExerciseCV(){
         view.addSubview(muscleTypeCV)
         muscleTypeCV.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            muscleTypeCV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            muscleTypeCV.topAnchor.constraint(equalTo: exerciseTitleLabel.bottomAnchor, constant: 5),
             muscleTypeCV.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             muscleTypeCV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             muscleTypeCV.heightAnchor.constraint(equalToConstant: 50)
@@ -261,95 +303,90 @@ class ExerciseViewController: UIViewController {
         view.addSubview(createWorkoutButton)
         createWorkoutButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            createWorkoutButton.bottomAnchor.constraint(equalTo: exerciseTableView.bottomAnchor, constant: -20),
-            createWorkoutButton.leadingAnchor.constraint(equalTo: exerciseTableView.leadingAnchor, constant: 0),
-            createWorkoutButton.trailingAnchor.constraint(equalTo: exerciseTableView.trailingAnchor, constant: 0),
+            createWorkoutButton.bottomAnchor.constraint(equalTo: exerciseCV.bottomAnchor, constant: -20),
+            createWorkoutButton.leadingAnchor.constraint(equalTo: exerciseCV.leadingAnchor, constant: 0),
+            createWorkoutButton.trailingAnchor.constraint(equalTo: exerciseCV.trailingAnchor, constant: 0),
             createWorkoutButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-    }
-}
-
-//MARK: - UITableView
-extension ExerciseViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     guard let exerciseCount = workoutCard?.exercises.count else {
-            return filteredExercise.count
-        }
-        return exerciseCount
-
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = exerciseTableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as? ExerciseInfoCell else {return UITableViewCell()}
-        var data: Exercise?
-        switch state{
-        case .viewWorkout:
-                data = (workoutCard?.exercises[indexPath.row])!
-                cell.exerciseRepsLabel.isHidden = false
-        case .exerciseView:
-             data = filteredExercise[indexPath.row]
-        case .createWorkout:
-            cell.exerciseIsPicked.isHidden = false
-            data = filteredExercise[indexPath.row]
-        }
-        if pickedExercises.contains(where: { (Exercise) -> Bool in
-            return Exercise.name == data?.name
-        }){
-        cell.isPicked = true
-                    }else {
-                          cell.isPicked = false
-        }
-        cell.exerciseTitleLabel.text = data?.name
-        if let url =  URL(string: data?.cellImage ?? "") {
-            cell.cellImage.kf.setImage(with: url)}
-        cell.delegate = self
-        cell.exerciseIsPicked.tag = indexPath.row
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(140)
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let exerciseDetail = ExerciseDetailVC()
-        exerciseDetail.exercise = filteredExercise[indexPath.row]
-        self.navigationController?.pushViewController(exerciseDetail, animated: true)
     }
 }
 
 //MARK: - UICollectionViewCell
 extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return muscleType.count
+        if collectionView == muscleTypeCV{
+            return muscleType.count
+        }else {
+            guard let exerciseCount = workoutCard?.exercises.count else {
+                return filteredExercise.count
+            }
+            return exerciseCount
+        }
+        
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = muscleTypeCV.dequeueReusableCell(withReuseIdentifier: "muscleCell", for: indexPath) as? MuscleTypeCVCell
-        let data = muscleType[indexPath.row]
-        cell?.muscleNameLabel.text = data
-        return cell!
+        if collectionView == muscleTypeCV{
+            guard let cell = muscleTypeCV.dequeueReusableCell(withReuseIdentifier: "muscleCell", for: indexPath) as? MuscleTypeCVCell else {return UICollectionViewCell()}
+            let data = muscleType[indexPath.row]
+            cell.muscleNameLabel.text = data
+            return cell
+        }else {
+            guard let cell = exerciseCV.dequeueReusableCell(withReuseIdentifier: "exerciseCell", for: indexPath) as? ExerciseInfoCell else {return UICollectionViewCell()}
+            var data: Exercise?
+            switch state{
+            case .viewWorkout:
+                data = (workoutCard?.exercises[indexPath.row])!
+                cell.exerciseRepsLabel.isHidden = false
+            case .exerciseView:
+                data = filteredExercise[indexPath.row]
+            case .createWorkout:
+                cell.exerciseIsPicked.isHidden = false
+                data = filteredExercise[indexPath.row]
+            }
+            if pickedExercises.contains(where: { (Exercise) -> Bool in
+                return Exercise.name == data?.name
+            }){
+                cell.isPicked = true
+            }else {
+                cell.isPicked = false
+            }
+            cell.exerciseTitleLabel.text = data?.name
+            if let url =  URL(string: data?.cellImage ?? "") {
+                cell.cellImage.kf.setImage(with: url)}
+            cell.delegate = self
+            cell.exerciseIsPicked.tag = indexPath.row
+            return cell
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel(frame: CGRect.zero)
-        label.text = muscleType[indexPath.item]
-        label.sizeToFit()
-        return CGSize(width: label.frame.width + 20, height: 40 )
-    }
+        if collectionView == muscleTypeCV{
+            let label = UILabel(frame: CGRect.zero)
+            label.text = muscleType[indexPath.item]
+            label.sizeToFit()
+            return CGSize(width: label.frame.width + 20, height: 40 )} else {
+            return CGSize(width: view.frame.width - 10, height: 200)
+            
+        }}
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selected = muscleTypeCV.cellForItem(at: indexPath) as! MuscleTypeCVCell
-        selected.contentView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-        selected.muscleNameLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        if selectedMuscleTypes.contains(muscleType[indexPath.row]){
-            selectedMuscleTypes = selectedMuscleTypes.filter { (type) -> Bool in
-                return type != muscleType[indexPath.row]
-             
+        if collectionView == muscleTypeCV{
+            let selected = muscleTypeCV.cellForItem(at: indexPath) as! MuscleTypeCVCell
+            selected.contentView.backgroundColor = #colorLiteral(red: 0.1921568662, green: 0.007843137719, blue: 0.09019608051, alpha: 1)
+            if selectedMuscleTypes.contains(muscleType[indexPath.row]){
+                selectedMuscleTypes = selectedMuscleTypes.filter { (type) -> Bool in
+                    return type != muscleType[indexPath.row]
+                    
+                }
+                selected.contentView.backgroundColor = #colorLiteral(red: 0.4827054739, green: 0.08537527174, blue: 0.231207341, alpha: 1)
+            }else{
+                selectedMuscleTypes.append(muscleType[indexPath.row])
             }
-               selected.contentView.backgroundColor = #colorLiteral(red: 0.6470412612, green: 0.7913685441, blue: 0.8968411088, alpha: 1)
-            selected.muscleNameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        }else{
-          selectedMuscleTypes.append(muscleType[indexPath.row])
+            filteredExercise = filterExercise()
+        }else {
+            let exerciseDetail = ExerciseDetailVC()
+            exerciseDetail.exercise = filteredExercise[indexPath.row]
+            self.navigationController?.pushViewController(exerciseDetail, animated: true)
         }
-        filteredExercise = filterExercise()
     }
 }
 
@@ -357,7 +394,7 @@ extension ExerciseViewController: UICollectionViewDelegate, UICollectionViewData
 extension ExerciseViewController: ButtonFunction{
     func selectAction(tag: Int) {
         let selectedIndex = IndexPath(row: tag, section: 0)
-        let selected = exerciseTableView.cellForRow(at: selectedIndex ) as! ExerciseInfoCell
+        let selected = exerciseCV.cellForItem(at: selectedIndex ) as! ExerciseInfoCell
         if selected.isPicked{
             pickedExercises.removeAll { (Exercise) -> Bool in
                 return Exercise.name == filteredExercise[tag].name
@@ -367,7 +404,7 @@ extension ExerciseViewController: ButtonFunction{
             pickedExercises.append(filteredExercise[tag])
             selected.isPicked = true
         }
-
+        
     }
 }
 

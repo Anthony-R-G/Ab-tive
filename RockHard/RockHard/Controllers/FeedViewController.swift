@@ -8,7 +8,6 @@ import Firebase
 import Kingfisher
 
 
-
 class FeedViewController: UIViewController {
     //MARK: - Properties
     
@@ -19,12 +18,31 @@ class FeedViewController: UIViewController {
         }
     }
     
-    var topics = ["All", "Diets", "Weight Loss", "Gym Accessories"]
 
+    var topics = ["Diet", "Weight Loss", "Gym Accessories"]
+    
+    
     var feedPosts = [Post](){
         didSet {
             feedPostCollectionView.reloadData()
         }
+    }
+    
+    var filteredPosts = [Post](){
+        didSet {
+            feedPostCollectionView.reloadData()
+        }
+    }
+    
+    private func filterTopics() -> [Post] {
+        var filteredTopics = feedPosts.filter{(topicTag) -> Bool in
+            topics.contains(topicTag.topicTag)
+        }
+        if filteredTopics.count == 0 {
+            filteredTopics = feedPosts
+            return filteredTopics
+        }
+        return filteredTopics
     }
     
     
@@ -60,6 +78,7 @@ class FeedViewController: UIViewController {
         
         return button
     }()
+    
     
     private func getUserNameString() {
         let db = Firestore.firestore()
@@ -106,10 +125,10 @@ class FeedViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +137,10 @@ class FeedViewController: UIViewController {
         getUserNameString()
         loadAllFeedPosts()
         
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.view.frame
+        self.view.insertSubview(blurEffectView, at: 0)
         
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = #imageLiteral(resourceName: "feedvcdark")
@@ -133,8 +156,6 @@ extension FeedViewController {
     private func setConstraints(){
         [feedOptionCollView, feedPostCollectionView, addButton].forEach{view.addSubview($0)}
         [feedOptionCollView, feedPostCollectionView, addButton].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
-        
-        
         setTopicCollViewConstraints()
         setPostsCollViewConstraints()
         setAddButtonConstraints()
@@ -179,18 +200,57 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView  == self.feedPostCollectionView {
+        if collectionView == self.feedPostCollectionView {
             
             guard let feedCell = collectionView.dequeueReusableCell(withReuseIdentifier: "feedPostCell", for: indexPath) as? FeedVerticalCollViewCell else { return UICollectionViewCell()}
+            
             let specificPost = feedPosts[indexPath.row]
-            feedCell.feedPostImage.kf.setImage(with: URL(string: specificPost.postPicture))
+            
+            if specificPost.postPicture == "nil" {
+                feedCell.currentPostType = .hasNoPhoto
+                
+                NSLayoutConstraint.activate([
+                    feedCell.userProfilePicture.leadingAnchor.constraint(equalTo: feedCell.leadingAnchor, constant: 20),
+                    feedCell.userProfilePicture.topAnchor.constraint(equalTo: feedCell.topAnchor, constant: 20),
+                    feedCell.userProfilePicture.heightAnchor.constraint(equalToConstant: 45),
+                    feedCell.userProfilePicture.widthAnchor.constraint(equalToConstant: 45),
+                    
+                    feedCell.userNameLabel.leadingAnchor.constraint(equalTo: feedCell.userProfilePicture.trailingAnchor, constant: 10),
+                    feedCell.userNameLabel.topAnchor.constraint(equalTo: feedCell.topAnchor, constant: 13),
+                    feedCell.userNameLabel.heightAnchor.constraint(equalToConstant: 20),
+                    feedCell.userNameLabel.widthAnchor.constraint(equalToConstant: 150),
+                    
+                    feedCell.feedPostLabel.topAnchor.constraint(equalTo: feedCell.topAnchor, constant: 30),
+                    feedCell.feedPostLabel.leadingAnchor.constraint(equalTo: feedCell.leadingAnchor, constant: 30),
+                    feedCell.feedPostLabel.heightAnchor.constraint(equalToConstant: 80),
+                    feedCell.feedPostLabel.widthAnchor.constraint(equalTo: feedCell.widthAnchor, multiplier: 0.75)
+                ])
+                
+                feedCell.layer.cornerRadius = 20
+                feedCell.clipsToBounds = true
+                
+                let blurEffect = UIBlurEffect(style: .dark)
+                let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                blurEffectView.frame = feedCell.frame
+                self.view.insertSubview(blurEffectView, at: 0)
+                
+                feedCell.feedPostImage.image = #imageLiteral(resourceName: "noPicBG")
+                feedCell.feedPostImage.contentMode = .scaleToFill
+                
+            } else {
+                feedCell.currentPostType = .hasPhoto
+                feedCell.feedPostImage.kf.setImage(with: URL(string: specificPost.postPicture))
+            }
+            
+            
             feedCell.feedPostLabel.text = specificPost.postText
             feedCell.userNameLabel.text = specificPost.userName
             feedCell.backgroundColor = .darkGray
             return feedCell
+            
+            
         } else {
             guard let topicsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "topicsCell", for: indexPath) as? FeedHorizontalCollViewCell else { return UICollectionViewCell()}
-            
             let specificTopic = topics[indexPath.row]
             topicsCell.label.text = specificTopic
             return topicsCell
@@ -199,12 +259,22 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == feedPostCollectionView {
-            return CGSize(width: 360, height: 470)
+            let specificPost = feedPosts[indexPath.row]
+            
+            if specificPost.postPicture == "nil" {
+                return CGSize(width: 360, height: 170)
+            } else {
+                
+                return CGSize(width: 360, height: 450)
+            }
+            
         } else {
             return CGSize(width: 130, height: 85)
         }
     }
     
+
+
     //MARK: - Eric's Addt
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let selectedPost = feedPostCollectionView.cellForItem(at: indexPath) as! FeedVerticalCollViewCell
@@ -220,12 +290,13 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //        }
 //        feedPost = filterTopics()
 //    }
+
 }
 
 extension FeedViewController: loadFeedPostsDelegate {
     func loadAllPosts() {
-            self.loadAllFeedPosts()
-        }
+        self.loadAllFeedPosts()
+    }
 }
 
 

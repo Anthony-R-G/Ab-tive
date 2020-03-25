@@ -2,6 +2,7 @@
 
 import UIKit
 import Kingfisher
+
 class ExerciseViewController: UIViewController {
     //MARK: - Lifecycle
     
@@ -13,7 +14,13 @@ class ExerciseViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        switch state {
+        case .viewWorkout, .createWorkout:
+            print("hey")
+        default:
+            self.navigationController?.navigationBar.isHidden = true
+
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
@@ -224,7 +231,7 @@ class ExerciseViewController: UIViewController {
     private func constrainworkoutNameLabel(){
         let stackView = UIStackView(arrangedSubviews: [workoutNameLabel, workoutNameTextField,weekDayLabel])
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 5
         stackView.distribution = .fillEqually
         
         createWorkoutView.addSubview(stackView)

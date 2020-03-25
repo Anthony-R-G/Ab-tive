@@ -20,7 +20,7 @@ class FeedViewController: UIViewController {
     }
     
     var topics = ["All", "Diets", "Weight Loss", "Gym Accessories"]
-
+    
     var feedPosts = [Post](){
         didSet {
             feedPostCollectionView.reloadData()
@@ -107,9 +107,9 @@ class FeedViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
-          return .lightContent
-      }
-  
+        return .lightContent
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -211,8 +211,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension FeedViewController: loadFeedPostsDelegate {
     func loadAllPosts() {
-            self.loadAllFeedPosts()
-        }
+        self.loadAllFeedPosts()
+    }
 }
 
 

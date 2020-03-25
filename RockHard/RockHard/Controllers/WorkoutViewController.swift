@@ -81,6 +81,7 @@ class WorkoutViewController: UIViewController {
     }()
     lazy var saveButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Save", style: UIBarButtonItem.Style.done, target: self, action: #selector(saveWorkout))
+        button.isEnabled = false
         return button
     }()
 
@@ -149,7 +150,7 @@ class WorkoutViewController: UIViewController {
         view.addSubview(workoutDayTableView)
         workoutDayTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            workoutDayTableView.topAnchor.constraint(equalTo: workoutStackView.bottomAnchor, constant: 150),
+            workoutDayTableView.topAnchor.constraint(equalTo: workoutStackView.bottomAnchor, constant: 50),
             workoutDayTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             workoutDayTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             workoutDayTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -163,7 +164,7 @@ class WorkoutViewController: UIViewController {
             stackBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackBackgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackBackgroundView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            stackBackgroundView.heightAnchor.constraint(equalToConstant: 200)
+            stackBackgroundView.heightAnchor.constraint(equalToConstant: 100)
         
         ])
     }
@@ -195,4 +196,3 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
         self.navigationController?.pushViewController(exerciseVC, animated: true)
     }
     }
-

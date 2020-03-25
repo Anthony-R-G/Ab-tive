@@ -18,10 +18,10 @@ class FeedViewController: UIViewController {
         }
     }
     
-    var topics = ["All", "Diet", "Weight Loss", "Gym Accessories"]
+    var topics = ["Diet", "Weight Loss", "Gym Accessories"]
     
     
-    var feedPosts = [Post](){
+    var feedPosts = [Post]() {
         didSet {
             feedPostCollectionView.reloadData()
         }
@@ -98,7 +98,7 @@ class FeedViewController: UIViewController {
             FirestoreService.manager.getAllPost { (result) in
                 switch result {
                 case .success(let feedPostsFromFirebase):
-                    self.feedPosts = feedPostsFromFirebase
+                    self.feedPosts = feedPostsFromFirebase.reversed()
                     
                 case .failure(let error):
                     Utilities.showAlert(vc: self, message: error.localizedDescription)

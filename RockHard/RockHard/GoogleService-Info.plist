@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>816199345797-7gp1321tqe0ndh05niid89d1pe3e4hjd.apps.googleusercontent.com</string>
+	<string>816199345797-pptlgcq6c7rbtfbnnk6uss49ampc81ig.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.816199345797-7gp1321tqe0ndh05niid89d1pe3e4hjd</string>
+	<string>com.googleusercontent.apps.816199345797-pptlgcq6c7rbtfbnnk6uss49ampc81ig</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAw87uHC_TlBHipW6sHkpd_PnBpoD5X_bs</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>Antnee.RockHard</string>
+	<string>com.pursuit.abtive</string>
 	<key>PROJECT_ID</key>
 	<string>capstoneproject-fb6e5</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:816199345797:ios:55792af42b658f6368abec</string>
+	<string>1:816199345797:ios:a5455f49a683163a68abec</string>
 	<key>DATABASE_URL</key>
 	<string>https://capstoneproject-fb6e5.firebaseio.com</string>
 </dict>

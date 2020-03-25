@@ -207,6 +207,22 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return CGSize(width: 130, height: 85)
         }
     }
+    
+    //MARK: - Eric's Addt
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let selectedPost = feedPostCollectionView.cellForItem(at: indexPath) as! FeedVerticalCollViewCell
+//        selectedPost.contentView.backgroundColor = .systemYellow
+//        selectedPost.feedPostLabel.textColor = .white
+//        if selectedTopics.contains(topics[indexPath.row]) {
+//            selectedTopics.filter {(topicTag) -> Bool in return topicTag != topics[indexPath.row]
+//            }
+//            selectedPost.contentView.backgroundColor = .brown
+//            selectedPost.feedPostLabel.textColor = .gray
+//        } else {
+//            selectedTopics.append(topics[indexPath.row])
+//        }
+//        feedPost = filterTopics()
+//    }
 }
 
 extension FeedViewController: loadFeedPostsDelegate {

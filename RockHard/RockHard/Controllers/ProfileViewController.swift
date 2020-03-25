@@ -10,13 +10,13 @@ import UIKit
 import Firebase
 
 class ProfileViewController: UIViewController {
-
 //    MARK: UI VARIABLES
    
         lazy var contentView: UIView = {
         let view = UIView()
             view.layer.cornerRadius = 20
             view.backgroundColor = UIColor.darkGray
+            view.alpha = 0.3
         
         return view
         
@@ -35,7 +35,8 @@ class ProfileViewController: UIViewController {
     
     lazy var backgroundImageView: UIImageView = {
         let backgroundImage = UIImageView()
-        backgroundImage.image = #imageLiteral(resourceName: "profilbackgroundImage")
+        backgroundImage.layer.cornerRadius = 20
+        backgroundImage.image = #imageLiteral(resourceName: "Untitled design (2).png")
 //        backgroundImage.backgroundColor = .red
         
         
@@ -96,7 +97,7 @@ class ProfileViewController: UIViewController {
     
     lazy var gymNameTextField: UITextField = {
         let gymNameTF = UITextField()
-        gymNameTF.backgroundColor = #colorLiteral(red: 0.8044961691, green: 0.8000447154, blue: 0.7911967635, alpha: 1)
+        gymNameTF.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         gymNameTF.textAlignment = .center
         gymNameTF.text = "Enter Gym Name"
         gymNameTF.textColor = UIColor.white
@@ -105,7 +106,7 @@ class ProfileViewController: UIViewController {
     
     lazy var gymAddressTextField: UITextField = {
         let gymAddressTF = UITextField()
-        gymAddressTF.backgroundColor = #colorLiteral(red: 0.8044961691, green: 0.8000447154, blue: 0.7911967635, alpha: 1)
+        gymAddressTF.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         gymAddressTF.textAlignment = .center
         gymAddressTF.text = "Enter Address"
         gymAddressTF.textColor = UIColor.white
@@ -123,7 +124,7 @@ class ProfileViewController: UIViewController {
     
     lazy var goalPicker: UIPickerView = {
         let goalPicker = UIPickerView()
-        goalPicker.backgroundColor = #colorLiteral(red: 1, green: 0.9474025369, blue: 0.9306711555, alpha: 1)
+        goalPicker.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return goalPicker
     }()
 //    MARK: LIFECYCLE
@@ -133,9 +134,9 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.8664230704, green: 0.8668759465, blue: 0.8579339385, alpha: 1)
         addSubview()
+        constraintBackgroundImage()
         constraintProfileImage()
         contraintContentView()
-        constraintBackgroundImage()
         constraintUserNameLabel()
         constraintBuddySwitchLabel()
         contraintBuddySwitch()
@@ -152,18 +153,20 @@ class ProfileViewController: UIViewController {
     
     private func addSubview() {
         contentView.addSubview(profileImageView)
+        view.addSubview(backgroundImageView)
+
               view.addSubview(contentView)
         contentView.addSubview(userNameLabel)
         contentView.addSubview(buddySwitchLabel)
         contentView.addSubview(buddySwitch)
-        view.addSubview(backgroundImageView)
-        contentView.addSubview(emailTextField)
-        contentView.addSubview(passwordTextField)
+//        view.addSubview(backgroundImageView)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
         contentView.addSubview(gymLabel)
-        contentView.addSubview(gymNameTextField)
-        contentView.addSubview(gymAddressTextField)
+        view.addSubview(gymNameTextField)
+        view.addSubview(gymAddressTextField)
         contentView.addSubview(goalLabel)
-        contentView.addSubview(goalPicker)
+        view.addSubview(goalPicker)
         
     }
 
@@ -176,11 +179,11 @@ class ProfileViewController: UIViewController {
     
     private func contraintContentView() {
         
-        contentView.anchors(bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, height: 520)
+        contentView.anchors(bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingBottom: 80, paddingLeft: 20, paddingRight: 20, height: view.frame.height/2)
     }
 
     private func constraintBackgroundImage() {
-        backgroundImageView.anchors(top: view.topAnchor, bottom: contentView.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 120, paddingBottom: 70, paddingLeft: 20, paddingRight: 20)
+        backgroundImageView.anchors(top: view.topAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 70, paddingBottom: 70, paddingLeft: 10, paddingRight: 10)
     }
     
     private func constraintUserNameLabel() {

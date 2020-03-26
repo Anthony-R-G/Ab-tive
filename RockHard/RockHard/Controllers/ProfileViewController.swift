@@ -37,6 +37,7 @@ class ProfileViewController: UIViewController {
         let backgroundImage = UIImageView()
         backgroundImage.layer.cornerRadius = 20
         backgroundImage.image = #imageLiteral(resourceName: "Untitled design (2).png")
+        backgroundImage.contentMode = .scaleToFill
 //        backgroundImage.backgroundColor = .red
         
         
@@ -134,7 +135,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.8664230704, green: 0.8668759465, blue: 0.8579339385, alpha: 1)
         addSubview()
-        constraintBackgroundImage()
+//        constraintBackgroundImage()
         constraintProfileImage()
         contraintContentView()
         constraintUserNameLabel()
@@ -147,6 +148,11 @@ class ProfileViewController: UIViewController {
         constraintGymAddressTextField()
         constraintGoalLabel()
         constraintGoalPicker()
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = #imageLiteral(resourceName: "Untitled design (2)")
+        backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
             
         
     }

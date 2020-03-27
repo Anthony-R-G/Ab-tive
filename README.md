@@ -1,7 +1,7 @@
 # Ab-tive
 
 ## Introduction
-It's a daunting task to get into shape. Often times, people will feel discouraged from building healthy fitness habits because of their lack of knowledge on where to start. Information online is abundant, but so much so that it's difficult to filter out what is applicable to yourself. When it comes to working out at the gym, we've also noticed that there's a lack of community. Introducing Rock Hard, this app is geared towards active gym-goers and those looking to get into physical fitness. Most gym apps function more as a tool, and less as a social space. There's a numerous amount of calorie counters, workout planners, and dieting planners, and while those are valid, we feel like there's certain elements missing; namely, being able to communicate with other gym-goers and the app's ease of use are often lacking.
+It's a daunting task to get into shape. Often times, people will feel discouraged from building healthy fitness habits because of their lack of knowledge on where to start. Information online is abundant, but so much so that it's difficult to filter out what is applicable to yourself. When it comes to working out at the gym, we've also noticed that there's a lack of community. Introducing Ab-tive, this app is geared towards active gym-goers and those looking to get into physical fitness. Most gym apps function more as a tool, and less as a social space. There's a numerous amount of calorie counters, workout planners, and dieting planners, and while those are valid, we feel like there's certain elements missing; namely, being able to communicate with other gym-goers and the app's ease of use are often lacking.
 
 
 ## Technologies

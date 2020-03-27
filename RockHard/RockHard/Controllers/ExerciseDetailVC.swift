@@ -7,33 +7,12 @@ import UIKit
 class ExerciseDetailVC: UIViewController {
     
     //MARK: - Properties
-    //    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 550)
     
     var detailScrollView = UIScrollView(frame: UIScreen.main.bounds)
     var detailContainerView = UIView()
     
     
     var exercise: Exercise?
-    
-    //MARK: - detail UIObjects
-    //    lazy var detailScrollView: UIScrollView = {
-    //        let dsv = UIScrollView(frame: .zero)
-    //        dsv.backgroundColor = .clear
-    //        //dsv.contentSize = contentViewSize
-    //        dsv.frame = view.bounds
-    //        dsv.autoresizingMask = .flexibleHeight
-    //        dsv.showsVerticalScrollIndicator = true
-    //        dsv.bounces = true
-    //        return dsv
-    //    }()
-    
-    //    lazy var detailContainerView: UIView = {
-    //        let detailCV = UIView()
-    //        detailCV.backgroundColor = .clear
-    //        //hint --> UIView.frame.size == UIScrollView.contentSize
-    //        detailCV.frame.size = contentViewSize
-    //        return detailCV
-    //    }()
     
     lazy var exerciseNameLabel: UILabel = {
         let label = UILabel()
@@ -206,9 +185,6 @@ extension ExerciseDetailVC {
         [detailScrollView, detailContainerView, exerciseNameLabel, exerciseInfoLabel, detailImage ,muscleTypeLabel, arButton, exerciseDescription, bodyImage].forEach{$0.translatesAutoresizingMaskIntoConstraints = false }
         
         [exerciseNameLabel, exerciseInfoLabel, detailImage, muscleTypeLabel, arButton, exerciseDescription, bodyImage].forEach{detailContainerView.addSubview($0)}
-        
-        
-        
         setExerciseNameLabelConstraints()
         setExerciseInfoLabel()
         setDetailImageConstraints()
@@ -231,9 +207,7 @@ extension ExerciseDetailVC {
         NSLayoutConstraint.activate([
             detailContainerView.heightAnchor.constraint(equalTo: detailScrollView.heightAnchor),
             detailContainerView.widthAnchor.constraint(equalTo: detailScrollView.widthAnchor),
-            //            detailContainerView.centerXAnchor.constraint(equalTo: detailScrollView.centerXAnchor),
             detailContainerView.centerYAnchor.constraint(equalTo: detailScrollView.centerYAnchor)
-            
         ])
     }
     
@@ -251,8 +225,6 @@ extension ExerciseDetailVC {
             exerciseInfoLabel.topAnchor.constraint(equalTo: exerciseNameLabel.bottomAnchor),
             exerciseInfoLabel.leadingAnchor.constraint(equalTo: detailContainerView.leadingAnchor, constant: 15),
             exerciseInfoLabel.widthAnchor.constraint(equalTo: detailContainerView.widthAnchor, multiplier: 0.9)
-            //            ,
-            //            exerciseInfoLabel.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
@@ -287,8 +259,7 @@ extension ExerciseDetailVC {
         NSLayoutConstraint.activate([
             exerciseDescription.topAnchor.constraint(equalTo: arButton.bottomAnchor, constant: 25),
             exerciseDescription.leadingAnchor.constraint(equalTo: detailContainerView.leadingAnchor, constant: 15),
-            exerciseDescription.trailingAnchor.constraint(lessThanOrEqualTo: detailContainerView.trailingAnchor, constant: -15),
-            //            exerciseDescription.centerXAnchor.constraint(equalTo: detailContainerView.safeAreaLayoutGuide.centerXAnchor)
+            exerciseDescription.trailingAnchor.constraint(lessThanOrEqualTo: detailContainerView.trailingAnchor, constant: -15)
         ])
     }
     
@@ -304,11 +275,8 @@ extension ExerciseDetailVC {
     }
 }
 
-
-
 extension UIScrollView {
     func updateContentView() {
         contentSize.height = subviews.sorted(by: {$0.frame.maxY < $1.frame.maxY}).last?.frame.maxY ?? contentSize.height
     }
 }
-

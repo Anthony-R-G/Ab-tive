@@ -81,7 +81,6 @@ class AddPostViewController: UIViewController {
         return label
     }()
     
-    //Eric's add line 72-88
     lazy var createTopicView: UIView = {
         let topicView = UIView()
         topicView.alpha = 0.0
@@ -108,8 +107,6 @@ class AddPostViewController: UIViewController {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .lightGray
         button.backgroundColor = .clear
-        
-        //Eric's add line 96 - 100
         button.addTarget(self, action: #selector(presentTopicSelection), for: .touchUpInside)
         return button
     }()
@@ -122,7 +119,6 @@ class AddPostViewController: UIViewController {
     
     //MARK: -- Objective C Functions
     
-    //Eric's additions line109-line112
     @objc private func presentTopicSelection() {
         view.backgroundColor = #colorLiteral(red: 0.2632220984, green: 0.2616633773, blue: 0.2644240856, alpha: 0.8305329623)
         UIView.animate(withDuration: 1.0) {

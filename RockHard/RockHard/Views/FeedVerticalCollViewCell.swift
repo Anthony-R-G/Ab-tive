@@ -54,8 +54,16 @@ class FeedVerticalCollViewCell: UICollectionViewCell {
         return uv
     }()
     
-    private func setConstraints(){
-       
+    enum postType {
+        case hasPhoto
+        case hasNoPhoto
+        
+    }
+    
+    var currentPostType = postType.hasPhoto
+    
+    
+    private func setFeedPostWithPicConstraints(){
         [feedPostImage, darkOverlay, feedPostLabel  ,userNameLabel, userProfilePicture,].forEach{addSubview($0)}
         [feedPostImage, darkOverlay ,feedPostLabel, userNameLabel, userProfilePicture].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
         
@@ -65,6 +73,42 @@ class FeedVerticalCollViewCell: UICollectionViewCell {
         setUserProfilePictureConstraints()
         setUserNameLabelConstraints()
     }
+    
+    private func setFeedPostWithoutPicConstraints(){
+         [darkOverlay, feedPostLabel  ,userNameLabel, userProfilePicture].forEach{addSubview($0)}
+        [darkOverlay ,feedPostLabel, userNameLabel, userProfilePicture].forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
+        setImagelessFeedLabelConstraints()
+        setImagelessUserNameLabelConstraints()
+        setImagelessProfilePictureConstraints()
+    }
+    
+    
+    private func setImagelessProfilePictureConstraints(){
+        NSLayoutConstraint.activate([
+        userProfilePicture.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+        userProfilePicture.topAnchor.constraint(equalTo: bottomAnchor, constant: 20),
+        userProfilePicture.heightAnchor.constraint(equalToConstant: 45),
+        userProfilePicture.widthAnchor.constraint(equalToConstant: 45)
+        ])
+    }
+    
+    private func setImagelessUserNameLabelConstraints(){
+        NSLayoutConstraint.activate([
+        userNameLabel.leadingAnchor.constraint(equalTo: userProfilePicture.trailingAnchor, constant: 10),
+        userNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 13),
+        userNameLabel.heightAnchor.constraint(equalToConstant: 20),
+        userNameLabel.widthAnchor.constraint(equalToConstant: 150)
+        ])
+    }
+    
+    private func setImagelessFeedLabelConstraints() {
+        NSLayoutConstraint.activate([
+            feedPostLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            feedPostLabel.leadingAnchor.constraint(equalTo: userProfilePicture.trailingAnchor, constant: 10),
+                       feedPostLabel.heightAnchor.constraint(equalToConstant: 80),
+                       feedPostLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75)
+        ])
+    }
 
     private func setFeedPostImageConstraints(){
         NSLayoutConstraint.activate([
@@ -72,7 +116,6 @@ class FeedVerticalCollViewCell: UICollectionViewCell {
             feedPostImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             feedPostImage.heightAnchor.constraint(equalTo: heightAnchor),
             feedPostImage.widthAnchor.constraint(equalTo: widthAnchor)])
-        
     }
     
     private func setFeedLabelConstraints(){
@@ -113,7 +156,15 @@ class FeedVerticalCollViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setConstraints()
+        if currentPostType == .hasPhoto {
+          setFeedPostWithPicConstraints()
+        } else {
+            setFeedPostWithoutPicConstraints()
+        }
+        print(currentPostType)
+        
+        
+        
         self.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
         backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

@@ -1,4 +1,4 @@
-//
+
 //  FirestoreService.swift
 //  RockHard
 //
@@ -71,7 +71,6 @@ class FirestoreService {
         }
     }
     
-    
     func getExercises( completion: @escaping (Result<[Exercise],Error>) ->()) {
         db.collection("exercise").getDocuments { (snapshot, error) in
             if let error = error{
@@ -100,8 +99,6 @@ class FirestoreService {
             }
         }
     }
-    
-    
     
     func deleteAllUserFavorites(apiSourceRawValue: String, completion: @escaping (Result<(), Error>) -> ()){
         let userID = FirebaseAuthService.manager.currentUser?.uid
@@ -144,6 +141,22 @@ class FirestoreService {
         }
     }
     
+    func getUserInfo(userID: String, completion: @escaping (Result<AppUser,Error>) ->()) {
+        db.collection("users").document(userID).getDocument { (snapshot, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot,
+                let data = snapshot.data() {
+                let userID = snapshot.documentID
+                let user = AppUser(from: data, id: userID)
+                if let appUser = user {
+                    completion(.success(appUser))
+                }
+            }
+        }
+    }
+    
     func updateWorkoutPlan( workoutPlan: WorkoutPlan, completion: @escaping (Result<(), Error>) -> ()){
         let fields  = workoutPlan.fieldsDict
         db.collection("workoutPlan").document("12231").updateData(fields) { (error) in
@@ -156,9 +169,6 @@ class FirestoreService {
     }
 }
 
-
-
-
 //        db.collection(FireStoreCollections.favorites.rawValue).document(userID!).setData(fields) { (error) in
 //            if let error = error {
 //                completion(.failure(error))
@@ -166,7 +176,6 @@ class FirestoreService {
 //                completion(.success(()))
 //            }
 //        }
-
 
 //    private func getAccountTypeInformation() {
 //        let db = Firestore.firestore()

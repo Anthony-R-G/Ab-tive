@@ -21,7 +21,6 @@
 		50D4D73623E09FCD00DD7486 /* ExerciseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */; };
 		50D4D73823E0A32100DD7486 /* CellButtonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */; };
 		50F29F4723E34AE60050C2CD /* MuscleTypeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */; };
-		50FD246F242E48A8000C4E34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50FD246E242E48A8000C4E34 /* GoogleService-Info.plist */; };
 		9704BB1D23E8807300AF6830 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1923E8807200AF6830 /* Post.swift */; };
 		9704BB1E23E8807300AF6830 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1A23E8807300AF6830 /* AppUser.swift */; };
 		9704BB1F23E8807300AF6830 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704BB1B23E8807300AF6830 /* FirebaseAuthService.swift */; };
@@ -46,6 +45,7 @@
 		97BF746D23DF49960058F2D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97BF746B23DF49960058F2D7 /* LaunchScreen.storyboard */; };
 		97BF747823DF49960058F2D7 /* RockHardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF747723DF49960058F2D7 /* RockHardTests.swift */; };
 		97BF748423DF49E80058F2D7 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF748323DF49E80058F2D7 /* MainTabBarViewController.swift */; };
+		DF3BA529242E53F200A569FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DF3BA528242E53F200A569FF /* GoogleService-Info.plist */; };
 		DF4071B523E0A91500506B8A /* FeedVerticalCollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4071B423E0A91500506B8A /* FeedVerticalCollViewCell.swift */; };
 		DF4C5CF423DF536400A8D537 /* FeedHorizontalCollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4C5CF323DF536400A8D537 /* FeedHorizontalCollViewCell.swift */; };
 		DFA2C48823F1C74100157519 /* ExerciseDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA2C48723F1C74100157519 /* ExerciseDetailVC.swift */; };
@@ -78,7 +78,6 @@
 		50D4D73523E09FCD00DD7486 /* ExerciseInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseInfoCell.swift; path = RockHard/Controllers/ExerciseInfoCell.swift; sourceTree = SOURCE_ROOT; };
 		50D4D73723E0A32100DD7486 /* CellButtonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellButtonProtocol.swift; path = RockHard/Controllers/CellButtonProtocol.swift; sourceTree = SOURCE_ROOT; };
 		50F29F4623E34AE60050C2CD /* MuscleTypeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MuscleTypeCVCell.swift; path = RockHard/Controllers/MuscleTypeCVCell.swift; sourceTree = SOURCE_ROOT; };
-		50FD246E242E48A8000C4E34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9297C32597000FBAB851C8C5 /* Pods_RockHard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RockHard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9704BB1923E8807200AF6830 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		9704BB1A23E8807300AF6830 /* AppUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		980808F43898B97ACDCF3991 /* Pods-RockHardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHardTests.release.xcconfig"; path = "Target Support Files/Pods-RockHardTests/Pods-RockHardTests.release.xcconfig"; sourceTree = "<group>"; };
 		9EDF7A9DCA11122A4CE0BE45 /* Pods-RockHard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RockHard.debug.xcconfig"; path = "Target Support Files/Pods-RockHard/Pods-RockHard.debug.xcconfig"; sourceTree = "<group>"; };
 		DD8C03313EE43DA32D371A99 /* Pods_RockHardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RockHardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF3BA528242E53F200A569FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DF4071B423E0A91500506B8A /* FeedVerticalCollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVerticalCollViewCell.swift; sourceTree = "<group>"; };
 		DF4C5CF323DF536400A8D537 /* FeedHorizontalCollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHorizontalCollViewCell.swift; sourceTree = "<group>"; };
 		DFA2C48723F1C74100157519 /* ExerciseDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailVC.swift; sourceTree = "<group>"; };
@@ -233,10 +233,10 @@
 				97BF746923DF49960058F2D7 /* Assets.xcassets */,
 				97BF746023DF49920058F2D7 /* AppDelegate.swift */,
 				97BF746223DF49920058F2D7 /* SceneDelegate.swift */,
-				50FD246E242E48A8000C4E34 /* GoogleService-Info.plist */,
 				97BF746B23DF49960058F2D7 /* LaunchScreen.storyboard */,
 				974BAEDD24097FA500451290 /* testModel.scn */,
 				974BAEDF24097FAE00451290 /* testModelMaterial.jpg */,
+				DF3BA528242E53F200A569FF /* GoogleService-Info.plist */,
 				97BF746E23DF49960058F2D7 /* Info.plist */,
 				974BAED824097F1400451290 /* MBProgressHUD.h */,
 				974BAED924097F1500451290 /* MBProgressHUD.m */,
@@ -382,8 +382,8 @@
 			files = (
 				974BAEDE24097FA500451290 /* testModel.scn in Resources */,
 				974BAEE024097FAF00451290 /* testModelMaterial.jpg in Resources */,
-				50FD246F242E48A8000C4E34 /* GoogleService-Info.plist in Resources */,
 				97BF746D23DF49960058F2D7 /* LaunchScreen.storyboard in Resources */,
+				DF3BA529242E53F200A569FF /* GoogleService-Info.plist in Resources */,
 				97BF746A23DF49960058F2D7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

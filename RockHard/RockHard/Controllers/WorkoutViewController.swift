@@ -50,8 +50,9 @@ class WorkoutViewController: UIViewController {
         button.layer.cornerRadius = 12
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.textAlignment = .center
-          button.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
-          button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
+        button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
+        button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         return button
     }()
     
@@ -110,6 +111,19 @@ class WorkoutViewController: UIViewController {
         saveMenu.addAction(saveAlert)
         present(saveMenu, animated: true)
       
+    }
+    @objc func logOut(){
+        DispatchQueue.main.async {
+            FirebaseAuthService.manager.signOutUser()
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+                else {
+                    return
+            }
+            UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
+                window.rootViewController = LoginViewController()
+            }, completion: nil)
+        }
     }
     //MARK: - Regular Functions
     private func loadPlans(){

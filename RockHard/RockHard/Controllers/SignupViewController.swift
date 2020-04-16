@@ -104,10 +104,14 @@ class SignUpViewController: UIViewController {
       self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
       self.navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
       }
-    
+    private func setTextFieldDelegates(){
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        userNameTextField.delegate = self
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setTextFieldDelegates()
         setConstraints()
         
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
@@ -173,5 +177,11 @@ extension SignUpViewController {
             signUpButton.widthAnchor.constraint(equalToConstant: 100),
             signUpButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+}
+extension SignUpViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

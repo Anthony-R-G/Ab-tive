@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     
     //MARK: -- Lazy UI Properties
     lazy var emailTextField: UITextField = { Utilities.createTextfield(placeholderMsg: "Email Address", isSecureEntry: false)
+        
     }()
     
     lazy var passwordTextField: UITextField = {
@@ -117,12 +118,15 @@ class LoginViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    private func addDelegatesTextField(){
+        passwordTextField.delegate = self
+        emailTextField.delegate = self
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setConstraints()
-        
-        
+        addDelegatesTextField()
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = #imageLiteral(resourceName: "loginScreenBG")
         backgroundImage.contentMode = UIView.ContentMode.scaleAspectFill
@@ -193,6 +197,12 @@ extension LoginViewController {
             fitBuddyLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             fitBuddyLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+}
+extension LoginViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

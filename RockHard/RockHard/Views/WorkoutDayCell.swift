@@ -45,7 +45,6 @@ class WorkoutDayCell: UITableViewCell {
         dayOfWeekLabelConstraint()
     }
     private func setUpView(){
-        contentView.backgroundColor = .black
        contentView.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
          contentView.backgroundColor = #colorLiteral(red: 0.3098464012, green: 0.01799101382, blue: 0.1289751828, alpha: 1)
          contentView.layer.borderWidth = 2

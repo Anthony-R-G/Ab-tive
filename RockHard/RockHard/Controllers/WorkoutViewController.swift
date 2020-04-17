@@ -197,6 +197,7 @@ extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = workoutDayTableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as? WorkoutDayCell else
         {return UITableViewCell()}
         if let data = workoutCards?[indexPath.row]{
+            cell.backgroundColor = .clear
             cell.dayOfWeekLabel.text = data.workoutDay
             cell.nameOfWorkoutLabel.text = data.workoutName
         }

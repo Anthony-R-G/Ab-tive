@@ -15,24 +15,35 @@ class WorkoutViewController: UIViewController {
         setUpView()
         setUpConstraints()
         getWorkout()
-        loadPlans()
+//        loadPlans()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         getWorkout()
         self.navigationController?.navigationBar.isHidden = true
-
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
+    var currentUser = FirebaseAuthService.manager.currentUser
     //MARK: - Variables
-    var workout: WorkoutPlan?{
+    let weekDayNumbers = [
+        "Sunday": 0,
+        "Monday": 1,
+        "Tuesday": 2,
+        "Wednesday": 3,
+        "Thursday": 4,
+        "Friday": 5,
+        "Saturday": 6,
+    ]
+    var workout: WorkoutPlan?
+    var workoutCards: [WorkoutCard]?{
         didSet{
             workoutDayTableView.reloadData()
         }
     }
-    var plans = [WorkoutPlan]()
+//    var plans = [WorkoutPlan]()
     
     //MARK: - UI Objects
     lazy var workoutDayTableView: UITableView = {
@@ -52,7 +63,6 @@ class WorkoutViewController: UIViewController {
         button.titleLabel?.textAlignment = .center
         button.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 1)
         button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
-        button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
         return button
     }()
     
@@ -112,39 +122,29 @@ class WorkoutViewController: UIViewController {
         present(saveMenu, animated: true)
       
     }
-    @objc func logOut(){
-        DispatchQueue.main.async {
-            FirebaseAuthService.manager.signOutUser()
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
-                else {
-                    return
-            }
-            UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
-                window.rootViewController = LoginViewController()
-            }, completion: nil)
-        }
-    }
+    
     //MARK: - Regular Functions
-    private func loadPlans(){
-        do {
-            plans = try PlanPersistence.manager.getPlans()
-        }catch{
-            print(error)
-        }
-        print(plans.count)
-    }
+//    private func loadPlans(){
+//        do {
+//            plans = try PlanPersistence.manager.getPlans()
+//        }catch{
+//            print(error)
+//        }
+//        print(plans.count)
+//    }
     private func setUpView(){
         view.backgroundColor = #colorLiteral(red: 0.2964071631, green: 0.2576555014, blue: 0.2364076376, alpha: 1)
         self.navigationItem.rightBarButtonItem = saveButton
     }
     private func getWorkout(){
-        FirestoreService.manager.getWorkoutPlan { (Result) in
+        guard let userId = currentUser?.uid else {return}
+        FirestoreService.manager.getWorkoutPlan(userId: userId) { (Result) in
             switch Result{
             case .failure(let error):
                 print(error)
             case .success(let plan):
-                self.workout = plan.first
+                self.workout = plan
+                self.workoutCards = plan?.workoutCards
             }
         }
     }
@@ -190,16 +190,15 @@ class WorkoutViewController: UIViewController {
 }
 extension WorkoutViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return workout?.workoutCards.count ?? 0
+        return workoutCards?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = workoutDayTableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath) as? WorkoutDayCell else
         {return UITableViewCell()}
-        if let data = workout?.workoutCards[indexPath.row]{
+        if let data = workoutCards?[indexPath.row]{
             cell.dayOfWeekLabel.text = data.workoutDay
             cell.nameOfWorkoutLabel.text = data.workoutName
-            
         }
         return cell
 }

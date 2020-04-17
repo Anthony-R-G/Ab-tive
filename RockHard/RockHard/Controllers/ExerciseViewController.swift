@@ -33,9 +33,9 @@ class ExerciseViewController: UIViewController {
         case createWorkout
         case viewWorkout
         case exerciseView
-    } 
-    var weekDay = "Monday"
+    }
     var currentUser = FirebaseAuthService.manager.currentUser
+    var weekDay = "Monday"
     var state = currentState.exerciseView
     var workoutPlan: WorkoutPlan?
     var workoutCard: WorkoutCard?
@@ -66,10 +66,12 @@ class ExerciseViewController: UIViewController {
         createWorkoutButton.backgroundColor = .gray
     }
     @objc private func saveWorkout(){
+        guard let userID = currentUser else {return}
         if workoutPlan != nil{
+            
             let workout = WorkoutCard(workoutDay: weekDay, workoutName: workoutNameTextField.text!, exercises: pickedExercises)
             workoutPlan?.workoutCards.append(workout)
-            FirestoreService.manager.updateWorkoutPlan(workoutPlan: workoutPlan!) { (result) in
+            FirestoreService.manager.updateWorkoutPlan(userID: userID.uid, workoutPlan: workoutPlan!) { (result) in
                 switch result{
                 case .failure(let error):
                     print(error)
@@ -79,8 +81,9 @@ class ExerciseViewController: UIViewController {
             }
         }else{
             let workout = WorkoutCard(workoutDay: weekDay, workoutName: workoutNameTextField.text!, exercises: pickedExercises)
-            let workoutPlan = WorkoutPlan(planName: "", creatorID: currentUser?.uid ?? "", workoutCards: [workout])
-            FirestoreService.manager.createWorkoutPlan(plan: workoutPlan) { (Resut) in
+            let workoutPlan = WorkoutPlan(planName: "", creatorID: userID.uid , workoutCards: [workout])
+         
+            FirestoreService.manager.createWorkoutPlan(userID: userID.uid, plan: workoutPlan) { (Resut) in
                 switch Resut{
                 case .failure(let error):
                     print(error)

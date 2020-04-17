@@ -77,6 +77,12 @@ class ProfileViewController: UIViewController {
         emailTF.textColor = UIColor.white
         return emailTF
     }()
+    lazy var logOutButton: UIButton = {
+          let button = UIButton()
+        button.setTitle("Sign Out", for: .normal)
+        button.addTarget(self, action: #selector(logOutAction), for: .touchUpInside)
+        return button
+       }()
     
     lazy var passwordTextField: UITextField = {
         let passwordTF = UITextField()
@@ -139,9 +145,9 @@ class ProfileViewController: UIViewController {
         constraintProfileImage()
         contraintContentView()
         constraintUserNameLabel()
-        constraintBuddySwitchLabel()
-        contraintBuddySwitch()
-        constraintEmailTextField()
+        constraintLogOutButton()
+//        constraintBuddySwitchLabel()
+//        constraintEmailTextField()
         constraintPassTextField()
         constraintGymLabel()
         constraintGymNameTextField()
@@ -156,15 +162,26 @@ class ProfileViewController: UIViewController {
             
         
     }
+    @objc private func logOutAction(){
+                FirebaseAuthService.manager.signOutUser()
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                    let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+                    else {
+                        return
+                }
+                UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
+                    window.rootViewController = LoginViewController()
+                }, completion: nil)
+            }
     
     private func addSubview() {
         contentView.addSubview(profileImageView)
         view.addSubview(backgroundImageView)
-
               view.addSubview(contentView)
         contentView.addSubview(userNameLabel)
-        contentView.addSubview(buddySwitchLabel)
-        contentView.addSubview(buddySwitch)
+        contentView.addSubview(logOutButton)
+//        contentView.addSubview(buddySwitchLabel)
+//        contentView.addSubview(buddySwitch)
 //        view.addSubview(backgroundImageView)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
@@ -177,8 +194,7 @@ class ProfileViewController: UIViewController {
     }
 
     //    MARK: CONSTRAINTS
-    
-    
+
     private func constraintProfileImage(){
         profileImageView.anchors(top: contentView.topAnchor, left: contentView.leftAnchor, paddingTop: -45, paddingLeft: 40, width: 110, height: 110)
     }
@@ -198,10 +214,14 @@ class ProfileViewController: UIViewController {
             , width: 150, height: 35)
     }
     
-    private func constraintBuddySwitchLabel() {
-               buddySwitchLabel.anchors (top: contentView.topAnchor, left: contentView.leftAnchor, paddingTop: 05, paddingLeft: 180
+    private func constraintLogOutButton() {
+               logOutButton.anchors (top: contentView.topAnchor, left: contentView.leftAnchor, paddingTop: 05, paddingLeft: 180
                    , width: 115, height: 25)
         }
+//    private func constraintBuddySwitchLabel() {
+//           buddySwitchLabel.anchors (top: contentView.topAnchor, left: contentView.leftAnchor, paddingTop: 05, paddingLeft: 180
+//               , width: 115, height: 25)
+//    }
     
     private func contraintBuddySwitch() {
         buddySwitch.anchors(top: contentView.topAnchor, right: contentView.rightAnchor, paddingTop: 05, paddingRight: 24)

@@ -264,15 +264,23 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if specificPost.postPicture == "nil" {
                 return CGSize(width: 360, height: 170)
             } else {
-                
                 return CGSize(width: 360, height: 450)
             }
-            
         } else {
-            return CGSize(width: 130, height: 85)
+            return CGSize(width: 130, height: 65)
         }
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pickedTopic = topics[indexPath.row]
+        FirestoreService.manager.getSpecificPost(topicTag: pickedTopic) { (result) in
+            switch result{
+            case .failure(let error):
+               print(error)
+            case .success(let post):
+                self.feedPosts = post
+            }
+        }
+    }
 
 
     //MARK: - Eric's Addt

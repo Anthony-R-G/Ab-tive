@@ -101,6 +101,7 @@ class LoginViewController: UIViewController {
         let signUpVC = SignUpViewController()
         signUpVC.modalPresentationStyle = .formSheet
         self.navigationController?.pushViewController(signUpVC, animated: true)
+    
     }
     
     //MARK: UI/Life Cycle Methods

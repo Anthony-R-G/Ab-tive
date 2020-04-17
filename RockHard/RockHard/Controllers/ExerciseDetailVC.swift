@@ -81,7 +81,7 @@ class ExerciseDetailVC: UIViewController {
     
     lazy var bodyImage: UIImageView = {
         let imgView = UIImageView()
-        imgView.backgroundColor = .red
+        imgView.backgroundColor = .clear
         imgView.contentMode = .scaleToFill
         return imgView }()
     
@@ -89,6 +89,7 @@ class ExerciseDetailVC: UIViewController {
         let button = UIButton(type: .system)
         button.backgroundColor = #colorLiteral(red: 1, green: 0.3748272657, blue: 0, alpha: 0.7335455908)
         button.layer.cornerRadius = 12
+        button.isEnabled = false
         button.setTitle("AR View", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)

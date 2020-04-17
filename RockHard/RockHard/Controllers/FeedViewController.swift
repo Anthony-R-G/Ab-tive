@@ -19,7 +19,7 @@ class FeedViewController: UIViewController {
     }
     
 
-    var topics = ["Diet", "Weight Loss", "Gym Accessories"]
+    var topics = ["Diet", "Weight Loss", "Gym Accessories", "All"]
     
     
     var feedPosts = [Post](){
@@ -271,16 +271,29 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let pickedTopic = topics[indexPath.row]
-        FirestoreService.manager.getSpecificPost(topicTag: pickedTopic) { (result) in
-            switch result{
-            case .failure(let error):
-               print(error)
-            case .success(let post):
-                self.feedPosts = post
+        if collectionView == feedOptionCollView{
+            let pickedTopic = topics[indexPath.row]
+            if pickedTopic == "All"{
+                FirestoreService.manager.getAllPost { (result) in
+                    switch result{
+                    case .failure(let error):
+                    print(error)
+                    case .success(let post):
+                        self.feedPosts = post
+                    }
+                }
+            }else {
+            FirestoreService.manager.getSpecificPost(topicTag: pickedTopic) { (result) in
+                switch result{
+                case .failure(let error):
+                   print(error)
+                case .success(let post):
+                    self.feedPosts = post
+                }
             }
         }
-    }
+        
+        }}
 
 
     //MARK: - Eric's Addt

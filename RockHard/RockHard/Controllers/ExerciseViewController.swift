@@ -16,7 +16,7 @@ class ExerciseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         switch state {
         case .viewWorkout, .createWorkout:
-            print("hey")
+            print("")
         default:
             self.navigationController?.navigationBar.isHidden = true
 
@@ -63,7 +63,8 @@ class ExerciseViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.2632220984, green: 0.2616633773, blue: 0.2644240856, alpha: 0.8305329623)
         createWorkoutView.isHidden = false
         exerciseCV.isHidden = true
-        createWorkoutButton.backgroundColor = .gray
+        createWorkoutButton.isHidden = true
+        muscleTypeCV.isHidden = true
     }
     @objc private func saveWorkout(){
         guard let userID = currentUser else {return}
@@ -236,14 +237,13 @@ class ExerciseViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 5
         stackView.distribution = .fillEqually
-        
         createWorkoutView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: createWorkoutView.topAnchor, constant: 10),
             stackView.leadingAnchor.constraint(equalTo: createWorkoutView.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: createWorkoutView.trailingAnchor, constant: -10),
-            stackView.heightAnchor.constraint(equalToConstant: 150)
+            stackView.heightAnchor.constraint(equalToConstant: 130)
         ])
     }
     private func constrainPickerView(){

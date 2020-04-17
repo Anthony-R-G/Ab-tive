@@ -40,6 +40,8 @@ class WorkoutViewController: UIViewController {
     var workout: WorkoutPlan?
     var workoutCards: [WorkoutCard]?{
         didSet{
+            if workoutCards != nil{
+                workoutCards!.sort(by: { (weekDayNumbers[$0.workoutDay] ?? 7) < (weekDayNumbers[$1.workoutDay] ?? 7) })}
             workoutDayTableView.reloadData()
         }
     }

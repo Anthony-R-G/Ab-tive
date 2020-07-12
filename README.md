@@ -15,12 +15,6 @@ Google Map
 
 Core Location
 
-ARKit3
-
-Blender
-
-Machine Learning, to match people with the same time to exercise, same exercise goals
-
 
 ## Features
 
@@ -30,7 +24,7 @@ User has the options to find a partner/trainer or to use the app individually to
 Progress/Skip Gym tracker - to show users their progress and remind users if they skip going to the gym completely for the day
 
 ## User Story
-Brandy makes the same New Year resolution every year; to get fit! Brandy goes to her nearest gym for about two weeks. Brandy feels like she doesn’t know the appropriate exercises to do nor does she know the correct way to use the machines. This makes Brandy feel really sad. It also does not help that Brandy feels very self conscious working out alone. Also, Brandy suffers from depression and hates her step-dad. Eventually, Brandy stops going to the gym altogether. Jeepers!
+Brandy makes the same New Year resolution every year; to get fit! Brandy goes to her nearest gym for about two weeks. Brandy feels like she doesn’t know the appropriate exercises to do nor does she know the correct way to use the machines. This makes Brandy feel really sad. It also does not help that Brandy feels very self conscious working out alone. 
 
 
 One evening on Brandys commute home she heard a group of people talking about an app called Ab-tive. Brandy quickly got home downloaded the app. She created her profile, plugged in the gym she plans to attend and uploaded her “before”pic for the progress tracker. The app generated a list of users that also attend the same gym as Brandy so she views their profile until she finds her perfect buddy. Technology, huh?
